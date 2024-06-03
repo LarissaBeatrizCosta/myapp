@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp/providers/theme.dart';
 
+//teste
 class Settings extends StatelessWidget {
   const Settings({super.key});
 
