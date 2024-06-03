@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const String _themeKey = 'themeLight';
 
-class _ThemeState extends ChangeNotifier {
-  _ThemeState() {
+class ThemeState extends ChangeNotifier {
+  ThemeState() {
     _initState();
   }
 
