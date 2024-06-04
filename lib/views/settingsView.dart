@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp/providers/theme.dart';
 
 //teste
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class SettingsView extends StatelessWidget {
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +26,20 @@ class Settings extends StatelessWidget {
             backgroundColor: Color.fromARGB(255, 0, 29, 61),
           ),
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            padding: EdgeInsets.symmetric(horizontal: 75),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text("Escolha o tema da sua preferência"),
+                SizedBox(height: 10),
+                IconButton(
+                  onPressed: state.changeTheme,
+                  icon: Icon(
+                    state.themeLight ? Icons.light_mode : Icons.dark_mode,
+                    color: Color.fromRGBO(255, 195, 0, 1),
+                  ),
+                ),
+                SizedBox(height: 70),
                 Text("Escolha o idioma da sua preferência"),
               ],
             ),
