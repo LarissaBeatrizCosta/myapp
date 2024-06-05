@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String _themeKey = 'themeLight';
@@ -20,6 +21,13 @@ class ThemeState extends ChangeNotifier {
 
   void changeTheme() {
     _themeLight = !_themeLight;
+    _sharedPreferences.setBool(_themeKey, _themeLight);
+    notifyListeners();
+  }
+
+  void changeThemeSystem(BuildContext context) {
+    bool themeSystem = MediaQuery.platformBrightnessOf(context) == Brightness.dark;
+    _themeLight = !themeSystem;
     _sharedPreferences.setBool(_themeKey, _themeLight);
     notifyListeners();
   }
