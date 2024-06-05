@@ -59,6 +59,15 @@ class SettingsView extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+// ElevatedButton(onPressed: () =>, child: Text("Portuguese"),),
+// ElevatedButton(onPressed: () => , child: Text("English"),),            
+              
+              ],
+            )
           ],
         ),
       ),

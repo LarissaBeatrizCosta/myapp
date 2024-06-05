@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'providers/theme.dart';
 import 'routes/route.dart';
 import 'views/homeView.dart';
-import 'views/settingsView.dart';
 
 void main() {
   runApp(MyApp());
