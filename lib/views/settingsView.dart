@@ -17,9 +17,7 @@ class SettingsView extends StatelessWidget {
             Icons.arrow_back,
             color: Colors.white,
           ),
-          onPressed: () {
-            //todo: função que volta para home
-          },
+          onPressed: () => Navigator.pushNamed(context, "/"),
         ),
         backgroundColor: Color.fromARGB(255, 0, 29, 61),
       ),

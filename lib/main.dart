@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           initialRoute: "/",
           onGenerateRoute: Routes.createRoutes,
           routes: {
-            "/": (context) => SettingsView(),
+            "/": (context) => HomeView(),
           },
         );
       }),

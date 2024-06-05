@@ -5,7 +5,10 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Home'),
+        child: ElevatedButton(
+          onPressed: () => Navigator.pushNamed(context, '/settings'),
+          child: Text("teste"),
+        ),
       ),
     );
   }
