@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
-                          onPressed: () => Navigator.pushNamed(context, '/'),
+                          onPressed: () => Navigator.pushNamed(context, '/settings'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(150, 100),
                             shape: const RoundedRectangleBorder(
@@ -113,7 +113,7 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 40),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -208,7 +208,7 @@ class HomeView extends StatelessWidget {
                           child: const Column(
                             children: [
                               Icon(
-                                Icons.account_circle_sharp,
+                                Icons.assignment_ind,
                                 color: Color.fromRGBO(255, 195, 0, 1),
                                 size: 40,
                               ),
@@ -236,7 +236,7 @@ class HomeView extends StatelessWidget {
                           child: const Column(
                             children: [
                               Icon(
-                                Icons.supervisor_account,
+                                Icons.assignment,
                                 color: Color.fromRGBO(255, 195, 0, 1),
                                 size: 40,
                               ),
@@ -271,7 +271,7 @@ class HomeView extends StatelessWidget {
                             child: const Column(
                               children: [
                                 Icon(
-                                  Icons.drive_eta,
+                                  Icons.car_repair,
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                   size: 40,
                                 ),
@@ -299,7 +299,7 @@ class HomeView extends StatelessWidget {
                             child: const Column(
                               children: [
                                 Icon(
-                                  Icons.payments,
+                                  Icons.description,
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                   size: 40,
                                 ),
