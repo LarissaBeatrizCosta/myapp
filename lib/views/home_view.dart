@@ -12,10 +12,10 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
+            Icons.settings,
             color: Colors.white,
           ),
-          onPressed: () => Navigator.pushNamed(context, '/'),
+          onPressed: () => Navigator.pushNamed(context, '/settings'),
         ),
         backgroundColor: const Color.fromARGB(255, 0, 29, 61),
       ),
@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
-                          onPressed: () => Navigator.pushNamed(context, '/settings'),
+                          onPressed: () => Navigator.pushNamed(context, '/'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(150, 100),
                             shape: const RoundedRectangleBorder(
