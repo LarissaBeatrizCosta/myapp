@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../views/homeView.dart';
-import '../views/settingsView.dart';
+import '../views/home_view.dart';
+import '../views/settings_view.dart';
 
 class Routes {
   static Route<dynamic> createRoutes(RouteSettings route) {

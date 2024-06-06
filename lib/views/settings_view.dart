@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:myapp/providers/theme.dart';
 
+import '../providers/theme.dart';
+
+/// Tela de configurações
 class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key});
+  /// Construtor da classe
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,26 +15,26 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
-          onPressed: () => Navigator.pushNamed(context, "/"),
+          onPressed: () => Navigator.pushNamed(context, '/'),
         ),
-        backgroundColor: Color.fromARGB(255, 0, 29, 61),
+        backgroundColor: const Color.fromARGB(255, 0, 29, 61),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 60),
+        padding: const EdgeInsets.symmetric(horizontal: 60),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Escolha o tema da sua preferência",
+            const Text(
+              'Escolha o tema da sua preferência',
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -40,32 +42,31 @@ class SettingsView extends StatelessWidget {
                   onPressed: state.changeTheme,
                   icon: Icon(
                     state.themeLight ? Icons.light_mode : Icons.dark_mode,
-                    color: Color.fromRGBO(255, 195, 0, 1),
+                    color: const Color.fromRGBO(255, 195, 0, 1),
                   ),
                 ),
                 IconButton(
                   onPressed: () => state.changeThemeSystem(context),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.android,
                     color: Color.fromRGBO(0, 53, 102, 1),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 60),
-            Text(
-              "Escolha o idioma da sua preferência",
+             const SizedBox(height: 60),
+             const Text(
+              'Escolha o idioma da sua preferência',
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 10),
-            Row(
+             const SizedBox(height: 10),
+             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 // ElevatedButton(onPressed: () =>, child: Text("Portuguese"),),
-// ElevatedButton(onPressed: () => , child: Text("English"),),            
-              
+// ElevatedButton(onPressed: () => , child: Text("English"),),
               ],
             )
           ],
