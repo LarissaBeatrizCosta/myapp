@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../views/home_view.dart';
+import '../views/register_customer.dart';
 import '../views/settings_view.dart';
 
 /// Gerenciamento de rotas
-class  Routes {
+class Routes {
   ///Crias as rotas
   static Route<dynamic> createRoutes(RouteSettings route) {
     switch (route.name) {
@@ -13,6 +14,9 @@ class  Routes {
 
       case '/settings':
         return MaterialPageRoute(builder: (_) => const SettingsView());
+
+      case '/register_customer':
+        return MaterialPageRoute(builder: (_) => RegisterCustomer());
 
       default:
         return MaterialPageRoute(
