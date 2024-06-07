@@ -38,7 +38,7 @@ class RegisterCustomer extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                   const  SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       decoration: const InputDecoration(
                         labelText: 'Nome:',
@@ -50,7 +50,7 @@ class RegisterCustomer extends StatelessWidget {
                         labelText: 'Telefone:',
                       ),
                     ),
-                   const SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       decoration: const InputDecoration(
                         labelText: 'CNPJ:',
@@ -73,7 +73,8 @@ class RegisterCustomer extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(255, 195, 0, 1),
+                            backgroundColor:
+                                const Color.fromRGBO(255, 195, 0, 1),
                           ),
                           onPressed: () {
                             //todo: verificação

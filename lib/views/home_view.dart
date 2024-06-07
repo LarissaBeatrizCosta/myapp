@@ -52,7 +52,8 @@ class HomeView extends StatelessWidget {
                     const Text(
                       'Novos Cadastros',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -201,7 +202,8 @@ class HomeView extends StatelessWidget {
                     const Text(
                       'Relatórios e Alterações',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 20),
