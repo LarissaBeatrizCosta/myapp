@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/theme.dart';
 
 /// Inicializa página inicial
 class HomeView extends StatelessWidget {
@@ -8,6 +11,8 @@ class HomeView extends StatelessWidget {
   /// Método que retorna a página inicial
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<ThemeState>(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -55,7 +60,8 @@ class HomeView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
-                          onPressed: () => Navigator.pushNamed(context, '/register_customer'),
+                          onPressed: () => Navigator.pushNamed(
+                              context, '/register_customer'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(150, 100),
                             shape: const RoundedRectangleBorder(
@@ -65,9 +71,9 @@ class HomeView extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.all(16),
                           ),
-                          child: const Column(
+                          child: Column(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.account_circle_sharp,
                                 color: Color.fromRGBO(255, 195, 0, 1),
                                 size: 40,
@@ -76,7 +82,9 @@ class HomeView extends StatelessWidget {
                                 'Clientes',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.black,
+                                  color: state.themeLight
+                                      ? Colors.black
+                                      : Colors.white,
                                 ),
                               ),
                             ],
@@ -93,9 +101,9 @@ class HomeView extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.all(16),
                           ),
-                          child: const Column(
+                          child: Column(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.supervisor_account,
                                 color: Color.fromRGBO(255, 195, 0, 1),
                                 size: 40,
@@ -104,7 +112,9 @@ class HomeView extends StatelessWidget {
                                 'Gerentes',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.black,
+                                  color: state.themeLight
+                                      ? Colors.black
+                                      : Colors.white,
                                 ),
                               ),
                             ],
@@ -128,9 +138,9 @@ class HomeView extends StatelessWidget {
                               ),
                               padding: const EdgeInsets.all(16),
                             ),
-                            child: const Column(
+                            child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.drive_eta,
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                   size: 40,
@@ -139,7 +149,9 @@ class HomeView extends StatelessWidget {
                                   'Veiculos',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.black,
+                                    color: state.themeLight
+                                        ? Colors.black
+                                        : Colors.white,
                                   ),
                                 ),
                               ],
@@ -156,9 +168,9 @@ class HomeView extends StatelessWidget {
                               ),
                               padding: const EdgeInsets.all(16),
                             ),
-                            child: const Column(
+                            child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.payments,
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                   size: 40,
@@ -167,7 +179,9 @@ class HomeView extends StatelessWidget {
                                   'Aluguéis',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.black,
+                                    color: state.themeLight
+                                        ? Colors.black
+                                        : Colors.white,
                                   ),
                                 ),
                               ],
@@ -205,9 +219,9 @@ class HomeView extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.all(16),
                           ),
-                          child: const Column(
+                          child: Column(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.assignment_ind,
                                 color: Color.fromRGBO(255, 195, 0, 1),
                                 size: 40,
@@ -216,7 +230,9 @@ class HomeView extends StatelessWidget {
                                 'Clientes',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.black,
+                                  color: state.themeLight
+                                      ? Colors.black
+                                      : Colors.white,
                                 ),
                               ),
                             ],
@@ -233,9 +249,9 @@ class HomeView extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.all(16),
                           ),
-                          child: const Column(
+                          child: Column(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.assignment,
                                 color: Color.fromRGBO(255, 195, 0, 1),
                                 size: 40,
@@ -244,7 +260,9 @@ class HomeView extends StatelessWidget {
                                 'Gerentes',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.black,
+                                  color: state.themeLight
+                                      ? Colors.black
+                                      : Colors.white,
                                 ),
                               ),
                             ],
@@ -268,9 +286,9 @@ class HomeView extends StatelessWidget {
                               ),
                               padding: const EdgeInsets.all(16),
                             ),
-                            child: const Column(
+                            child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.car_repair,
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                   size: 40,
@@ -279,7 +297,9 @@ class HomeView extends StatelessWidget {
                                   'Veiculos',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.black,
+                                    color: state.themeLight
+                                        ? Colors.black
+                                        : Colors.white,
                                   ),
                                 ),
                               ],
@@ -296,9 +316,9 @@ class HomeView extends StatelessWidget {
                               ),
                               padding: const EdgeInsets.all(16),
                             ),
-                            child: const Column(
+                            child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.description,
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                   size: 40,
@@ -307,7 +327,9 @@ class HomeView extends StatelessWidget {
                                   'Aluguéis',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.black,
+                                    color: state.themeLight
+                                        ? Colors.black
+                                        : Colors.white,
                                   ),
                                 ),
                               ],
