@@ -1,4 +1,4 @@
-# 🚗 SS Automóveis App - Flutter Final Project 🚗
+# 🚗 SS Automóveis App - Projeto Final 🚗
 
 Projeto final do curso de Flutter e Dart da **Lince Tech Academy**! 🚀 Este projeto visa desenvolver um aplicativo móvel para a empresa SS Automóveis, focada em aluguel de veículos para pessoa jurídica.
 
