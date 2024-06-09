@@ -5,6 +5,11 @@ class RegisterCustomer extends StatelessWidget {
   /// Contrutor da página de registro de clientes
   RegisterCustomer({super.key});
   final _formKey = GlobalKey<FormState>();
+  final _cnpjController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _numberPhoneController = TextEditingController();
+  final _stateController = TextEditingController();
+  final _cityController = TextEditingController();
 
   /// Método que retorna a página de registro de clientes
 
@@ -40,33 +45,69 @@ class RegisterCustomer extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: _nameController,
                       decoration: const InputDecoration(
                         labelText: 'Nome:',
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insira um nome';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: _numberPhoneController,
                       decoration: const InputDecoration(
-                        labelText: 'Telefone:',
-                      ),
+                          labelText: 'Telefone:', hintText: '(xx) xxxxx-xxxx'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insira um telefone';
+                        } else if (value.length < 11) {
+                          return 'O telefone precisa ter 11 digitos';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: _cnpjController,
                       decoration: const InputDecoration(
                         labelText: 'CNPJ:',
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insira um CNPJ';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: _stateController,
                       decoration: const InputDecoration(
                         labelText: 'Estado:',
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insira um estado';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: _cityController,
                       decoration: const InputDecoration(
                         labelText: 'Cidade:',
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insira uma cidade';
+                        }
+                        return null;
+                      },
                     ),
                     Center(
                       child: Padding(
@@ -77,7 +118,7 @@ class RegisterCustomer extends StatelessWidget {
                                 const Color.fromRGBO(255, 195, 0, 1),
                           ),
                           onPressed: () {
-                            //todo: verificação
+                            if (_formKey.currentState!.validate()) {}
                           },
                           child: const Text(
                             'Salvar',
