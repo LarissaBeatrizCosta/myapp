@@ -12,7 +12,6 @@ class RegisterCustomer extends StatelessWidget {
   final _cityController = TextEditingController();
 
   /// Método que retorna a página de registro de clientes
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

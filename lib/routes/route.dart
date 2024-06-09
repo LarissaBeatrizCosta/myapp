@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../views/home_view.dart';
-import '../views/register_customer.dart';
+import '../views/register_customer_view.dart';
 import '../views/settings_view.dart';
 
 /// Gerenciamento de rotas
