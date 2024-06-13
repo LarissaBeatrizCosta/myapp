@@ -128,8 +128,11 @@ class RegisterCustomer extends StatelessWidget {
                                     ),
                                     onPressed: () async {
                                       if (_formKey.currentState!.validate()) {
-                                        await cnpjController
-                                            .validateCnpj(_cnpjController.text);
+                                        await Provider.of<CnpjController>(
+                                                context,
+                                                listen: false)
+                                            .validateCnpj(_cnpjController.text,
+                                                _nameController.text);
                                       }
                                     },
                                     child: const Text(

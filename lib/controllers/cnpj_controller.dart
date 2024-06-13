@@ -5,17 +5,26 @@ import 'package:http/http.dart' as http;
 /// Classe que conecta com a API do CNPJ
 class CnpjController with ChangeNotifier {
   String _validationMessage = '';
+  String _returnedName = '';
 
-/// Retorna validação cnpj
+/// Retorna a validação
   String get validationMessage => _validationMessage;
 
-  /// Faz a validação do CNPJ
-  Future<void> validateCnpj(String cnpj) async {
+/// Retorna a resposta da api do cnpj
+  Future<void> validateCnpj(String cnpj, String name) async {
     try {
-      final response = await http.get(Uri.parse('https://brasilapi.com.br/api/cnpj/v1/$cnpj'));
+      final response = await http
+          .get(Uri.parse('https://brasilapi.com.br/api/cnpj/v1/$cnpj'));
 
       if (response.statusCode == 200) {
-        _validationMessage = 'CNPJ válido: ${json.decode(response.body)}';
+        final jsonData = json.decode(response.body);
+        _returnedName = jsonData['nome_fantasia']; 
+
+        if (_returnedName == name) {
+          _validationMessage = 'CNPJ válido e nome correspondente';
+        } else {
+          _validationMessage = 'CNPJ válido, mas nome não é correspondente';
+        }
       } else if (response.statusCode == 404) {
         _validationMessage = 'CNPJ não encontrado na API Brasil API';
       } else {
