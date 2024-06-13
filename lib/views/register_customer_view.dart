@@ -119,25 +119,37 @@ class RegisterCustomer extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           child: Consumer<CnpjController>(
                             builder: (context, cnpjController, child) {
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      const Color.fromRGBO(255, 195, 0, 1),
-                                ),
-                                onPressed: () async {
-                                  if (_formKey.currentState!.validate()) {
-                                    await cnpjController
-                                        .validateCnpj(_cnpjController.text);
-                                  }
-                                },
-                                child: const Text(
-                                  'Salvar',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                              return Column(
+                                children: [
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          const Color.fromRGBO(255, 195, 0, 1),
+                                    ),
+                                    onPressed: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        await cnpjController
+                                            .validateCnpj(_cnpjController.text);
+                                      }
+                                    },
+                                    child: const Text(
+                                      'Salvar',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  const SizedBox(height: 20),
+                                  Text(
+                                    cnpjController.validationMessage,
+                                    style: const TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               );
                             },
                           ),
