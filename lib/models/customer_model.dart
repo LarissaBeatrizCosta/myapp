@@ -1,5 +1,6 @@
 /// Classe para validar o cnpj
 class CustomerModel {
+  
   /// Nome do cliente
   String cnpj;
 

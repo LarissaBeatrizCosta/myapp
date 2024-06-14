@@ -23,7 +23,7 @@ class TabelaClientes {
   ///Cria a atbela dos clientes
   static const String createTable = '''
   CREATE TABLE $tableName(
-  $cnpj INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  $cnpj TEXT PRIMARY KEY,
   $name TEXT NOT NULL
   $phone TEXT NOT NULL,
   $state TEXT NOT NULL,
@@ -49,9 +49,55 @@ class TabelaClientes {
   /// Cidade dos clientes
   static const String city = 'city';
 
-///Insere os dados do cliente na tabela clientes
-  Future<void> insert(CustomerModel customer) async {
-    final db = await getDatabase();
-    await db.insert(tableName, customer.toMapCustomer());
+  ///Insere os dados do cliente na tabela clientes
+  Future<void> insertCustomer(CustomerModel customer) async {
+    final dataBase = await getDatabase();
+    await dataBase.insert(tableName, customer.toMapCustomer());
+  }
+
+  ///Deleta o cliente da tabela de clientes
+  Future<void> deleteCustomer(CustomerModel customer) async {
+    final dataBase = await getDatabase();
+
+    await dataBase.delete(
+      TabelaClientes.tableName,
+      where: '${TabelaClientes.cnpj} = ? ',
+      whereArgs: [customer.cnpj],
+    );
+  }
+
+  ///Atualiza o cliente da tabela de clientes
+  Future<void> updateCustomer(CustomerModel customer) async {
+    final dataBase = await getDatabase();
+
+    await dataBase.update(
+      TabelaClientes.tableName,
+      customer.toMapCustomer(),
+      where: '${TabelaClientes.cnpj} = ? ',
+      whereArgs: [customer.cnpj],
+    );
+  }
+
+  ///Pega os clientes da tabela de clientes
+  Future<List<CustomerModel>> getCustomer(CustomerModel customer) async {
+    final dataBase = await getDatabase();
+    var customersList = <CustomerModel>[];
+
+    List<Map> customersMap = await dataBase.query(
+      tableName,
+      columns: [
+        'cnpj',
+        'name',
+        'phone',
+        'state',
+        'city',
+      ],
+    );
+
+    for (var customer in customersMap) {
+      customersList
+          .add(CustomerModel.fromMapCustomer(customer as Map<String, dynamic>));
+    }
+    return customersList;
   }
 }
