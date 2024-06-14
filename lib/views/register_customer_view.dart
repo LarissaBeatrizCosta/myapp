@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/cnpj_controller.dart';
+import '../controllers/database.dart';
+import '../models/customer_model.dart';
 
 /// Classe para o cadastro dos clientes
 class RegisterCustomer extends StatelessWidget {
@@ -17,8 +19,11 @@ class RegisterCustomer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CnpjController(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CnpjController()),
+        ChangeNotifierProvider(create: (context) => TabelaClientes()),
+      ],
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -117,8 +122,9 @@ class RegisterCustomer extends StatelessWidget {
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Consumer<CnpjController>(
-                            builder: (context, cnpjController, child) {
+                          child: Consumer2<CnpjController, TabelaClientes>(
+                            builder: (context, cnpjController, tabelaClientes,
+                                child) {
                               return Column(
                                 children: [
                                   ElevatedButton(
@@ -133,6 +139,21 @@ class RegisterCustomer extends StatelessWidget {
                                                 listen: false)
                                             .validateCnpj(_cnpjController.text,
                                                 _nameController.text);
+                                        if (cnpjController.validateName &&
+                                            cnpjController.validateCNPJ) {
+                                          tabelaClientes.insertCustomer(
+                                            CustomerModel(
+                                              cnpj: _cnpjController.text,
+                                              name: _nameController.text,
+                                              phone:
+                                                  _numberPhoneController.text,
+                                              state: _stateController.text,
+                                              city: _cityController.text,
+                                            ),
+                                          );
+                                          Navigator.pushNamed(
+                                              context, '/settings'); // exemplo
+                                        }
                                       }
                                     },
                                     child: const Text(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -19,12 +20,12 @@ Future<Database> getDatabase() async {
 }
 
 ///Insere os dados na tabela de clientes
-class TabelaClientes {
+class TabelaClientes extends ChangeNotifier {
   ///Cria a atbela dos clientes
   static const String createTable = '''
   CREATE TABLE $tableName(
   $cnpj TEXT PRIMARY KEY,
-  $name TEXT NOT NULL
+  $name TEXT NOT NULL,
   $phone TEXT NOT NULL,
   $state TEXT NOT NULL,
   $city TEXT NOT NULL
@@ -53,6 +54,7 @@ class TabelaClientes {
   Future<void> insertCustomer(CustomerModel customer) async {
     final dataBase = await getDatabase();
     await dataBase.insert(tableName, customer.toMapCustomer());
+    notifyListeners();
   }
 
   ///Deleta o cliente da tabela de clientes
