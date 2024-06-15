@@ -23,7 +23,7 @@ class RegisterCustomer extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CnpjController()),
-        ChangeNotifierProvider(create: (context) => TabelaClientes()),
+        ChangeNotifierProvider(create: (context) => TableCustomers()),
       ],
       child: Scaffold(
         appBar: AppBar(),
@@ -118,8 +118,8 @@ class RegisterCustomer extends StatelessWidget {
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Consumer2<CnpjController, TabelaClientes>(
-                            builder: (context, cnpjController, tabelaClientes,
+                          child: Consumer2<CnpjController, TableCustomers>(
+                            builder: (context, cnpjController, tableCustomers,
                                 child) {
                               return Column(
                                 children: [
@@ -137,7 +137,7 @@ class RegisterCustomer extends StatelessWidget {
                                                 _nameController.text);
                                         if (cnpjController.validateName &&
                                             cnpjController.validateCNPJ) {
-                                          tabelaClientes.insertCustomer(
+                                          tableCustomers.insertCustomer(
                                             CustomerModel(
                                               cnpj: _cnpjController.text,
                                               name: _nameController.text,

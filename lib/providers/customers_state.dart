@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import '../controllers/database.dart';
 import '../models/customer_model.dart';
 
@@ -9,31 +8,40 @@ class CustomersState extends ChangeNotifier {
   ///Gerencia os clientes
   CustomersState() {
     _initState();
+    notifyListeners();
   }
 
   ///Lista de clientes do banco
-  final controllerCustomers = TabelaClientes();
+  final controllerCustomers = TableCustomers();
 
   ///Lista de Clientes State
-  final costumers = <CustomerModel>[];
+  final customers = <CustomerModel>[];
 
   void _initState() async {
-    final tabela = TabelaClientes();
+    final tableCustomers = TableCustomers();
 
-    costumers
+    customers
       ..clear()
       ..addAll(
-        await tabela.getCustomer(),
+        await tableCustomers.getCustomer(),
       );
     notifyListeners();
   }
 
   ///Deleta clientes
   void deleteCustomers(CustomerModel cnpj) async {
-    final tabela = TabelaClientes();
+    final tableCustomers = TableCustomers();
 
-    await tabela.deleteCustomer(cnpj);
-    costumers.remove(cnpj);
+    await tableCustomers.deleteCustomer(cnpj);
+    customers.remove(cnpj);
+    notifyListeners();
+  }
+
+  ///Atualiza os clientes
+  void updateCustomers(CustomerModel cnpj) async {
+    final tableCustomers = TableCustomers();
+
+    await tableCustomers.updateCustomer(cnpj);
     notifyListeners();
   }
 }

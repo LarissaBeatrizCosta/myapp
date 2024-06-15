@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/customers_state.dart';
 import '../providers/theme.dart';
+import 'update_customers_view.dart';
 
 ///Classe para vizualizar lista de clientes
 class CustomersView extends StatelessWidget {
@@ -21,9 +22,9 @@ class CustomersView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
           child: Consumer<CustomersState>(builder: (context, state, _) {
             return ListView.builder(
-              itemCount: state.costumers.length,
+              itemCount: state.customers.length,
               itemBuilder: (context, index) {
-                final customer = state.costumers[index];
+                final customer = state.customers[index];
                 return ListTile(
                   title: Card(
                     elevation: 2.0,
@@ -117,7 +118,17 @@ class CustomersView extends StatelessWidget {
                             ),
                             IconButton(
                               icon: const Icon(Icons.edit),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UpdateCustomers(
+                                      customer: customer,
+                                    ),
+                                  ),
+                                );
+                              
+                              },
                             ),
                           ],
                         ),

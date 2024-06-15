@@ -13,14 +13,14 @@ Future<Database> getDatabase() async {
   return openDatabase(
     path,
     onCreate: (db, version) {
-      db.execute(TabelaClientes.createTable);
+      db.execute(TableCustomers.createTable);
     },
     version: 1,
   );
 }
 
 ///Insere os dados na tabela de clientes
-class TabelaClientes extends ChangeNotifier {
+class TableCustomers extends ChangeNotifier {
   ///Cria a atbela dos clientes
   static const String createTable = '''
   CREATE TABLE $tableName(
@@ -62,8 +62,8 @@ class TabelaClientes extends ChangeNotifier {
     final dataBase = await getDatabase();
 
     await dataBase.delete(
-      TabelaClientes.tableName,
-      where: '${TabelaClientes.cnpj} = ? ',
+      TableCustomers.tableName,
+      where: '${TableCustomers.cnpj} = ? ',
       whereArgs: [customer.cnpj],
     );
     notifyListeners();
@@ -74,9 +74,9 @@ class TabelaClientes extends ChangeNotifier {
     final dataBase = await getDatabase();
 
     await dataBase.update(
-      TabelaClientes.tableName,
+      TableCustomers.tableName,
       customer.toMapCustomer(),
-      where: '${TabelaClientes.cnpj} = ? ',
+      where: '${TableCustomers.cnpj} = ? ',
       whereArgs: [customer.cnpj],
     );
     notifyListeners();
