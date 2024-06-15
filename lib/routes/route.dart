@@ -1,7 +1,6 @@
-// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: avoid_classes_with_only_static_members, João ajudou 
 
 import 'package:flutter/material.dart';
-
 import '../views/customers_view.dart';
 import '../views/home_view.dart';
 import '../views/register_customer_view.dart';

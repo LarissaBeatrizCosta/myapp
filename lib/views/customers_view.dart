@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/customers_state.dart';
 
-///Costumers
+///Classe para vizualizar lista de clientes
 class CustomersView extends StatelessWidget {
   ///Construtor da tela de vizualizar clientes
   const CustomersView({super.key});
