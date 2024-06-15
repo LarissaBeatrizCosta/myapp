@@ -11,6 +11,7 @@ class HomeView extends StatelessWidget {
   /// Método que retorna a página inicial
   @override
   Widget build(BuildContext context) {
+
     final state = Provider.of<ThemeState>(context);
 
     return Scaffold(
@@ -211,7 +212,7 @@ class HomeView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
-                          onPressed: () => Navigator.pushNamed(context, '/'),
+                          onPressed: () => Navigator.pushNamed(context, '/customers_view'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(150, 100),
                             shape: const RoundedRectangleBorder(

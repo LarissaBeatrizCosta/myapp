@@ -13,16 +13,7 @@ class SettingsView extends StatelessWidget {
     final state = Provider.of<ThemeState>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.pushNamed(context, '/'),
-        ),
-        backgroundColor: const Color.fromARGB(255, 0, 29, 61),
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
@@ -78,10 +69,7 @@ class SettingsView extends StatelessWidget {
                   ),
                   child: const Text(
                     'Português',
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 195, 0, 1)
-                       
-                    ),
+                    style: TextStyle(color: Color.fromRGBO(255, 195, 0, 1)),
                   ),
                 ),
                 ElevatedButton(

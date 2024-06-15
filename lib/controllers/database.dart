@@ -81,7 +81,7 @@ class TabelaClientes extends ChangeNotifier {
   }
 
   ///Pega os clientes da tabela de clientes
-  Future<List<CustomerModel>> getCustomer(CustomerModel customer) async {
+  Future<List<CustomerModel>> getCustomer() async {
     final dataBase = await getDatabase();
     var customersList = <CustomerModel>[];
 

@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_classes_with_only_static_members
+
 import 'package:flutter/material.dart';
 
+import '../views/customers_view.dart';
 import '../views/home_view.dart';
 import '../views/register_customer_view.dart';
 import '../views/settings_view.dart';
@@ -17,6 +20,9 @@ class Routes {
 
       case '/register_customer':
         return MaterialPageRoute(builder: (_) => RegisterCustomer());
+
+      case '/customers_view':
+        return MaterialPageRoute(builder: (_) => const CustomersView());
 
       default:
         return MaterialPageRoute(

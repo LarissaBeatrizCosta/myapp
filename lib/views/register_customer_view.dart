@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/cnpj_controller.dart';
@@ -25,16 +27,7 @@ class RegisterCustomer extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => TabelaClientes()),
       ],
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () => Navigator.pushNamed(context, '/'),
-          ),
-          backgroundColor: const Color.fromARGB(255, 0, 29, 61),
-        ),
+        appBar: AppBar(),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
@@ -69,8 +62,12 @@ class RegisterCustomer extends StatelessWidget {
                       TextFormField(
                         controller: _numberPhoneController,
                         decoration: const InputDecoration(
-                            labelText: 'Telefone:',
-                            hintText: '(xx) xxxxx-xxxx'),
+                          labelText: 'Telefone:',
+                          hintText: '(xx) xxxxx-xxxx',
+                        ),
+                        inputFormatters: [
+                          MaskTextInputFormatter(mask: '(##) #####-####'),  
+                        ],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Insira um telefone';
@@ -151,8 +148,7 @@ class RegisterCustomer extends StatelessWidget {
                                               city: _cityController.text,
                                             ),
                                           );
-                                          Navigator.pushNamed(
-                                              context, '/settings'); // exemplo
+                                          Navigator.pop(context); // exemplo
                                         }
                                       }
                                     },

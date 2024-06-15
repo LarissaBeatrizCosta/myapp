@@ -37,4 +37,6 @@ class ThemeState extends ChangeNotifier {
     _sharedPreferences.setBool(_themeKey, _themeLight);
     notifyListeners();
   }
+
+  
 }
