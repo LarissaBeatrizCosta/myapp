@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/customers_state.dart';
+import '../providers/theme.dart';
 
 ///Classe para vizualizar lista de clientes
 class CustomersView extends StatelessWidget {
@@ -10,6 +11,8 @@ class CustomersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stateTheme = Provider.of<ThemeState>(context);
+
     return ChangeNotifierProvider(
       create: (context) => CustomersState(),
       child: Scaffold(
@@ -27,73 +30,94 @@ class CustomersView extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.white,
+                    color: stateTheme.themeLight ? Colors.white : Colors.black,
                     shadowColor: Colors.blueGrey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 10.0),
-                              child: Text(
-                                customer.name,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(0, 29, 61, 1),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10.0, horizontal: 10.0),
+                                  child: Text(
+                                    customer.name,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: stateTheme.themeLight
+                                          ? const Color.fromRGBO(0, 29, 61, 1)
+                                          : Colors.white,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0, vertical: 1.0),
+                                  child: Text(customer.cnpj),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0, vertical: 5.0),
+                                  child: Text(customer.phone),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0, vertical: 2.0),
+                                  child: Text(customer.state),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0, vertical: 2.0),
+                                  child: Text(customer.city),
+                                ),
+                              ],
+                            ),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.0, vertical: 2.0),
+                                  child: Text('gerente'),
+                                ),
+                              ],
                             ),
                           ],
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 1.0),
-                              child: Text(customer.cnpj),
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                state.deleteCustomers(customer);
+                              },
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 5.0),
-                              child: Text(customer.phone),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 5.0),
-                              child: Text(customer.state),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 5.0),
-                              child: Text(customer.city),
-                            ),
-                          ],
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 5.0),
-                              child: Text('gerente'),
+                            IconButton(
+                              icon: const Icon(Icons.edit),
+                              onPressed: () {},
                             ),
                           ],
                         ),

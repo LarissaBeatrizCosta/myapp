@@ -66,6 +66,7 @@ class TabelaClientes extends ChangeNotifier {
       where: '${TabelaClientes.cnpj} = ? ',
       whereArgs: [customer.cnpj],
     );
+    notifyListeners();
   }
 
   ///Atualiza o cliente da tabela de clientes
@@ -78,6 +79,7 @@ class TabelaClientes extends ChangeNotifier {
       where: '${TabelaClientes.cnpj} = ? ',
       whereArgs: [customer.cnpj],
     );
+    notifyListeners();
   }
 
   ///Pega os clientes da tabela de clientes
@@ -95,6 +97,7 @@ class TabelaClientes extends ChangeNotifier {
         'city',
       ],
     );
+    notifyListeners();
 
     for (var customer in customersMap) {
       customersList
