@@ -103,8 +103,8 @@ class UpdateCustomers extends StatelessWidget {
                         );
 
                         customerController.updateCustomers(updatedCustomer);
-
-                        Navigator.pop(context);
+                        Navigator.pushNamed(context,
+                            '/customers_view'); //todo: mudar para pop e ele continuar a atualizar
                       }
                     },
                     child: const Text(

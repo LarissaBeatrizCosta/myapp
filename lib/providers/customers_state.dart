@@ -17,6 +17,7 @@ class CustomersState extends ChangeNotifier {
   ///Lista de Clientes State
   final customers = <CustomerModel>[];
 
+  ///Inicias os clientes
   void _initState() async {
     final tableCustomers = TableCustomers();
 
@@ -34,6 +35,7 @@ class CustomersState extends ChangeNotifier {
 
     await tableCustomers.deleteCustomer(cnpj);
     customers.remove(cnpj);
+
     notifyListeners();
   }
 
