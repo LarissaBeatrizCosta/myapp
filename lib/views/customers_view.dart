@@ -19,7 +19,7 @@ class CustomersView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
           child: Consumer<CustomersState>(builder: (context, state, _) {
             return ListView.builder(
               itemCount: state.customers.length,
@@ -31,7 +31,9 @@ class CustomersView extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: stateTheme.themeLight ? Colors.white : Colors.black,
+                    color: stateTheme.themeLight
+                        ? Colors.white
+                        : const  Color.fromARGB(82, 60, 68, 138),
                     shadowColor: Colors.blueGrey,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,7 +52,8 @@ class CustomersView extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: stateTheme.themeLight
                                           ? const Color.fromRGBO(0, 29, 61, 1)
-                                          : Colors.white,
+                                          : const Color.fromRGBO(
+                                              255, 195, 0, 1),
                                     ),
                                   ),
                                 ),
@@ -62,7 +65,9 @@ class CustomersView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 1.0),
-                                  child: Text(customer.cnpj),
+                                  child: Text(
+                                    'CNPJ: ${customer.cnpj}',
+                                  ),
                                 ),
                               ],
                             ),
@@ -102,7 +107,7 @@ class CustomersView extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 2.0),
-                                  child: Text('gerente'),
+                                  child: Text('Gerente: '),
                                 ),
                               ],
                             ),
@@ -112,12 +117,14 @@ class CustomersView extends StatelessWidget {
                           children: [
                             IconButton(
                               icon: const Icon(Icons.delete),
+                              color: const Color.fromARGB(255, 255, 0, 0),
                               onPressed: () {
                                 state.deleteCustomers(customer);
                               },
                             ),
                             IconButton(
                               icon: const Icon(Icons.edit),
+                              color: const Color.fromARGB(255, 60, 255, 0),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -127,7 +134,6 @@ class CustomersView extends StatelessWidget {
                                     ),
                                   ),
                                 );
-                              
                               },
                             ),
                           ],

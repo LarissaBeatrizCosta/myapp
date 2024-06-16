@@ -65,7 +65,7 @@ class RegisterCustomer extends StatelessWidget {
                           hintText: '(xx) xxxxx-xxxx',
                         ),
                         inputFormatters: [
-                          MaskTextInputFormatter(mask: '(##) #####-####'),  
+                          MaskTextInputFormatter(mask: '(##) #####-####'),
                         ],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -94,6 +94,7 @@ class RegisterCustomer extends StatelessWidget {
                         controller: _stateController,
                         decoration: const InputDecoration(
                           labelText: 'Estado:',
+                          hintText: 'UF',
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {

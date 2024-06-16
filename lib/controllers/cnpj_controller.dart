@@ -14,7 +14,8 @@ class CnpjController with ChangeNotifier {
 
   /// Retorna a validação
   bool get validateCNPJ => _validateCNPJ;
-    /// Retorna a validação
+
+  /// Retorna a validação
   bool get validateName => _validateName;
 
   /// Retorna a resposta da api do cnpj
