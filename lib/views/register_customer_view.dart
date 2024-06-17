@@ -99,6 +99,8 @@ class RegisterCustomer extends StatelessWidget {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Insira um estado';
+                          } else if (value.length > 2) {
+                            return 'Digite o UF de seu estado';
                           }
                           return null;
                         },
