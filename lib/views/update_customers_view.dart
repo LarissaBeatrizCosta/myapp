@@ -103,8 +103,10 @@ class UpdateCustomers extends StatelessWidget {
                         );
 
                         customerController.updateCustomers(updatedCustomer);
-                        Navigator.pushNamed(context,
-                            '/customers_view'); //todo: mudar para pop e ele continuar a atualizar
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/customers_view', (route) => false);
+                        // Enzo me ajudou na daily,
+                        //retira todas as páginas que estavam atrás
                       }
                     },
                     child: const Text(

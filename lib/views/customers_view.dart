@@ -17,7 +17,16 @@ class CustomersView extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => CustomersState(),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.pushNamed(context, '/'),
+          ),
+          backgroundColor: const Color.fromARGB(255, 0, 29, 61),
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
           child: Consumer<CustomersState>(builder: (context, state, _) {
@@ -33,7 +42,7 @@ class CustomersView extends StatelessWidget {
                     ),
                     color: stateTheme.themeLight
                         ? Colors.white
-                        : const  Color.fromARGB(82, 60, 68, 138),
+                        : const Color.fromARGB(82, 60, 68, 138),
                     shadowColor: Colors.blueGrey,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
