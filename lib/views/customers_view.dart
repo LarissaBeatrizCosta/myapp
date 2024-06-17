@@ -18,6 +18,13 @@ class CustomersView extends StatelessWidget {
       create: (context) => CustomersState(),
       child: Scaffold(
         appBar: AppBar(
+          title: const Text(
+            'Clientes Cadastrados',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,
@@ -60,9 +67,9 @@ class CustomersView extends StatelessWidget {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: stateTheme.themeLight
-                                          ? const Color.fromRGBO(0, 29, 61, 1)
-                                          : const Color.fromRGBO(
-                                              255, 195, 0, 1),
+                                          ? const Color.fromRGBO(255, 195, 0, 1)
+                                          : const Color.fromARGB(
+                                              255, 255, 225, 127),
                                     ),
                                   ),
                                 ),
