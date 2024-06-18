@@ -1,7 +1,7 @@
-/// Classe para validar o cnpj
+/// Classe de clientes
 class CustomerModel {
   
-  /// Nome do cliente
+  /// Cnpj do cliente
   String cnpj;
 
   /// Nome do cliente
@@ -16,7 +16,7 @@ class CustomerModel {
   /// Cidade do cliente
   String city;
 
-  /// Contrutor da classe CnpjModel
+  /// Contrutor da classe de clientes
   CustomerModel({
     required this.cnpj,
     required this.name,
