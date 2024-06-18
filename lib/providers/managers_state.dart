@@ -41,7 +41,7 @@ class ManagersState extends ChangeNotifier {
   }
 
   ///Adiciona os gerentes
-  void addManagers(ManagerModel cpf) async {
+  void insertManagers(ManagerModel cpf) async {
     await tableManagers.insertManager(cpf);
     managers.add(cpf);
     notifyListeners();

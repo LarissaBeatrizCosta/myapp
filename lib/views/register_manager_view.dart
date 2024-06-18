@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-
-import '../controllers/cpf_controller.dart';
+import '../controllers/database.dart';
+import '../models/manager_model.dart';
 
 ///Classe para cadastro de gerentes
 class RegisterManagerView extends StatelessWidget {
@@ -20,8 +20,8 @@ class RegisterManagerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => CpfController()),
-        // ChangeNotifierProvider(create: (context) => TableManagers()),
+        //ChangeNotifierProvider(create: (context) => CpfController()),
+        ChangeNotifierProvider(create: (context) => TableManagers()),
       ],
       child: Scaffold(
         appBar: AppBar(),
@@ -125,8 +125,8 @@ class RegisterManagerView extends StatelessWidget {
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Consumer<CpfController>(
-                              builder: (context, cpfController, child) {
+                          child: Consumer<TableManagers>(
+                              builder: (context, tableManagers, child) {
                             return Column(
                               children: [
                                 ElevatedButton(
@@ -136,14 +136,17 @@ class RegisterManagerView extends StatelessWidget {
                                   ),
                                   onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
-                                      await Provider.of<CpfController>(context,
-                                              listen: false)
-                                          .validateCpf(_cpfController.text,
-                                              _nameController.text);
-                                      if (cpfController.validateName &&
-                                          cpfController.validateCPF) {
-                                        Navigator.pop(context);
-                                      }
+                                      tableManagers.insertManager(
+                                        ManagerModel(
+                                          cpf: _cpfController.text,
+                                          name: _nameController.text,
+                                          state: _stateController.text,
+                                          phone: _numberPhoneController.text,
+                                          salesCommission:
+                                              _stateController.text,
+                                        ),
+                                      );
+                                      Navigator.pop(context);
                                     }
                                   },
                                   child: const Text(
@@ -156,10 +159,10 @@ class RegisterManagerView extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                Text(
-                                  cpfController.validationMessage,
-                                  style: const TextStyle(
-                                    color: Colors.red,
+                                const Text(
+                                  'Salvo com sucesso!',
+                                  style: TextStyle(
+                                    color: Colors.green,
                                     fontSize: 16,
                                   ),
                                 ),
