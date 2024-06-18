@@ -39,14 +39,4 @@ class ManagersState extends ChangeNotifier {
     await tableManagers.updateManager(cpf);
     notifyListeners();
   }
-
-  ///Adiciona os gerentes
-  void insertManagers(ManagerModel cpf) async {
-    await tableManagers.insertManager(cpf);
-    managers.add(cpf);
-    notifyListeners();
-  }
-
-  //diferenças do state do clientes,
-  //add o adicionar e não tem lista ..controller
 }

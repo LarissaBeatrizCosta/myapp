@@ -12,15 +12,13 @@ class CustomersState extends ChangeNotifier {
   }
 
   ///Lista de clientes do banco
-  final controllerCustomers = TableCustomers(); // ver se usa
+  final tableCustomers = TableCustomers();
 
   ///Lista de Clientes State
   final customers = <CustomerModel>[];
 
   ///Inicializa a lista de  clientes
   void _initState() async {
-    final tableCustomers = TableCustomers();
-
     customers
       ..clear()
       ..addAll(
@@ -31,8 +29,6 @@ class CustomersState extends ChangeNotifier {
 
   ///Deleta clientes
   void deleteCustomers(CustomerModel cnpj) async {
-    final tableCustomers = TableCustomers();
-
     await tableCustomers.deleteCustomer(cnpj);
     customers.remove(cnpj);
 
@@ -41,8 +37,6 @@ class CustomersState extends ChangeNotifier {
 
   ///Atualiza os clientes
   void updateCustomers(CustomerModel cnpj) async {
-    final tableCustomers = TableCustomers();
-
     await tableCustomers.updateCustomer(cnpj);
     notifyListeners();
   }

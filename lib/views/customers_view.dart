@@ -66,7 +66,7 @@ class CustomersView extends StatelessWidget {
                                     customer.name,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 16,
                                       color: stateTheme.themeLight
                                           ? const Color.fromRGBO(255, 195, 0, 1)
                                           : const Color.fromARGB(
@@ -84,6 +84,9 @@ class CustomersView extends StatelessWidget {
                                       horizontal: 10.0, vertical: 1.0),
                                   child: Text(
                                     'CNPJ: ${customer.cnpj}',
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -94,7 +97,12 @@ class CustomersView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 5.0),
-                                  child: Text(customer.phone),
+                                  child: Text(
+                                    customer.phone,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -104,7 +112,12 @@ class CustomersView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 2.0),
-                                  child: Text(customer.state),
+                                  child: Text(
+                                    customer.state,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -114,7 +127,12 @@ class CustomersView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 2.0),
-                                  child: Text(customer.city),
+                                  child: Text(
+                                    customer.city,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -124,7 +142,13 @@ class CustomersView extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 2.0),
-                                  child: Text('Gerente: '),
+                                  child: Text(
+                                    'Gerente: ',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
