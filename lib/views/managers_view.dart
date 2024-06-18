@@ -77,6 +77,91 @@ class ManagersView extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 1.0),
+                                    child: Text(
+                                      'CPF: ${manager.cpf}',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 1.0),
+                                    child: Text(
+                                      manager.phone,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 1.0),
+                                    child: Text(
+                                      manager.state,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 1.0),
+                                    child: Text(
+                                      'Comissão: ${manager.salesCommission}%',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                color: const Color.fromARGB(255, 255, 0, 0),
+                                onPressed: () {
+                                  state.deleteManagers(manager);
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.edit),
+                                color: const Color.fromARGB(255, 60, 255, 0),
+                                onPressed: () {
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => UpdateCustomers(
+                                  //       customer: customer,
+                                  //     ),
+                                  //   ),
+                                  // );
+                                },
+                              ),
                             ],
                           ),
                         ],

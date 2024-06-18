@@ -83,6 +83,9 @@ class RegisterManagerView extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'CPF: ',
                         ),
+                        inputFormatters: [
+                          MaskTextInputFormatter(mask: '###.###.###-##'),
+                        ],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Insira um CPF';
@@ -143,9 +146,10 @@ class RegisterManagerView extends StatelessWidget {
                                           state: _stateController.text,
                                           phone: _numberPhoneController.text,
                                           salesCommission:
-                                              _stateController.text,
+                                              _percentageController.text,
                                         ),
                                       );
+
                                       Navigator.pop(context);
                                     }
                                   },
@@ -156,14 +160,6 @@ class RegisterManagerView extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                const Text(
-                                  'Salvo com sucesso!',
-                                  style: TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 16,
                                   ),
                                 ),
                               ],
