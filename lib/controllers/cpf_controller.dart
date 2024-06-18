@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
+//todo: procurar api para utilizar na validação do cpf
 /// Classe que conecta com a API do CPF
 class CpfController with ChangeNotifier {
   String _validationMessage = '';

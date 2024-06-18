@@ -5,19 +5,19 @@ import '../models/customer_model.dart';
 
 ///Gerencia os clientes
 class CustomersState extends ChangeNotifier {
-  ///Gerencia os clientes
+  ///Inicializa a lista de clientes
   CustomersState() {
     _initState();
     notifyListeners();
   }
 
   ///Lista de clientes do banco
-  final controllerCustomers = TableCustomers();
+  final controllerCustomers = TableCustomers(); // ver se usa
 
   ///Lista de Clientes State
   final customers = <CustomerModel>[];
 
-  ///Inicias os clientes
+  ///Inicializa a lista de  clientes
   void _initState() async {
     final tableCustomers = TableCustomers();
 
