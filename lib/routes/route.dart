@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../views/customers_view.dart';
 import '../views/home_view.dart';
+import '../views/managers_view.dart';
 import '../views/register_customer_view.dart';
 import '../views/register_manager_view.dart';
 import '../views/settings_view.dart';
@@ -23,9 +24,12 @@ class Routes {
 
       case '/customers_view':
         return MaterialPageRoute(builder: (_) => const CustomersView());
-      
+
       case '/register_manager':
-        return MaterialPageRoute(builder: (_) =>  RegisterManagerView());
+        return MaterialPageRoute(builder: (_) => RegisterManagerView());
+
+      case '/managers':
+        return MaterialPageRoute(builder: (_) => const ManagersView());
 
       default:
         return MaterialPageRoute(

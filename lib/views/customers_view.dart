@@ -66,6 +66,7 @@ class CustomersView extends StatelessWidget {
                                     customer.name,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 20,
                                       color: stateTheme.themeLight
                                           ? const Color.fromRGBO(255, 195, 0, 1)
                                           : const Color.fromARGB(
