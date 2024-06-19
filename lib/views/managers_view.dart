@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/managers_state.dart';
 import '../providers/theme.dart';
+import 'update_managers_view.dart';
 
 ///Classe para vizualização da lista de gerentes
 class ManagersView extends StatelessWidget {
@@ -152,14 +153,14 @@ class ManagersView extends StatelessWidget {
                                 icon: const Icon(Icons.edit),
                                 color: const Color.fromARGB(255, 60, 255, 0),
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => UpdateCustomers(
-                                  //       customer: customer,
-                                  //     ),
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => UpdateManagers(
+                                        manager: manager,
+                                      ),
+                                    ),
+                                  );
                                 },
                               ),
                             ],
