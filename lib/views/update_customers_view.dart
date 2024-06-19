@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../models/customer_model.dart';
 import '../providers/customers_state.dart';
@@ -12,7 +13,6 @@ class UpdateCustomers extends StatelessWidget {
   final CustomerModel customer;
 
   final _formKey = GlobalKey<FormState>();
-  final _cnpjController = TextEditingController();
   final _nameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _stateController = TextEditingController();
@@ -20,7 +20,6 @@ class UpdateCustomers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _cnpjController.text = customer.cnpj;
     _nameController.text = customer.name;
     _phoneController.text = customer.phone;
     _stateController.text = customer.state;
@@ -55,26 +54,42 @@ class UpdateCustomers extends StatelessWidget {
                   return null;
                 },
               ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _phoneController,
-                decoration: const InputDecoration(labelText: 'Telefone'),
+                decoration: const InputDecoration(
+                  labelText: 'Telefone',
+                  hintText: '(xx) xxxxx-xxxx',
+                ),
+                inputFormatters: [
+                  MaskTextInputFormatter(mask: '(##) #####-####'),
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, informe o telefone';
+                    return 'Insira um telefone';
+                  } else if (value.length < 10) {
+                    return 'O telefone precisa ter 10 digitos';
                   }
                   return null;
                 },
               ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _stateController,
-                decoration: const InputDecoration(labelText: 'Estado'),
+                decoration: const InputDecoration(
+                  labelText: 'Estado',
+                  hintText: 'UF',
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, informe o estado';
+                    return 'Insira um estado';
+                  } else if (value.length > 2) {
+                    return 'Digite o UF de seu estado';
                   }
                   return null;
                 },
               ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _cityController,
                 decoration: const InputDecoration(labelText: 'Cidade'),
@@ -95,7 +110,7 @@ class UpdateCustomers extends StatelessWidget {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         var updatedCustomer = CustomerModel(
-                          cnpj: _cnpjController.text,
+                          cnpj: customer.cnpj,
                           name: _nameController.text,
                           phone: _phoneController.text,
                           state: _stateController.text,
