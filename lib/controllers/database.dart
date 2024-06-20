@@ -107,6 +107,7 @@ class TableCustomers extends ChangeNotifier {
     }
     return customersList;
   }
+ 
 }
 
 ///Manipula os dados na tabela de gerentes

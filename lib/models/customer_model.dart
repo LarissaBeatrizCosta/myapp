@@ -1,6 +1,5 @@
 /// Classe de clientes
 class CustomerModel {
-  
   /// Cnpj do cliente
   String cnpj;
 
@@ -25,7 +24,7 @@ class CustomerModel {
     required this.city,
   });
 
-/// Converte CustomerModel para mapa
+  /// Converte CustomerModel para mapa
   Map<String, dynamic> toMapCustomer() {
     return {
       'cnpj': cnpj,
@@ -36,7 +35,7 @@ class CustomerModel {
     };
   }
 
-///Converte CustomerModel do mapa 
+  ///Converte CustomerModel do mapa
   factory CustomerModel.fromMapCustomer(Map<String, dynamic> map) {
     return CustomerModel(
       cnpj: map['cnpj'],
@@ -46,6 +45,4 @@ class CustomerModel {
       name: map['name'],
     );
   }
-
-
 }
