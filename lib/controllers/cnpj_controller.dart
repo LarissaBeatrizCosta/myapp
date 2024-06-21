@@ -30,7 +30,6 @@ class CnpjController with ChangeNotifier {
         _validateCNPJ = true;
 
         if (_returnedName == name) {
-          _validationMessage = 'CNPJ válido e nome correspondente';
           _validateName = true;
         } else {
           _validationMessage = 'CNPJ válido, mas nome não é correspondente';

@@ -150,7 +150,55 @@ class RegisterCustomer extends StatelessWidget {
                                               city: _cityController.text,
                                             ),
                                           );
-                                          Navigator.pop(context); // exemplo
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: const Center(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                      horizontal: 20,
+                                                      vertical: 50,
+                                                    ),
+                                                    child: Text(
+                                                      'Cliente Cadastrado!',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator
+                                                          .pushNamedAndRemoveUntil(
+                                                        context,
+                                                        '/',
+                                                        (route) => false,
+                                                      );
+                                                    },
+                                                    child: const Text(
+                                                      'OK',
+                                                      style: TextStyle(
+                                                          color: Colors.black),
+                                                    ),
+                                                  )
+                                                ],
+                                                elevation: 25,
+                                                backgroundColor: Colors.white,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          70.0),
+                                                ),
+                                              );
+                                            },
+                                          );
                                         }
                                       }
                                     },

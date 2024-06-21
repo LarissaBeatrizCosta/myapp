@@ -118,10 +118,47 @@ class UpdateCustomers extends StatelessWidget {
                         );
 
                         customerController.updateCustomers(updatedCustomer);
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, '/customers_view', (route) => false);
-                        // Enzo me ajudou na daily,
-                        //retira todas as páginas que estavam atrás
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 20,
+                                    ),
+                                    child: Text(
+                                      'Cliente Editado Com Sucesso!',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/customers_view', (route) => false);
+                                      // Enzo me ajudou na daily,
+                                      //retira as páginas que estavam atrás
+                                    },
+                                    child: const Text(
+                                      'OK',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  )
+                                ],
+                                elevation: 25,
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(70.0),
+                                ),
+                              );
+                            },);
                       }
                     },
                     child: const Text(
