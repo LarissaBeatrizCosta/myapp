@@ -149,8 +149,52 @@ class RegisterManagerView extends StatelessWidget {
                                               _percentageController.text,
                                         ),
                                       );
-
-                                      Navigator.pop(context);
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: const Center(
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 20,
+                                                  vertical: 50,
+                                                ),
+                                                child: Text(
+                                                  'Gerente Cadastrado!',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 20.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator
+                                                      .pushNamedAndRemoveUntil(
+                                                    context,
+                                                    '/',
+                                                    (route) => false,
+                                                  );
+                                                },
+                                                child: const Text(
+                                                  'OK',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              )
+                                            ],
+                                            elevation: 25,
+                                            backgroundColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(70.0),
+                                            ),
+                                          );
+                                        },
+                                      );
                                     }
                                   },
                                   child: const Text(
