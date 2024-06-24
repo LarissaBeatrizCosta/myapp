@@ -13,7 +13,7 @@ class BrandVehiclesModel {
   });
 
   ////Converte BrandVehiclesModel para mapa
-  Map<String, dynamic> toMapBrandVehicles() {
+  Map<String, dynamic> toMapBrandVehicles() { //Verificar se irá utilizar
     return {
       'id': id,
       'name': name,
