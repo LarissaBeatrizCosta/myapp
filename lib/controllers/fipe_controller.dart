@@ -8,29 +8,32 @@ import '../models/model_vehicles.dart';
 ///Classe que conecta com a API da Fipe
 class FipeController extends ChangeNotifier {
   ///Lista de tipos de veiculos
-  final List<String> typesVehicles = ['Carros', 'Motos', 'Caminhões'];
+  List<String> typesVehicles = ['cars', 'motorcycles', 'trucks'];
 
   ///Tipo de veiculos selecionado
   String? typeSelected;
 
   ///Lista de marcas da API da Fipe
-  final List<BrandVehiclesModel> brandVehicles = [];
+  List<BrandVehiclesModel> brandVehicles = [];
 
   ///Lista de modelos da API da Fipe
-  final List<ModelVehiclesModel> modelVehicles = [];
+  List<ModelVehiclesModel> modelVehicles = [];
 
   ///Marca selecionada
   BrandVehiclesModel? brandSelected;
 
   ///Modelo Selecionado
   ModelVehiclesModel? modelSelected;
-  String _validationMessage = '';
+
+  ///Mensagem de validação
+  String validationMessage = '';
 
   ///Busca marcas da API da Fipe
   Future<void> getBrandVehicles() async {
     try {
-      if (typeSelected != null || typeSelected != '') {
+      if (typeSelected != null && typeSelected != '') {
         brandSelected = null;
+        brandVehicles = [];
 
         final response = await http.get(
           Uri.parse(
@@ -39,17 +42,17 @@ class FipeController extends ChangeNotifier {
         if (response.statusCode == 200) {
           final List<dynamic> jsonData = json.decode(response.body);
           for (final brand in jsonData) {
-            _brandVehicles.add(BrandVehiclesModel.fromMapBrandVehicles(brand));
+            brandVehicles.add(BrandVehiclesModel.fromMapBrandVehicles(brand));
           }
-          // notifyListeners();
+          notifyListeners();
         } else if (response.statusCode == 404) {
-          _validationMessage = 'Erro ao buscar a marca';
+          validationMessage = 'Erro ao buscar a marca';
         } else if (response.statusCode == 500) {
-          _validationMessage = 'Erro interno da api';
+          validationMessage = 'Erro interno da api';
         }
       }
     } catch (e) {
-      _validationMessage = 'Erro: $e';
+      validationMessage = 'Erro: $e';
     }
     notifyListeners();
   }
@@ -57,8 +60,9 @@ class FipeController extends ChangeNotifier {
   ///Busca modelos da API  da Fipe
   Future<void> getModelVehicles() async {
     try {
-      if (typeSelected != null || typeSelected != '') {
+      if (brandSelected != null) {
         modelSelected = null;
+        modelVehicles = [];
 
         final response = await http.get(
           Uri.parse(
@@ -68,18 +72,19 @@ class FipeController extends ChangeNotifier {
         if (response.statusCode == 200) {
           final List<dynamic> jsonData = json.decode(response.body);
           for (final model in jsonData) {
-            _modelVehicles.add(
+            modelVehicles.add(
               ModelVehiclesModel.fromMapModelVehicles(model),
             );
           }
+          notifyListeners();
         } else if (response.statusCode == 404) {
-          _validationMessage = 'Erro ao buscar a modelo';
+          validationMessage = 'Erro ao buscar a modelo';
         } else if (response.statusCode == 500) {
-          _validationMessage = 'Erro interno da api';
+          validationMessage = 'Erro interno da api';
         }
       }
     } catch (e) {
-      _validationMessage = 'Erro: $e';
+      validationMessage = 'Erro: $e';
     }
     notifyListeners();
   }
