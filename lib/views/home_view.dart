@@ -11,7 +11,6 @@ class HomeView extends StatelessWidget {
   /// Método que retorna a página inicial
   @override
   Widget build(BuildContext context) {
-
     final state = Provider.of<ThemeState>(context);
 
     return Scaffold(
@@ -93,7 +92,8 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () => Navigator.pushNamed(context, '/register_manager'),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/register_manager'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(150, 100),
                             shape: const RoundedRectangleBorder(
@@ -130,7 +130,8 @@ class HomeView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                            onPressed: () => Navigator.pushNamed(context, '/'),
+                            onPressed: () => Navigator.pushNamed(
+                                context, '/register_vehicles'),
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(150, 100),
                               shape: const RoundedRectangleBorder(
@@ -212,7 +213,8 @@ class HomeView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
-                          onPressed: () => Navigator.pushNamed(context, '/customers_view'),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/customers_view'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(150, 100),
                             shape: const RoundedRectangleBorder(
@@ -242,7 +244,8 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () => Navigator.pushNamed(context, '/managers'),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/managers'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(150, 100),
                             shape: const RoundedRectangleBorder(

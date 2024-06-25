@@ -6,6 +6,7 @@ import '../views/home_view.dart';
 import '../views/managers_view.dart';
 import '../views/register_customer_view.dart';
 import '../views/register_manager_view.dart';
+import '../views/register_vehicles.dart';
 import '../views/settings_view.dart';
 
 /// Gerenciamento de rotas
@@ -30,6 +31,9 @@ class Routes {
 
       case '/managers':
         return MaterialPageRoute(builder: (_) => const ManagersView());
+
+      case '/register_vehicles':
+        return MaterialPageRoute(builder: (_) => RegisterVehicleView());
 
       default:
         return MaterialPageRoute(
