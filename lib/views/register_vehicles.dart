@@ -44,56 +44,114 @@ class RegisterVehicleView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        DropdownButton<String>(
-                          value: fipeController.typeSelected,
-                          hint: const Text('Selecione o tipo de veículo'),
-                          items: fipeController.typesVehicles
-                              .map<DropdownMenuItem<String>>((typeVehicle) {
-                            return DropdownMenuItem<String>(
-                              value: typeVehicle,
-                              child: Text(typeVehicle),
-                              
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            fipeController.typeSelected = value;
-                            fipeController.getBrandVehicles();
-                          },
+                        SizedBox(
+                          width: 300,
+                          child: DropdownButtonFormField<String>(
+                            isExpanded: true,
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle_sharp,
+                              color: Color.fromRGBO(255, 195, 0, 1),
+                            ),
+                            value: fipeController.typeSelected,
+                            hint: const Text('Selecione o tipo de veículo'),
+                            decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                                borderSide: const BorderSide(
+                                  color: Color.fromRGBO(255, 195, 0, 1),
+                                ),
+                              ),
+                              label: const Text('Tipo de veículo'),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                            items: fipeController.typesVehicles
+                                .map<DropdownMenuItem<String>>((typeVehicle) {
+                              return DropdownMenuItem<String>(
+                                value: typeVehicle,
+                                child: Text(typeVehicle),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              fipeController.typeSelected = value;
+                              fipeController.getBrandVehicles();
+                            },
+                          ),
                         ),
-                        
                         const SizedBox(height: 20),
-                        DropdownButton<BrandVehiclesModel>(
-                          value: fipeController.brandSelected,
-                          hint: const Text('Selecione a marca'),
-                          items: fipeController.brandVehicles
-                              .map<DropdownMenuItem<BrandVehiclesModel>>(
-                                  (brand) {
-                            return DropdownMenuItem<BrandVehiclesModel>(
-                              value: brand,
-                              child: Text(brand.name),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            fipeController.brandSelected = value;
-                            fipeController.getModelVehicles();
-                          },
+                        SizedBox(
+                          width: 300,
+                          child: DropdownButtonFormField<BrandVehiclesModel>(
+                            isExpanded: true,
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle_sharp,
+                              color: Color.fromRGBO(255, 196, 0, 1),
+                            ),
+                            value: fipeController.brandSelected,
+                            hint: const Text('Selecione a marca'),
+                            decoration: InputDecoration(
+                              label: const Text('Marca'),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                                borderSide: const BorderSide(
+                                  color: Color.fromRGBO(255, 195, 0, 1),
+                                ),
+                              ),
+                            ),
+                            items: fipeController.brandVehicles
+                                .map<DropdownMenuItem<BrandVehiclesModel>>(
+                                    (brand) {
+                              return DropdownMenuItem<BrandVehiclesModel>(
+                                value: brand,
+                                child: Text(brand.name),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              fipeController.brandSelected = value;
+                              fipeController.getModelVehicles();
+                            },
+                          ),
                         ),
                         const SizedBox(height: 20),
-                        DropdownButton<ModelVehiclesModel>(
-                          value: fipeController.modelSelected,
-                          hint: const Text('Selecione o modelo'),
-                          items: fipeController.modelVehicles
-                              .map<DropdownMenuItem<ModelVehiclesModel>>(
-                                  (model) {
-                            return DropdownMenuItem<ModelVehiclesModel>(
-                              value: model,
-                              child: Text(model.name),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            fipeController.modelSelected = value;
-                            fipeController.notifyListeners();
-                          },
+                        SizedBox(
+                          width: 300,
+                          child: DropdownButtonFormField<ModelVehiclesModel>(
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle_sharp,
+                              color: Color.fromRGBO(255, 196, 0, 1),
+                            ),
+                            isExpanded: true,
+                            value: fipeController.modelSelected,
+                            hint: const Text('Selecione o modelo'),
+                            decoration: InputDecoration(
+                              label: const Text('Modelo'),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                                borderSide: const BorderSide(
+                                  color: Color.fromRGBO(255, 195, 0, 1),
+                                ),
+                              ),
+                            ),
+                            items: fipeController.modelVehicles
+                                .map<DropdownMenuItem<ModelVehiclesModel>>(
+                                    (model) {
+                              return DropdownMenuItem<ModelVehiclesModel>(
+                                value: model,
+                                child: Text(model.name),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              fipeController.modelSelected = value;
+                              fipeController.notifyListeners();
+                            },
+                          ),
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
