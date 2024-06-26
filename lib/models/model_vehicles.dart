@@ -1,7 +1,7 @@
 ///Classe de modelos de veiculos
 class ModelVehiclesModel {
   ///Identificação do modelo
-  int id;
+  String id;
 
   ///Nome do modelo
   String name;
@@ -22,7 +22,7 @@ class ModelVehiclesModel {
   ///Converte ModelVehiclesModel do mapa
   factory ModelVehiclesModel.fromMapModelVehicles(Map<String, dynamic> map) {
     return ModelVehiclesModel(
-      id: map['id'],
+      id: map['code'],
       name: map['name'],
     );
   }

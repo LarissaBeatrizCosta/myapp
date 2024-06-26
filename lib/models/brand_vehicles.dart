@@ -23,7 +23,7 @@ class BrandVehiclesModel {
   ///Converte BrandVehiclesModel do mapa
   factory BrandVehiclesModel.fromMapBrandVehicles(Map<String, dynamic> map) {
     return BrandVehiclesModel(
-      id: map['id'],
+      id: map['code'],
       name: map['name'],
     );
   }
