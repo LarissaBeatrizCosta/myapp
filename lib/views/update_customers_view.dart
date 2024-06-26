@@ -119,22 +119,20 @@ class UpdateCustomers extends StatelessWidget {
 
                         customerController.updateCustomers(updatedCustomer);
                         showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
+                          context: context,
+                          builder: (context) {
+                            return SizedBox(
+                              width: 300,
+                              height: 220,
+                              child: AlertDialog(
                                 title: const Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 20,
-                                    ),
-                                    child: Text(
-                                      'Cliente Editado Com Sucesso!',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      ),
+                                  child: Text(
+                                    'Cliente Editado Com Sucesso!',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0,
                                     ),
                                   ),
                                 ),
@@ -157,8 +155,10 @@ class UpdateCustomers extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(70.0),
                                 ),
-                              );
-                            },);
+                              ),
+                            );
+                          },
+                        );
                       }
                     },
                     child: const Text(

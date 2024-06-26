@@ -153,16 +153,15 @@ class RegisterCustomer extends StatelessWidget {
                                           showDialog(
                                             context: context,
                                             builder: (context) {
-                                              return AlertDialog(
-                                                title: const Center(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                      horizontal: 20,
-                                                      vertical: 50,
-                                                    ),
+                                              return SizedBox(
+                                                width: 300,
+                                                height: 220,
+                                                child: AlertDialog(
+                                                  title: const Center(
                                                     child: Text(
                                                       'Cliente Cadastrado!',
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                         fontWeight:
@@ -171,30 +170,31 @@ class RegisterCustomer extends StatelessWidget {
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator
-                                                          .pushNamedAndRemoveUntil(
-                                                        context,
-                                                        '/',
-                                                        (route) => false,
-                                                      );
-                                                    },
-                                                    child: const Text(
-                                                      'OK',
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  )
-                                                ],
-                                                elevation: 25,
-                                                backgroundColor: Colors.white,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          70.0),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator
+                                                            .pushNamedAndRemoveUntil(
+                                                          context,
+                                                          '/',
+                                                          (route) => false,
+                                                        );
+                                                      },
+                                                      child: const Text(
+                                                        'OK',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    )
+                                                  ],
+                                                  elevation: 25,
+                                                  backgroundColor: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            70.0),
+                                                  ),
                                                 ),
                                               );
                                             },

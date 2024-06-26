@@ -125,13 +125,14 @@ class UpdateManagers extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
-                              title: const Center(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 20),
+                            return SizedBox(
+                              width: 300,
+                              height: 220,
+                              child: AlertDialog(
+                                title: const Center(
                                   child: Text(
                                     'Gerente Editado Com Sucesso!',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
@@ -139,25 +140,25 @@ class UpdateManagers extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pushNamedAndRemoveUntil(
-                                        context, '/managers', (route) => false);
-                                    // Enzo me ajudou na daily,
-                                    //retira todas as páginas que estavam atrás
-                                  },
-                                  child: const Text(
-                                    'OK',
-                                    style: TextStyle(color: Colors.black),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/managers', (route) => false);
+                                      // Enzo me ajudou na daily,
+                                      //retira todas as páginas que estavam atrás
+                                    },
+                                    child: const Text(
+                                      'OK',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
                                   ),
+                                ],
+                                elevation: 25,
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(70.0),
                                 ),
-                              ],
-                              elevation: 25,
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(70.0),
                               ),
                             );
                           },

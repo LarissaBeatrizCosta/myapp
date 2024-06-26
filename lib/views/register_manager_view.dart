@@ -20,7 +20,6 @@ class RegisterManagerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        //ChangeNotifierProvider(create: (context) => CpfController()),
         ChangeNotifierProvider(create: (context) => TableManagers()),
       ],
       child: Scaffold(
@@ -152,15 +151,14 @@ class RegisterManagerView extends StatelessWidget {
                                       showDialog(
                                         context: context,
                                         builder: (context) {
-                                          return AlertDialog(
-                                            title: const Center(
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  horizontal: 20,
-                                                  vertical: 50,
-                                                ),
+                                          return SizedBox(
+                                            height: 220,
+                                            width: 300,
+                                            child: AlertDialog(
+                                              title: const Center(
                                                 child: Text(
                                                   'Gerente Cadastrado!',
+                                                  textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
@@ -168,29 +166,29 @@ class RegisterManagerView extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator
-                                                      .pushNamedAndRemoveUntil(
-                                                    context,
-                                                    '/',
-                                                    (route) => false,
-                                                  );
-                                                },
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                      color: Colors.black),
-                                                ),
-                                              )
-                                            ],
-                                            elevation: 25,
-                                            backgroundColor: Colors.white,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(70.0),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator
+                                                        .pushNamedAndRemoveUntil(
+                                                      context,
+                                                      '/',
+                                                      (route) => false,
+                                                    );
+                                                  },
+                                                  child: const Text(
+                                                    'OK',
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  ),
+                                                )
+                                              ],
+                                              elevation: 25,
+                                              backgroundColor: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(70.0),
+                                              ),
                                             ),
                                           );
                                         },

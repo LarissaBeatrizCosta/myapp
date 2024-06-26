@@ -163,61 +163,62 @@ class CustomersView extends StatelessWidget {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return AlertDialog(
-                                      title: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 5,
-                                          vertical: 20,
-                                        ),
-                                        child: Text(
-                                          'Excluir Cliente',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 25.0,
-                                          ),
-                                        ),
-                                      ),
-                                      content: const Text(
-                                        'Deseja excluir este cliente?',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20.0,
-                                        ),
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text(
-                                            'Cancelar',
-                                            style: TextStyle(
-                                              color: Colors.red,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20.0,
-                                            ),
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            state.deleteCustomers(customer);
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: const Text(
-                                            'Confirmar',
+                                    return SizedBox(
+                                      height: 220,
+                                      width: 300,
+                                      child: AlertDialog(
+                                        title: const Center(
+                                          child: Text(
+                                            'Excluir Cliente',
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 25.0,
                                             ),
                                           ),
                                         ),
-                                      ],
-                                      elevation: 25,
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(50.0),
+                                        content: const Text(
+                                          'Deseja excluir este cliente?',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20.0,
+                                          ),
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text(
+                                              'Cancelar',
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20.0,
+                                              ),
+                                            ),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              state.deleteCustomers(customer);
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: const Text(
+                                              'Confirmar',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        elevation: 25,
+                                        backgroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50.0),
+                                        ),
                                       ),
                                     );
                                   },

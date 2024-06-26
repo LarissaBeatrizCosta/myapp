@@ -28,7 +28,7 @@ class RegisterVehicleView extends StatelessWidget {
           appBar: AppBar(),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 35),
               child: Column(
                 children: [
                   Form(
@@ -43,7 +43,7 @@ class RegisterVehicleView extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 40),
                         SizedBox(
                           width: 300,
                           child: DropdownButtonFormField<String>(
@@ -79,7 +79,7 @@ class RegisterVehicleView extends StatelessWidget {
                             },
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 40),
                         SizedBox(
                           width: 300,
                           child: DropdownButtonFormField<BrandVehiclesModel>(
@@ -116,7 +116,7 @@ class RegisterVehicleView extends StatelessWidget {
                             },
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         SizedBox(
                           width: 300,
                           child: DropdownButtonFormField<ModelVehiclesModel>(
@@ -153,7 +153,7 @@ class RegisterVehicleView extends StatelessWidget {
                             },
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         TextFormField(
                           controller: _manufacturingYearController,
                           decoration: const InputDecoration(
@@ -187,7 +187,7 @@ class RegisterVehicleView extends StatelessWidget {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Insira um preço diária';
+                              return 'Insira um preço diário';
                             }
                             return null;
                           },
@@ -205,52 +205,59 @@ class RegisterVehicleView extends StatelessWidget {
                                             255, 195, 0, 1),
                                       ),
                                       onPressed: () async {
-                                        if (_formKey.currentState!.validate()) {
+                                        if (_formKey.currentState!.validate() &&
+                                            fipeController.modelSelected !=
+                                                null) {
                                           showDialog(
                                             context: context,
                                             builder: (context) {
-                                              return AlertDialog(
-                                                title: const Center(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                      horizontal: 20,
-                                                      vertical: 50,
+                                              return Center(
+                                                child: SizedBox(
+                                                  height: 220,
+                                                  width: 300,
+                                                  child: AlertDialog(
+                                                    title: const Center(
+                                                      child: Text(
+                                                        'Veículo Cadastrado!',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 20.0,
+                                                        ),
+                                                      ),
                                                     ),
-                                                    child: Text(
-                                                      'Veículo Cadastrado!',
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20.0,
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator
+                                                              .pushNamedAndRemoveUntil(
+                                                            context,
+                                                            '/',
+                                                            (route) => false,
+                                                          );
+                                                        },
+                                                        child: const Text(
+                                                          'OK',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black),
+                                                        ),
+                                                      )
+                                                    ],
+                                                    elevation: 25,
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                        70.0,
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator
-                                                          .pushNamedAndRemoveUntil(
-                                                        context,
-                                                        '/',
-                                                        (route) => false,
-                                                      );
-                                                    },
-                                                    child: const Text(
-                                                      'OK',
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  )
-                                                ],
-                                                elevation: 25,
-                                                backgroundColor: Colors.white,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          70.0),
                                                 ),
                                               );
                                             },
