@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../controllers/fipe_controller.dart';
 import '../models/brand_vehicles.dart';
 import '../models/model_vehicles.dart';
+import '../providers/image_picker_state.dart';
 
 ///Tela de cadastro de veiculos
 class RegisterVehicleView extends StatelessWidget {
@@ -22,8 +23,16 @@ class RegisterVehicleView extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => FipeController(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ImagePickerState(),
+        ),
       ],
-      child: Consumer<FipeController>(builder: (context, fipeController, _) {
+      child: Consumer2<FipeController, ImagePickerState>(builder: (
+        context,
+        fipeController,
+        imagePickerController,
+        _,
+      ) {
         return Scaffold(
           appBar: AppBar(),
           body: SingleChildScrollView(
@@ -198,13 +207,13 @@ class RegisterVehicleView extends StatelessWidget {
                             showModalBottomSheet(
                               context: context,
                               builder: (_) {
-                                return const Padding(
-                                  padding: EdgeInsets.all(16),
+                                return Padding(
+                                  padding: const EdgeInsets.all(16),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       ListTile(
-                                        leading: CircleAvatar(
+                                        leading: const CircleAvatar(
                                           backgroundColor:
                                               Color.fromARGB(255, 7, 55, 94),
                                           child: Center(
@@ -214,11 +223,12 @@ class RegisterVehicleView extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        title: Text('Câmera'),
-                                        // onTap:
+                                        title: const Text('Câmera'),
+                                        onTap: imagePickerController
+                                            .getImageFromCamera,
                                       ),
                                       ListTile(
-                                        leading: CircleAvatar(
+                                        leading: const CircleAvatar(
                                           backgroundColor:
                                               Color.fromARGB(255, 7, 55, 94),
                                           child: Center(
@@ -228,7 +238,9 @@ class RegisterVehicleView extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        title: Text('Galeria'),
+                                        title: const Text('Galeria'),
+                                        onTap: imagePickerController
+                                            .getImageFromGallery,
                                       ),
                                     ],
                                   ),

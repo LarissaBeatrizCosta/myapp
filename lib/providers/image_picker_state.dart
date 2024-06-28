@@ -1,10 +1,33 @@
-// import 'dart:io';
-// import 'package:flutter/material.dart';
-// // import 'package:image_picker/image_picker.dart';
-// import 'package:path_provider/path_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-// ///Classe para adicionar fotos dos veiculos
-// class ImagePickerState extends ChangeNotifier {
+///Classe para adicionar fotos dos veiculos
+class ImagePickerState extends ChangeNotifier {
+  ///Instancia do ImagePicker
+  final imagePicker = ImagePicker();
+
+  ///Método para adicionar fotos da galeria
+  Future<void> getImageFromGallery() async {
+    final photoVehicle = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (photoVehicle != null) {
+      notifyListeners();
+    }
+  }
+
+  ///Método para adicionar fotos com a câmera
+  void getImageFromCamera() async {
+    final photoVehicle = await imagePicker.pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (photoVehicle != null) {
+      notifyListeners();
+    }
+  }
+
 //   ///Lista para adicionar fotos dos veiculos
 //   final List<File> _photoVehicles = [];
 
@@ -38,4 +61,4 @@
 //   //   final File? image =
 //   //       await photoVehicles.getImage(source: ImageSource.gallery);
 //   // }
-// }
+}
