@@ -4,6 +4,7 @@ import '../controllers/fipe_controller.dart';
 import '../models/brand_vehicles_model.dart';
 import '../models/model_vehicles_model.dart';
 import '../providers/image_picker_state.dart';
+import '../providers/theme.dart';
 
 ///Tela de cadastro de veiculos
 class RegisterVehicleView extends StatelessWidget {
@@ -14,10 +15,10 @@ class RegisterVehicleView extends StatelessWidget {
   final _plateController = TextEditingController();
   final _manufacturingYearController = TextEditingController();
   final _priceDailyController = TextEditingController();
-  // File? _photo;
 
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<ThemeState>(context);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -248,19 +249,23 @@ class RegisterVehicleView extends StatelessWidget {
                               },
                             );
                           },
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.attach_file,
-                            color: Color.fromARGB(255, 46, 46, 46),
+                            color: state.themeLight
+                                ? const Color.fromARGB(255, 46, 46, 46)
+                                : Colors.white,
                             size: 20,
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
                             shadowColor: Colors.transparent,
                           ),
-                          label: const Text(
+                          label: Text(
                             'Anexar Fotos',
                             style: TextStyle(
-                              color: Color.fromARGB(255, 46, 46, 46),
+                              color: state.themeLight
+                                  ? const Color.fromARGB(255, 46, 46, 46)
+                                  : Colors.white,
                             ),
                           ),
                         ),
