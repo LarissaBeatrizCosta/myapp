@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../models/brand_vehicles.dart';
-import '../models/model_vehicles.dart';
+import '../models/brand_vehicles_model.dart';
+import '../models/model_vehicles_model.dart';
 
 ///Classe que conecta com a API da Fipe
 class FipeController extends ChangeNotifier {

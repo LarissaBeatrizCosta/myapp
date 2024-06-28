@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/fipe_controller.dart';
-import '../models/brand_vehicles.dart';
-import '../models/model_vehicles.dart';
+import '../models/brand_vehicles_model.dart';
+import '../models/model_vehicles_model.dart';
 import '../providers/image_picker_state.dart';
 
 ///Tela de cadastro de veiculos
