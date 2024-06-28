@@ -192,6 +192,66 @@ class RegisterVehicleView extends StatelessWidget {
                             return null;
                           },
                         ),
+                        const SizedBox(height: 20),
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (_) {
+                                return const Padding(
+                                  padding: EdgeInsets.all(16),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      ListTile(
+                                        leading: CircleAvatar(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 7, 55, 94),
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.photo_camera,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        title: Text('Câmera'),
+                                        // onTap:
+                                      ),
+                                      ListTile(
+                                        leading: CircleAvatar(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 7, 55, 94),
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.image,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        title: Text('Galeria'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.attach_file,
+                            color: Color.fromARGB(255, 46, 46, 46),
+                            size: 20,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            shadowColor: Colors.transparent,
+                          ),
+                          label: const Text(
+                            'Anexar Fotos',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 46, 46, 46),
+                            ),
+                          ),
+                        ),
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15),
