@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../models/customer_model.dart';
 import '../models/manager_model.dart';
+import '../models/vehicles_model.dart';
 
 ///Cria banco de dados
 Future<Database> getDatabase() async {
@@ -16,6 +17,7 @@ Future<Database> getDatabase() async {
     onCreate: (db, version) {
       db.execute(TableCustomers.createTable);
       db.execute(TableManagers.createTable);
+      db.execute(TableVehicles.createTable);
     },
     version: 1,
   );
@@ -30,7 +32,8 @@ class TableCustomers extends ChangeNotifier {
   $name TEXT NOT NULL,
   $phone TEXT NOT NULL,
   $state TEXT NOT NULL,
-  $city TEXT NOT NULL
+  $city TEXT NOT NULL,
+
   );
   ''';
 
@@ -107,7 +110,6 @@ class TableCustomers extends ChangeNotifier {
     }
     return customersList;
   }
- 
 }
 
 ///Manipula os dados na tabela de gerentes
@@ -195,5 +197,103 @@ class TableManagers extends ChangeNotifier {
           .add(ManagerModel.fromMapManager(manager as Map<String, dynamic>));
     }
     return managersList;
+  }
+}
+
+///Manipula os dados na tabela veículos
+class TableVehicles extends ChangeNotifier {
+  ///Cria a tabela dos veículos
+  static const String createTable = '''
+CREATE TABLE $tableName(
+  $id TEXT PRIMARY KEY,
+  $brand TEXT NOT NULL,
+  $model TEXT NOT NULL,
+  $plate TEXT NOT NULL,
+  $manufacturingYear TEXT NOT NULL,
+  $priceDaily TEXT NOT NULL
+  );
+''';
+
+  ///Nome da tabela de veículos
+  static const String tableName = 'veiculos';
+
+  ///Identificação do veículo
+  static const String id = 'id';
+
+  ///Marca do veículo
+  static const String brand = 'brand';
+
+  ///Modelo do veículo
+  static const String model = 'model';
+
+  ///Placa do veículo
+  static const String plate = 'plate';
+
+  ///Ano de fabricação do veículo
+  static const String manufacturingYear = 'manufacturingYear';
+
+  ///Preço do veículo
+  static const String priceDaily = 'priceDaily';
+
+  ///Insere os dados do veículo na tabela de veículos
+  Future<void> insertVehicle(VehiclesModel vehicle) async {
+    final dataBase = await getDatabase();
+    await dataBase.insert(
+      tableName,
+      vehicle.toMapVehicles(),
+    );
+    notifyListeners();
+  }
+
+  ///Deleta o veículo da tabela de veículos
+  Future<void> deleteVehicle(VehiclesModel vehicle) async {
+    final dataBase = await getDatabase();
+
+    await dataBase.delete(
+      TableVehicles.tableName,
+      where: '${TableVehicles.id} = ? ',
+      whereArgs: [vehicle.id],
+    );
+    notifyListeners();
+  }
+
+  ///Atualiza o veículo na tabela de veículos
+  Future<void> updateVehicle(VehiclesModel vehicle) async {
+    final dataBase = await getDatabase();
+
+    await dataBase.update(
+      TableVehicles.tableName,
+      vehicle.toMapVehicles(),
+      where: '${TableVehicles.id} = ? ',
+      whereArgs: [vehicle.id],
+    );
+    notifyListeners();
+  }
+
+  ///Pega os veículos da tabela de veículos
+  Future<List<VehiclesModel>> getVehicle() async {
+    final dataBase = await getDatabase();
+    var vehiclesList = <VehiclesModel>[];
+
+    List<Map> vehiclesMap = await dataBase.query(
+      tableName,
+      columns: [
+        'id',
+        'brand',
+        'model',
+        'plate',
+        'manufacturingYear',
+        'priceDaily',
+      ],
+    );
+
+    notifyListeners();
+
+    for (var vehicle in vehiclesMap) {
+      vehiclesList.add(
+        VehiclesModel.fromMapVehicles(vehicle as Map<String, dynamic>),
+      );
+    }
+    return vehiclesList;
   }
 }

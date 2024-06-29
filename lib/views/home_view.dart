@@ -282,7 +282,8 @@ class HomeView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                            onPressed: () => Navigator.pushNamed(context, '/'),
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/vehicles'),
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(150, 100),
                               shape: const RoundedRectangleBorder(
