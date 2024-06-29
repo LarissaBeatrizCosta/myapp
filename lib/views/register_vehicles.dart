@@ -285,6 +285,13 @@ class RegisterVehicleView extends StatelessWidget {
                                         if (_formKey.currentState!.validate() &&
                                             fipeController.modelSelected !=
                                                 null) {
+                                          await imagePickerController
+                                              .saveImageVehicle();
+                                          // fipeController.registerVehicle(
+                                          //   _plateController.text,
+                                          //  _manufacturingYearController.text,
+                                          //   _priceDailyController.text,
+                                          // );
                                           showDialog(
                                             context: context,
                                             builder: (context) {

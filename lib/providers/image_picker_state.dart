@@ -1,25 +1,33 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 ///Classe para adicionar fotos dos veiculos
 class ImagePickerState extends ChangeNotifier {
   ///Instancia do ImagePicker
-  final imagePicker = ImagePicker();
+  final _imagePicker = ImagePicker();
+
+  ///Lista para adicionar fotos dos veiculos
+  final List<XFile> _photoVehicles = [];
+
+  ///Lista de fotos dos veiculos
+  List<XFile> get photoVehicles => _photoVehicles;
 
   ///Método para adicionar fotos da galeria
   Future<void> getImageFromGallery() async {
-    final photoVehicle = await imagePicker.pickImage(
-      source: ImageSource.gallery,
-    );
+    final photoVehicle = await _imagePicker.pickMultiImage();
 
-    if (photoVehicle != null) {
+    if (photoVehicle.isNotEmpty) {
+      _photoVehicles.addAll(photoVehicle);
       notifyListeners();
     }
   }
 
   ///Método para adicionar fotos com a câmera
   void getImageFromCamera() async {
-    final photoVehicle = await imagePicker.pickImage(
+    final photoVehicle = await _imagePicker.pickImage(
       source: ImageSource.camera,
     );
 
@@ -28,37 +36,21 @@ class ImagePickerState extends ChangeNotifier {
     }
   }
 
-//   ///Lista para adicionar fotos dos veiculos
-//   final List<File> _photoVehicles = [];
+  ///Método para salvar as fotos dos veiculos
+  Future<void> saveImageVehicle() async {
+    final file = await getApplicationDocumentsDirectory();
+    final directoryPhotos = Directory('${file.path}/images');
 
-//   ///Lista de fotos dos veiculos
-//   List<File> get photoVehicles => _photoVehicles;
+    if (await directoryPhotos.exists()) {
+      await directoryPhotos.create(recursive: true);
+    }
+    for (var image = 0; image < _photoVehicles.length; image++) {
+      final imagePath = '${directoryPhotos.path}/image_$image.png';
+      final imageFile = File(_photoVehicles[image].path);
+      await imageFile.copy(imagePath);
+    }
 
-//   ///Método para adicionar fotos dos veiculos
-//   void insertPhoto(File photo) {
-//     _photoVehicles.add(photo);
-//     notifyListeners();
-//   }
-
-//   ///Método para remover fotos dos veiculos
-//   void removePhoto(int photo) {
-//     _photoVehicles.removeAt(photo);
-//     notifyListeners();
-//   }
-
-//   ///Método para salvar as fotos dos veiculos
-//   Future<void> saveImageVehicle() async {
-//     final file = await getApplicationDocumentsDirectory();
-
-//     for (var image = 0; image < _photoVehicles.length; image++) {
-//       final photosVehiclesPath = '${file.path}/image_$image.png';
-//       await _photoVehicles[image].copy(photosVehiclesPath);
-//     }
-//   }
-
-//   ///Método para pegar as fotos dos veiculos
-//   // Future<void> getImage() async {
-//   //   final File? image =
-//   //       await photoVehicles.getImage(source: ImageSource.gallery);
-//   // }
+    _photoVehicles.clear();
+    notifyListeners();
+  }
 }
