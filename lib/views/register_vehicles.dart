@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import '../controllers/database.dart';
 import '../controllers/fipe_controller.dart';
 import '../models/brand_vehicles_model.dart';
 import '../models/model_vehicles_model.dart';
+import '../models/vehicles_model.dart';
 import '../providers/image_picker_state.dart';
 import '../providers/theme.dart';
 
@@ -26,6 +31,9 @@ class RegisterVehicleView extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ImagePickerState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TableVehicles(),
         ),
       ],
       child: Consumer2<FipeController, ImagePickerState>(builder: (
@@ -269,11 +277,40 @@ class RegisterVehicleView extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Consumer<ImagePickerState>(
+                          builder: (context, imagePickerController, _) {
+                            return imagePickerController
+                                    .photoVehicles.isNotEmpty
+                                ? Container()
+                                : Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: GridView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: imagePickerController
+                                          .photoVehicles.length,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3,
+                                        crossAxisSpacing: 4.0,
+                                        mainAxisSpacing: 4.0,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        return Image.file(
+                                          File(imagePickerController
+                                              .photoVehicles[index].path),
+                                          fit: BoxFit.cover,
+                                        );
+                                      },
+                                    ),
+                                  );
+                          },
+                        ),
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15),
-                            child: Consumer<FipeController>(
-                              builder: (context, fipeController, _) {
+                            child: Consumer2<FipeController, TableVehicles>(
+                              builder:
+                                  (context, fipeController, tableVehicles, _) {
                                 return Column(
                                   children: [
                                     ElevatedButton(
@@ -285,13 +322,31 @@ class RegisterVehicleView extends StatelessWidget {
                                         if (_formKey.currentState!.validate() &&
                                             fipeController.modelSelected !=
                                                 null) {
-                                          await imagePickerController
-                                              .saveImageVehicle();
-                                          // fipeController.registerVehicle(
-                                          //   _plateController.text,
-                                          //  _manufacturingYearController.text,
-                                          //   _priceDailyController.text,
-                                          // );
+                                          List<XFile>? savedPhotos;
+                                          if (imagePickerController
+                                              .photoVehicles.isNotEmpty) {
+                                            await imagePickerController
+                                                .saveImageVehicle();
+                                            savedPhotos = imagePickerController
+                                                .photoVehicles;
+                                          }
+                                          tableVehicles.insertVehicle(
+                                            VehiclesModel(
+                                              type:
+                                                  fipeController.typeSelected!,
+                                              brand: fipeController
+                                                  .brandSelected!.name,
+                                              model: fipeController
+                                                  .modelSelected!.name,
+                                              manufacturingYear:
+                                                  _manufacturingYearController
+                                                      .text,
+                                              plate: _plateController.text,
+                                              priceDaily:
+                                                  _priceDailyController.text,
+                                              photos: savedPhotos,
+                                            ),
+                                          );
                                           showDialog(
                                             context: context,
                                             builder: (context) {

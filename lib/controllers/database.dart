@@ -204,8 +204,9 @@ class TableManagers extends ChangeNotifier {
 class TableVehicles extends ChangeNotifier {
   ///Cria a tabela dos veículos
   static const String createTable = '''
-CREATE TABLE $tableName(
-  $id TEXT PRIMARY KEY,
+  CREATE TABLE $tableName(
+  $id INT AUTO_INCREMENT PRIMARY KEY,
+  $type TEXT NOT NULL,
   $brand TEXT NOT NULL,
   $model TEXT NOT NULL,
   $plate TEXT NOT NULL,
@@ -219,6 +220,9 @@ CREATE TABLE $tableName(
 
   ///Identificação do veículo
   static const String id = 'id';
+
+  ///Tipo do veículo
+  static const String type = 'type';
 
   ///Marca do veículo
   static const String brand = 'brand';
@@ -279,6 +283,7 @@ CREATE TABLE $tableName(
       tableName,
       columns: [
         'id',
+        'type',
         'brand',
         'model',
         'plate',

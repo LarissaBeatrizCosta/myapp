@@ -23,6 +23,7 @@ class ImagePickerState extends ChangeNotifier {
       _photoVehicles.addAll(photoVehicle);
       notifyListeners();
     }
+
   }
 
   ///Método para adicionar fotos com a câmera
@@ -32,6 +33,7 @@ class ImagePickerState extends ChangeNotifier {
     );
 
     if (photoVehicle != null) {
+       _photoVehicles.add(photoVehicle);
       notifyListeners();
     }
   }
