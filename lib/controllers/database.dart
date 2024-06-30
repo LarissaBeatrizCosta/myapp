@@ -205,7 +205,7 @@ class TableVehicles extends ChangeNotifier {
   ///Cria a tabela dos veículos
   static const String createTable = '''
   CREATE TABLE $tableName(
-  $id INT AUTO_INCREMENT PRIMARY KEY,
+  $id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   $type TEXT NOT NULL,
   $brand TEXT NOT NULL,
   $model TEXT NOT NULL,
@@ -255,8 +255,8 @@ class TableVehicles extends ChangeNotifier {
 
     await dataBase.delete(
       TableVehicles.tableName,
-      where: '${TableVehicles.id} = ? ',
-      whereArgs: [vehicle.id],
+      where: '${TableVehicles.plate} = ? ',
+      whereArgs: [vehicle.plate],
     );
     notifyListeners();
   }
