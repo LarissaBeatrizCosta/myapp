@@ -233,8 +233,11 @@ class RegisterVehicleView extends StatelessWidget {
                                           ),
                                         ),
                                         title: const Text('Câmera'),
-                                        onTap: imagePickerController
-                                            .getImageFromCamera,
+                                        onTap: () async {
+                                          await imagePickerController
+                                              .getImageFromCamera();
+                                          Navigator.pop(context);
+                                        },
                                       ),
                                       ListTile(
                                         leading: const CircleAvatar(
@@ -248,8 +251,11 @@ class RegisterVehicleView extends StatelessWidget {
                                           ),
                                         ),
                                         title: const Text('Galeria'),
-                                        onTap: imagePickerController
-                                            .getImageFromGallery,
+                                        onTap: () async {
+                                          await imagePickerController
+                                              .getImageFromGallery();
+                                          Navigator.pop(context);
+                                        },
                                       ),
                                     ],
                                   ),
@@ -281,28 +287,26 @@ class RegisterVehicleView extends StatelessWidget {
                           builder: (context, imagePickerController, _) {
                             return imagePickerController
                                     .photoVehicles.isNotEmpty
-                                ? Container()
-                                : Padding(
-                                    padding: const EdgeInsets.only(top: 20),
-                                    child: GridView.builder(
-                                      shrinkWrap: true,
+                                ? SizedBox(
+                                    height: 100,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
                                       itemCount: imagePickerController
                                           .photoVehicles.length,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 3,
-                                        crossAxisSpacing: 4.0,
-                                        mainAxisSpacing: 4.0,
-                                      ),
                                       itemBuilder: (context, index) {
-                                        return Image.file(
-                                          File(imagePickerController
-                                              .photoVehicles[index].path),
-                                          fit: BoxFit.cover,
+                                        return Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Image.file(
+                                            File(imagePickerController
+                                                .photoVehicles[index].path),
+                                            width: 100,
+                                            fit: BoxFit.cover,
+                                          ),
                                         );
                                       },
                                     ),
-                                  );
+                                  )
+                                : Container();
                           },
                         ),
                         Center(
@@ -330,7 +334,7 @@ class RegisterVehicleView extends StatelessWidget {
                                             savedPhotos = imagePickerController
                                                 .photoVehicles;
                                           }
-                                          tableVehicles.insertVehicle(
+                                          await tableVehicles.insertVehicle(
                                             VehiclesModel(
                                               type:
                                                   fipeController.typeSelected!,
