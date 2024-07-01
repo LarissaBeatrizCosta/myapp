@@ -268,8 +268,8 @@ class TableVehicles extends ChangeNotifier {
     await dataBase.update(
       TableVehicles.tableName,
       vehicle.toMapVehicles(),
-      where: '${TableVehicles.id} = ? ',
-      whereArgs: [vehicle.id],
+      where: '${TableVehicles.plate} = ? ',
+      whereArgs: [vehicle.plate],
     );
     notifyListeners();
   }

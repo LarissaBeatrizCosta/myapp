@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/image_picker_state.dart';
 import '../providers/theme.dart';
 import '../providers/vehicles_state.dart';
 
@@ -13,8 +14,15 @@ class VehiclesView extends StatelessWidget {
   Widget build(BuildContext context) {
     final stateTheme = Provider.of<ThemeState>(context);
 
-    return ChangeNotifierProvider(
-      create: (context) => VehiclesState(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => VehiclesState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ImagePickerState(),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -35,8 +43,8 @@ class VehiclesView extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
-          child: Consumer<VehiclesState>(
-            builder: (context, state, _) {
+          child: Consumer2<VehiclesState, ImagePickerState>(
+            builder: (context, state, images, _) {
               return ListView.builder(
                 itemCount: state.vehicles.length,
                 itemBuilder: (context, index) {

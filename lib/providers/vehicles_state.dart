@@ -27,15 +27,15 @@ class VehiclesState extends ChangeNotifier {
   }
 
   ///Deleta veículos
-  void deleteVehicles(VehiclesModel id) async {
-    await tableVehicles.deleteVehicle(id);
-    vehicles.remove(id);
+  void deleteVehicles(VehiclesModel plate) async {
+    await tableVehicles.deleteVehicle(plate);
+    vehicles.remove(plate);
     notifyListeners();
   }
 
   ///Atualiza os veículos
-  void updateVehicles(VehiclesModel id) async {
-    await tableVehicles.updateVehicle(id);
+  void updateVehicles(VehiclesModel plate) async {
+    await tableVehicles.updateVehicle(plate);
     notifyListeners();
   }
 }

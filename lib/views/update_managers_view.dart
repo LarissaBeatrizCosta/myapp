@@ -146,7 +146,8 @@ class UpdateManagers extends StatelessWidget {
                                       Navigator.pushNamedAndRemoveUntil(context,
                                           '/managers', (route) => false);
                                       // Enzo me ajudou na daily,
-                                      //retira todas as páginas que estavam atrás
+                                      //retira todas as páginas que estavam
+                                      // atrás
                                     },
                                     child: const Text(
                                       'OK',

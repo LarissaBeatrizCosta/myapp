@@ -49,19 +49,18 @@ class ImagePickerState extends ChangeNotifier {
     }
 
     for (var image = 0; image < _photoVehicles.length; image++) {
-      final vehicleImages = _photoVehicles[image]; 
+      final vehicleImages = _photoVehicles[image];
 
-      final directoryNameVehicle =
-          'vehicle_$image'; 
+      final directoryNameVehicle = 'vehicle_$image';
 
-      final photoVehicleDirectory = Directory('${vehicleDirectory.path}/$directoryNameVehicle');
+      final photoVehicleDirectory =
+          Directory('${vehicleDirectory.path}/$directoryNameVehicle');
       if (!photoVehicleDirectory.existsSync()) {
         await photoVehicleDirectory.create();
       }
 
       final photoVehicle = File('${photoVehicleDirectory.path}/$image.png');
-      await vehicleImages
-          .saveTo(photoVehicle.path); 
+      await vehicleImages.saveTo(photoVehicle.path);
     }
 
     _photoVehicles.clear();
