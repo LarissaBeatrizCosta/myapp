@@ -170,6 +170,9 @@ class RegisterManagerView extends StatelessWidget {
                                                 TextButton(
                                                   onPressed: () {
                                                     Navigator
+                                                    // Não consegui
+                                                    //quebrar a linha
+                                                        // ignore: lines_longer_than_80_chars
                                                         .pushNamedAndRemoveUntil(
                                                       context,
                                                       '/',

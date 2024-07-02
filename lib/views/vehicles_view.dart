@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/image_picker_state.dart';
 import '../providers/theme.dart';
 import '../providers/vehicles_state.dart';
+import 'update_vehicles.dart';
 
 ///Classe de vizualização dos veículos
 class VehiclesView extends StatelessWidget {
@@ -219,13 +220,14 @@ class VehiclesView extends StatelessWidget {
                                 icon: const Icon(Icons.edit),
                                 color: const Color.fromARGB(255, 60, 255, 0),
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) =>
-                                  //     ),
-                                  //   ),
-                                  //);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => UpdateVehicles(
+                                        vehicle: vehicle,
+                                      ),
+                                    ),
+                                  );
                                 },
                               ),
                             ],

@@ -46,7 +46,7 @@ class RegisterVehicleView extends StatelessWidget {
           appBar: AppBar(),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 35),
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
               child: Column(
                 children: [
                   Form(
@@ -376,6 +376,9 @@ class RegisterVehicleView extends StatelessWidget {
                                                       TextButton(
                                                         onPressed: () {
                                                           Navigator
+                                                              //Não consegui
+                                                              //quebrar a linha
+                                                              // ignore: lines_longer_than_80_chars
                                                               .pushNamedAndRemoveUntil(
                                                             context,
                                                             '/',
