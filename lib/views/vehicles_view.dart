@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -61,89 +63,63 @@ class VehiclesView extends StatelessWidget {
                           : const Color.fromARGB(82, 60, 68, 138),
                       shadowColor: Colors.blueGrey,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 10.0),
-                                    child: Text(
-                                      vehicle.model,
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: stateTheme.themeLight
-                                            ? const Color.fromRGBO(
-                                                255, 195, 0, 1)
-                                            : const Color.fromARGB(
-                                                255, 255, 225, 127),
+                          images.photoVehiclesPaths.isNotEmpty
+                              ? GestureDetector(
+                                  onTap: () {},
+                                  child: SizedBox(
+                                    height: 50,
+                                    width: 30,
+                                    child: CircleAvatar(
+                                      radius: 20,
+                                      backgroundImage: FileImage(
+                                        File(images.photoVehiclesPaths[0]),
                                       ),
+                                      backgroundColor: Colors.grey,
                                     ),
                                   ),
-                                ],
-                              ),
-                              Row(
+                                )
+                              : const Icon(Icons.photo,
+                                  size: 70, color: Colors.grey),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 10.0),
-                                    child: Text(
-                                      vehicle.brand,
-                                      style: const TextStyle(
+                                  Text(
+                                    vehicle.model,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: stateTheme.themeLight
+                                          ? const Color.fromRGBO(255, 195, 0, 1)
+                                          : const Color.fromARGB(
+                                              255, 255, 225, 127),
+                                    ),
+                                  ),
+                                  Text(
+                                    vehicle.brand,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    vehicle.manufacturingYear,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    vehicle.plate,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    vehicle.priceDaily.toString(),
+                                    style: const TextStyle(
                                         fontSize: 14,
-                                      ),
-                                    ),
+                                        fontWeight: FontWeight.w600),
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 10.0),
-                                    child: Text(
-                                      vehicle.manufacturingYear,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 10.0),
-                                    child: Text(
-                                      vehicle.plate,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 10.0),
-                                    child: Text(
-                                      vehicle.priceDaily.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                            ),
                           ),
                           Row(
                             children: [
@@ -155,7 +131,7 @@ class VehiclesView extends StatelessWidget {
                                     context: context,
                                     builder: (context) {
                                       return SizedBox(
-                                        width: 300,
+                                        width: 200,
                                         height: 220,
                                         child: AlertDialog(
                                           title: const Center(

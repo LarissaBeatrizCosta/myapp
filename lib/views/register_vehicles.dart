@@ -330,7 +330,8 @@ class RegisterVehicleView extends StatelessWidget {
                                           if (imagePickerController
                                               .photoVehicles.isNotEmpty) {
                                             await imagePickerController
-                                                .saveImageVehicle();
+                                                .saveImageVehicle(
+                                                    _plateController.text);
                                             savedPhotos = imagePickerController
                                                 .photoVehicles;
                                           }

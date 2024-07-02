@@ -12,8 +12,14 @@ class ImagePickerState extends ChangeNotifier {
   ///Lista para adicionar fotos dos veiculos
   final List<XFile> _photoVehicles = [];
 
+  ///Lista para adicionar arquivo dos veiculos
+  final List<String> _photoVehiclesPaths = [];
+
   ///Lista de fotos dos veiculos
   List<XFile> get photoVehicles => _photoVehicles;
+
+  ///Lista de arquivos do veículo
+  List<String> get photoVehiclesPaths => _photoVehiclesPaths;
 
   ///Método para adicionar fotos da galeria
   Future<void> getImageFromGallery() async {
@@ -36,10 +42,10 @@ class ImagePickerState extends ChangeNotifier {
   }
 
   ///Método para salvar as fotos dos veiculos
-  Future<void> saveImageVehicle() async {
+  Future<void> saveImageVehicle(String plate) async {
     final directory = await getApplicationSupportDirectory();
     final imageDirectory = Directory('${directory.path}/images');
-    final vehicleDirectory = Directory('${imageDirectory.path}/vehicles');
+    final vehicleDirectory = Directory('${imageDirectory.path}/$plate');
 
     if (!imageDirectory.existsSync()) {
       await imageDirectory.create(recursive: true);
@@ -61,9 +67,28 @@ class ImagePickerState extends ChangeNotifier {
 
       final photoVehicle = File('${photoVehicleDirectory.path}/$image.png');
       await vehicleImages.saveTo(photoVehicle.path);
+
+      _photoVehiclesPaths.add(photoVehicle.path);
     }
 
     _photoVehicles.clear();
     notifyListeners();
+  }
+
+  ///Pega as fotos salvas de cada veículo
+  Future<List<String>> getImagesVehicle(String plate) async {
+    final directory = await getApplicationSupportDirectory();
+    final vehicleDirectory =
+        Directory('${directory.path}/images/vehicles/$plate');
+
+    if (!vehicleDirectory.existsSync()) {
+      return [];
+    }
+
+    var imageVehicles = <String>[];
+    for (var image in vehicleDirectory.listSync()) {
+      imageVehicles.add(image.path);
+    }
+    return imageVehicles;
   }
 }
