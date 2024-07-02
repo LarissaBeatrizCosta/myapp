@@ -276,7 +276,9 @@ class UpdateVehicles extends StatelessWidget {
                                           },
                                         );
                                       } else {
-                                        
+                                        fipeController.validationMessage =
+                                            'Selecione todos os campos';
+                                        fipeController.notifyListeners();
                                       }
                                     },
                                     child: const Text(
