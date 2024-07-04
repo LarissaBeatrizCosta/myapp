@@ -136,22 +136,6 @@ class CustomersView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 2.0),
-                                  child: Text(
-                                    'Gerente: ',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ],
                         ),
                         Row(

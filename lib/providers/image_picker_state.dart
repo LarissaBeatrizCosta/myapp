@@ -44,51 +44,64 @@ class ImagePickerState extends ChangeNotifier {
   ///Método para salvar as fotos dos veiculos
   Future<void> saveImageVehicle(String plate) async {
     final directory = await getApplicationSupportDirectory();
-    final imageDirectory = Directory('${directory.path}/images');
-    final vehicleDirectory = Directory('${imageDirectory.path}/$plate');
 
-    if (!imageDirectory.existsSync()) {
-      await imageDirectory.create(recursive: true);
+    final directoryImages = '${directory.path}/images';
+    final appImages = Directory(directoryImages);
+
+    if (!appImages.existsSync()) {
+      await appImages.create();
     }
-    if (!vehicleDirectory.existsSync()) {
-      await vehicleDirectory.create(recursive: true);
+
+    final directoryVehicles = '${directory.path}/images/vehicles';
+    final appVehicles = Directory(directoryVehicles);
+
+    if (!appVehicles.existsSync()) {
+      await appVehicles.create();
+    }
+    final plateVehicle = plate.trim();
+    final directoryVehicle = '${appVehicles.path}/$plateVehicle';
+    final appPlate = Directory(directoryVehicle);
+
+    if (!appPlate.existsSync()) {
+      await appPlate.create(recursive: true);
     }
 
     for (var image = 0; image < _photoVehicles.length; image++) {
-      final vehicleImages = _photoVehicles[image];
+      final vehiclesPhoto = _photoVehicles[image];
+      final imageVehicle = File('${appPlate.path}/$image.png');
+      final bytes = await vehiclesPhoto.readAsBytes();
 
-      final directoryNameVehicle = 'vehicle_$image';
-
-      final photoVehicleDirectory =
-          Directory('${vehicleDirectory.path}/$directoryNameVehicle');
-      if (!photoVehicleDirectory.existsSync()) {
-        await photoVehicleDirectory.create();
-      }
-
-      final photoVehicle = File('${photoVehicleDirectory.path}/$image.png');
-      await vehicleImages.saveTo(photoVehicle.path);
-
-      _photoVehiclesPaths.add(photoVehicle.path);
+      await imageVehicle.writeAsBytes(bytes);
     }
+  }
 
-    _photoVehicles.clear();
-    notifyListeners();
+  ///Pega uma foto de cada veículo
+
+  Future<String> getImageVehicle(String plate) async {
+    final directory = await getApplicationSupportDirectory();
+    final imageVehicle = '${directory.path}/images/vehicles/$plate/0.png';
+    return imageVehicle;
   }
 
   ///Pega as fotos salvas de cada veículo
   Future<List<String>> getImagesVehicle(String plate) async {
-    final directory = await getApplicationSupportDirectory();
-    final vehicleDirectory =
-        Directory('${directory.path}/images/vehicles/$plate');
+    try {
+      final plateVehicle = plate.trim();
 
-    if (!vehicleDirectory.existsSync()) {
+      final directory = await getApplicationSupportDirectory();
+      final imageVehicles = '${directory.path}/images/vehicles/$plateVehicle';
+
+      var images = <String>[];
+
+      for (var image = 0; image < _photoVehicles.length; image++) {
+        var imageVehicle = '$imageVehicles/$image.png';
+        if (File(imageVehicle).existsSync()) {
+          images.add(imageVehicle);
+        }
+      }
+      return images;
+    } catch (e) {
       return [];
     }
-
-    var imageVehicles = <String>[];
-    for (var image in vehicleDirectory.listSync()) {
-      imageVehicles.add(image.path);
-    }
-    return imageVehicles;
   }
 }

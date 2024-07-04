@@ -136,7 +136,7 @@ class RegisterManagerView extends StatelessWidget {
                                     backgroundColor:
                                         const Color.fromRGBO(255, 195, 0, 1),
                                   ),
-                                  onPressed: () async {
+                                  onPressed: () async {   
                                     if (_formKey.currentState!.validate()) {
                                       tableManagers.insertManager(
                                         ManagerModel(

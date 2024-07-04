@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../controllers/database.dart';
 import '../controllers/fipe_controller.dart';
@@ -326,14 +325,11 @@ class RegisterVehicleView extends StatelessWidget {
                                         if (_formKey.currentState!.validate() &&
                                             fipeController.modelSelected !=
                                                 null) {
-                                          List<XFile>? savedPhotos;
                                           if (imagePickerController
                                               .photoVehicles.isNotEmpty) {
                                             await imagePickerController
                                                 .saveImageVehicle(
                                                     _plateController.text);
-                                            savedPhotos = imagePickerController
-                                                .photoVehicles;
                                           }
                                           await tableVehicles.insertVehicle(
                                             VehiclesModel(
@@ -349,7 +345,6 @@ class RegisterVehicleView extends StatelessWidget {
                                               plate: _plateController.text,
                                               priceDaily:
                                                   _priceDailyController.text,
-                                              photos: savedPhotos,
                                             ),
                                           );
                                           showDialog(

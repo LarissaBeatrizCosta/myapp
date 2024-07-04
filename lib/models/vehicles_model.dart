@@ -1,5 +1,3 @@
-import 'package:image_picker/image_picker.dart';
-
 ///Classe de modelos de veiculos
 class VehiclesModel {
   ///Identificação do veiculo
@@ -23,9 +21,6 @@ class VehiclesModel {
   ///Preço da diária
   String priceDaily;
 
-  ///Fotos do veiculo
-  List<XFile>? photos;
-
   ///Construtor da classe de modelos de veiculos
   VehiclesModel({
     this.id,
@@ -35,7 +30,6 @@ class VehiclesModel {
     required this.plate,
     required this.manufacturingYear,
     required this.priceDaily,
-    this.photos,
   });
 
   ///Converte VehiclesModel para mapa
