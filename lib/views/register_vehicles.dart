@@ -211,57 +211,60 @@ class RegisterVehicleView extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         ElevatedButton.icon(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (_) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(16),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      ListTile(
-                                        leading: const CircleAvatar(
-                                          backgroundColor:
-                                              Color.fromARGB(255, 7, 55, 94),
-                                          child: Center(
-                                            child: Icon(
-                                              Icons.photo_camera,
-                                              color: Colors.white,
+                          onPressed: imagePickerController
+                                  .photoVehicles.isNotEmpty
+                              ? null
+                              : () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (_) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(16),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            ListTile(
+                                              leading: const CircleAvatar(
+                                                backgroundColor: Color.fromARGB(
+                                                    255, 7, 55, 94),
+                                                child: Center(
+                                                  child: Icon(
+                                                    Icons.photo_camera,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              title: const Text('Câmera'),
+                                              onTap: () async {
+                                                await imagePickerController
+                                                    .getImageFromCamera();
+                                                Navigator.pop(context);
+                                              },
                                             ),
-                                          ),
-                                        ),
-                                        title: const Text('Câmera'),
-                                        onTap: () async {
-                                          await imagePickerController
-                                              .getImageFromCamera();
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                      ListTile(
-                                        leading: const CircleAvatar(
-                                          backgroundColor:
-                                              Color.fromARGB(255, 7, 55, 94),
-                                          child: Center(
-                                            child: Icon(
-                                              Icons.image,
-                                              color: Colors.white,
+                                            ListTile(
+                                              leading: const CircleAvatar(
+                                                backgroundColor: Color.fromARGB(
+                                                    255, 7, 55, 94),
+                                                child: Center(
+                                                  child: Icon(
+                                                    Icons.image,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              title: const Text('Galeria'),
+                                              onTap: () async {
+                                                await imagePickerController
+                                                    .getImageFromGallery();
+                                                Navigator.pop(context);
+                                              },
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        title: const Text('Galeria'),
-                                        onTap: () async {
-                                          await imagePickerController
-                                              .getImageFromGallery();
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
+                                      );
+                                    },
+                                  );
+                                },
                           icon: Icon(
                             Icons.attach_file,
                             color: state.themeLight

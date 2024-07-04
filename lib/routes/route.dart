@@ -38,7 +38,6 @@ class Routes {
 
       case '/vehicles':
         return MaterialPageRoute(builder: (_) => const VehiclesView());
-        
 
       default:
         return MaterialPageRoute(

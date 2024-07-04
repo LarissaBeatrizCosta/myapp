@@ -82,8 +82,7 @@ class VehiclesView extends StatelessWidget {
                                   ConnectionState.waiting)
                                 const CircularProgressIndicator()
                               else
-                                const Icon(Icons.image_not_supported,
-                                    size: 100),
+                                const Icon(Icons.image, size: 100),
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Column(
@@ -117,7 +116,7 @@ class VehiclesView extends StatelessWidget {
                                       vehicle.priceDaily.toString(),
                                       style: const TextStyle(
                                           fontSize: 14,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),

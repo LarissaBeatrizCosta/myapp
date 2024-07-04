@@ -42,7 +42,6 @@ class VehiclesModel {
       'plate': plate,
       'manufacturingYear': manufacturingYear,
       'priceDaily': priceDaily,
-      // 'photos': photos,
     };
   }
 
@@ -56,7 +55,6 @@ class VehiclesModel {
       plate: map['plate'],
       manufacturingYear: map['manufacturingYear'],
       priceDaily: map['priceDaily'],
-      // photos: map['photos'],
     );
   }
 }
