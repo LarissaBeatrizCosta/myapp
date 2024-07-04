@@ -75,33 +75,29 @@ class ImagePickerState extends ChangeNotifier {
     }
   }
 
-  ///Pega uma foto de cada veículo
-
+  ///Pega uma única foto de cada veículo
   Future<String> getImageVehicle(String plate) async {
     final directory = await getApplicationSupportDirectory();
     final imageVehicle = '${directory.path}/images/vehicles/$plate/0.png';
     return imageVehicle;
   }
 
-  ///Pega as fotos salvas de cada veículo
+  ///Pega as fotos de cada veículo
   Future<List<String>> getImagesVehicle(String plate) async {
-    try {
-      final plateVehicle = plate.trim();
+    final directory = await getApplicationSupportDirectory();
+    final imageVehicles = '${directory.path}/images/vehicles/$plate';
 
-      final directory = await getApplicationSupportDirectory();
-      final imageVehicles = '${directory.path}/images/vehicles/$plateVehicle';
+    var imagesList = <String>[];
+    final directoryImageVehicles = Directory(imageVehicles);
 
-      var images = <String>[];
-
-      for (var image = 0; image < _photoVehicles.length; image++) {
-        var imageVehicle = '$imageVehicles/$image.png';
-        if (File(imageVehicle).existsSync()) {
-          images.add(imageVehicle);
+    if (directoryImageVehicles.existsSync()) {
+      final images = directoryImageVehicles.listSync();
+      for (var imageVehicle in images) {
+        if (imageVehicle is File) {
+          imagesList.add(imageVehicle.path);
         }
       }
-      return images;
-    } catch (e) {
-      return [];
     }
+    return imagesList;
   }
 }
