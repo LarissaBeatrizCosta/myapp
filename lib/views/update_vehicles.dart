@@ -47,7 +47,7 @@ class UpdateVehicles extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Registro De Veículos',
+                        'Editar Veículos',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

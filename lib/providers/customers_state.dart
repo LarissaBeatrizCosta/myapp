@@ -14,7 +14,6 @@ class CustomersState extends ChangeNotifier {
   ///Lista de clientes do banco
   final tableCustomers = TableCustomers();
 
-
   ///Lista de Clientes State
   final customers = <CustomerModel>[];
 

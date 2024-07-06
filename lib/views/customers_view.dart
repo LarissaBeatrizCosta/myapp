@@ -14,6 +14,7 @@ class CustomersView extends StatelessWidget {
   Widget build(BuildContext context) {
     final stateTheme = Provider.of<ThemeState>(context);
 
+
     return ChangeNotifierProvider(
       create: (context) => CustomersState(),
       child: Scaffold(

@@ -54,7 +54,7 @@ class VehiclesView extends StatelessWidget {
                   final vehicle = state.vehicles[index];
                   return FutureBuilder<String>(
                     future: images.getImageVehicle(vehicle.plate),
-                    builder: (context, snapshot) {
+                    builder: (context, imageFile) {
                       return Card(
                         elevation: 2.0,
                         shape: RoundedRectangleBorder(
@@ -68,17 +68,17 @@ class VehiclesView extends StatelessWidget {
                           padding: const EdgeInsets.all(10.0),
                           child: Row(
                             children: [
-                              if (snapshot.connectionState ==
+                              if (imageFile.connectionState ==
                                       ConnectionState.done &&
-                                  snapshot.hasData &&
-                                  File(snapshot.data!).existsSync())
+                                  imageFile.hasData &&
+                                  File(imageFile.data!).existsSync())
                                 Image.file(
-                                  File(snapshot.data!),
+                                  File(imageFile.data!),
                                   width: 100,
                                   height: 100,
                                   fit: BoxFit.cover,
                                 )
-                              else if (snapshot.connectionState ==
+                              else if (imageFile.connectionState ==
                                   ConnectionState.waiting)
                                 const CircularProgressIndicator()
                               else

@@ -32,7 +32,7 @@ class TableCustomers extends ChangeNotifier {
   $name TEXT NOT NULL,
   $phone TEXT NOT NULL,
   $state TEXT NOT NULL,
-  $city TEXT NOT NULL,
+  $city TEXT NOT NULL
 
   );
   ''';
