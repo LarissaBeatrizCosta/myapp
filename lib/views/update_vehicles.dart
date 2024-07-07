@@ -22,7 +22,7 @@ class UpdateVehicles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _manufacturingYearController.text = vehicle.manufacturingYear;
-    _priceDailyController.text = vehicle.priceDaily;
+    _priceDailyController.text = vehicle.priceDaily.toString();
 
     return MultiProvider(
       providers: [
@@ -217,8 +217,8 @@ class UpdateVehicles extends StatelessWidget {
                                           manufacturingYear:
                                               _manufacturingYearController.text,
                                           plate: vehicle.plate,
-                                          priceDaily:
-                                              _priceDailyController.text,
+                                          priceDaily: double.parse(
+                                              _priceDailyController.text),
                                         );
 
                                         vehicleState

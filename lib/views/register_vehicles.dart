@@ -346,8 +346,8 @@ class RegisterVehicleView extends StatelessWidget {
                                                   _manufacturingYearController
                                                       .text,
                                               plate: _plateController.text,
-                                              priceDaily:
-                                                  _priceDailyController.text,
+                                              priceDaily: double.parse(
+                                                  _priceDailyController.text),
                                             ),
                                           );
                                           showDialog(

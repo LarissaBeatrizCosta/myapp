@@ -211,7 +211,7 @@ class TableVehicles extends ChangeNotifier {
   $model TEXT NOT NULL,
   $plate TEXT NOT NULL,
   $manufacturingYear TEXT NOT NULL,
-  $priceDaily TEXT NOT NULL
+  $priceDaily REAL NOT NULL
   );
 ''';
 

@@ -140,7 +140,7 @@ class UpdateCustomers extends StatelessWidget {
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pushNamedAndRemoveUntil(context,
-                                          '/customers_view', (route) => false);
+                                          '/customers', (route) => false);
                                       // Enzo me ajudou na daily,
                                       //retira as páginas que estavam atrás
                                     },

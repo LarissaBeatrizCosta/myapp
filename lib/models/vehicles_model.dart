@@ -19,7 +19,7 @@ class VehiclesModel {
   String manufacturingYear;
 
   ///Preço da diária
-  String priceDaily;
+  double priceDaily;
 
   ///Construtor da classe de modelos de veiculos
   VehiclesModel({

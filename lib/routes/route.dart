@@ -24,7 +24,7 @@ class Routes {
       case '/register_customer':
         return MaterialPageRoute(builder: (_) => RegisterCustomer());
 
-      case '/customers_view':
+      case '/customers':
         return MaterialPageRoute(builder: (_) => const CustomersView());
 
       case '/register_manager':
