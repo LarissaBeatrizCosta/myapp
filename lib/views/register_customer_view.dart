@@ -7,9 +7,9 @@ import '../controllers/database.dart';
 import '../models/customer_model.dart';
 
 /// Classe para o cadastro dos clientes
-class RegisterCustomer extends StatelessWidget {
+class RegisterCustomerView extends StatelessWidget {
   /// Construtor da Classe do RegisterCustomer
-  RegisterCustomer({super.key});
+  RegisterCustomerView({super.key});
 
   final _formKey = GlobalKey<FormState>();
   final _cnpjController = TextEditingController();
