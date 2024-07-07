@@ -28,7 +28,7 @@ class TableCustomers extends ChangeNotifier {
   ///Cria a tabela dos clientes
   static const String createTable = '''
   CREATE TABLE $tableName(
-  $cnpj TEXT PRIMARY KEY,
+  $cnpj TEXT PRIMARY KEY NOT NULL,
   $name TEXT NOT NULL,
   $phone TEXT NOT NULL,
   $state TEXT NOT NULL,
@@ -117,7 +117,7 @@ class TableManagers extends ChangeNotifier {
   ///Cria a tabela dos gerentes
   static const String createTable = '''
   CREATE TABLE $tableName(
-  $cpf TEXT PRIMARY KEY,
+  $cpf TEXT PRIMARY KEY NOT NULL,
   $name TEXT NOT NULL,
   $phone TEXT NOT NULL,
   $state TEXT NOT NULL,
@@ -301,4 +301,61 @@ class TableVehicles extends ChangeNotifier {
     }
     return vehiclesList;
   }
+}
+
+///Manipula os dados na tabela de aluguéis
+class TableRents extends ChangeNotifier {
+  ///Cria a tabela dos aluguéis
+  static const String createTable = '''
+CREATE TABLE $tableName(
+  $id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  $cnpjCustomer TEXT NOT NULL,
+  $startDate TEXT NOT NULL,
+  $finalDate TEXT NOT NULL,
+  $totalDays INTEGER NOT NULL,
+  $rentPrice TEXT NOT NULL,
+  $plateVehicle TEXT NOT NULL,
+  $cpfManager TEXT NOT NULL,
+  $commissionManager REAL NOT NULL,
+  FOREIGN KEY($cnpjCustomer) REFERENCES ${TableCustomers.tableName}(${TableCustomers.cnpj}),
+  FOREIGN KEY($plateVehicle) REFERENCES ${TableVehicles.tableName}(${TableVehicles.plate}),
+  FOREIGN KEY($cpfManager) REFERENCES ${TableManagers.tableName}(${TableManagers.cpf})
+);
+''';
+
+  ///Nome da tabela de aluguéis
+  static const String tableName = 'alugueis';
+
+  ///Indentificação do aluguel
+  static const String id = 'id';
+
+  ///Cliente que vai alugar
+  static const String cnpjCustomer = 'cnpjCustomer';
+
+  ///Data de início do aluguel
+  static const String startDate = ' startDate';
+
+  ///Data final do aluguel
+  static const String finalDate = 'finalDate';
+
+  ///Diárias do aluguel
+  static const String totalDays = 'totalDays';
+
+  ///Valor total do aluguel
+  static const String rentPrice = 'rentPrice';
+
+  ///Veículo que vai ser alugado
+  static const String plateVehicle = 'plateVehicle';
+
+  ///Gerente responsável pelo aluguel
+  static const String cpfManager = 'cpfManager';
+
+  ///Comissão do gerente
+  static const String commissionManager = 'commissionManager';
+
+
+
+
+
+  
 }
