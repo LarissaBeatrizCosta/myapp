@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../models/customer_model.dart';
 import '../models/manager_model.dart';
+import '../models/rent_model.dart';
 import '../models/vehicles_model.dart';
 
 ///Cria banco de dados
@@ -18,6 +19,7 @@ Future<Database> getDatabase() async {
       db.execute(TableCustomers.createTable);
       db.execute(TableManagers.createTable);
       db.execute(TableVehicles.createTable);
+      db.execute(TableRents.createTable);
     },
     version: 1,
   );
@@ -38,7 +40,7 @@ class TableCustomers extends ChangeNotifier {
   ''';
 
   /// Nome da tabela clientes
-  static const String tableName = 'clientes';
+  static const String tableName = 'customers';
 
   /// Cnpj do cliente
   static const String cnpj = 'cnpj';
@@ -126,7 +128,7 @@ class TableManagers extends ChangeNotifier {
   ''';
 
   ///Nome da tabela de gerentes
-  static const String tableName = 'gerentes';
+  static const String tableName = 'managers';
 
   ///Cpf do gerente
   static const String cpf = 'cpf';
@@ -216,7 +218,7 @@ class TableVehicles extends ChangeNotifier {
 ''';
 
   ///Nome da tabela de veículos
-  static const String tableName = 'veiculos';
+  static const String tableName = 'vehicles';
 
   ///Identificação do veículo
   static const String id = 'id';
@@ -324,7 +326,7 @@ CREATE TABLE $tableName(
 ''';
 
   ///Nome da tabela de aluguéis
-  static const String tableName = 'alugueis';
+  static const String tableName = 'rents';
 
   ///Indentificação do aluguel
   static const String id = 'id';
@@ -353,9 +355,62 @@ CREATE TABLE $tableName(
   ///Comissão do gerente
   static const String commissionManager = 'commissionManager';
 
+  ///Insere os dados do aluguel
+  Future<void> insertRents(RentVehicleModel rent) async {
+    final dataBase = await getDatabase();
+    await dataBase.insert(tableName, rent.toMapRents());
+    notifyListeners();
+  }
 
+  ///Deleta o aluguel da tabela de aluguéis
+  Future<void> deleteRents(RentVehicleModel rent) async {
+    final dataBase = await getDatabase();
 
+    await dataBase.delete(
+      TableRents.tableName,
+      where: '${TableRents.id} = ? ',
+      whereArgs: [rent.id],
+    );
+  }
 
+  ///Atualiza o aluguel da tabela de aluguéis
+  Future<void> updateRents(RentVehicleModel rent) async {
+    final dataBase = await getDatabase();
 
-  
+    await dataBase.update(
+      TableRents.tableName,
+      rent.toMapRents(),
+      where: '${TableRents.id} = ? ',
+      whereArgs: [rent.id],
+    );
+    notifyListeners();
+  }
+
+  ///Pega os aluguéis da tabela de aluguéis
+  Future<List<RentVehicleModel>> getRents() async {
+    final dataBase = await getDatabase();
+    var rentsList = <RentVehicleModel>[];
+
+    List<Map> rentsMap = await dataBase.query(
+      tableName,
+      columns: [
+        'id',
+        'cnpjCustomer',
+        'startDate',
+        'finalDate',
+        'totalDays',
+        'rentPrice',
+        'plateVehicle',
+        'cpfManager',
+        'commissionManager',
+      ],
+    );
+    notifyListeners();
+
+    for (var rent in rentsMap) {
+      rentsList
+          .add(RentVehicleModel.fromMapRents(rent as Map<String, dynamic>));
+    }
+    return rentsList;
+  }
 }
