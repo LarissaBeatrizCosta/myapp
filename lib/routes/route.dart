@@ -41,7 +41,7 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const VehiclesView());
 
       case '/register_rents':
-        return MaterialPageRoute(builder: (_) => const RegisterRentView());
+        return MaterialPageRoute(builder: (_) => RegisterRentView());
 
       default:
         return MaterialPageRoute(

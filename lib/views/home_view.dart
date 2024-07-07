@@ -161,7 +161,8 @@ class HomeView extends StatelessWidget {
                             ),
                           ),
                           ElevatedButton(
-                            onPressed: () => Navigator.pushNamed(context, '/register_rents'),
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/register_rents'),
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(150, 100),
                               shape: const RoundedRectangleBorder(
