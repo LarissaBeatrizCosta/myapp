@@ -40,7 +40,7 @@ class RentVehicleModel {
     required this.commissionManager,
   });
 
-  ///Converte rentVehicleModel para mapa
+  ///Converte RentVehicleModel para mapa
   Map<String, dynamic> toMapRents() {
     return {
       'id': id,
@@ -55,8 +55,8 @@ class RentVehicleModel {
     };
   }
 
-  ///Converte rentVehiclesModel do mapa
-  factory RentVehicleModel.fromMapVehicles(Map<String, dynamic> map) {
+  ///Converte RentVehiclesModel do mapa
+  factory RentVehicleModel.fromMapRents(Map<String, dynamic> map) {
     return RentVehicleModel(
       id: map['id'],
       cnpjCustomer: map['cnpjCustomer'],
