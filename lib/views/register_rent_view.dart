@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../controllers/database.dart';
 import '../providers/customers_state.dart';
+import '../providers/managers_state.dart';
 import '../providers/rent_state.dart';
 // import '../providers/theme.dart';
 
@@ -25,12 +26,16 @@ class RegisterRentView extends StatelessWidget {
           create: (context) => CustomersState(),
         ),
         ChangeNotifierProvider(
+          create: (context) => ManagersState(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => TableRents(),
         ),
       ],
-      child: Consumer2<RentState, CustomersState>(
-          builder: (context, rentController, customerController, _) {
+      child: Consumer3<RentState, CustomersState, ManagersState>(builder:
+          (context, rentController, customerController, managerController, _) {
         var customersDrop = <DropdownMenuItem<String>>[];
+        var managersDrop = <DropdownMenuItem<String>>[];
 
         for (var customerRent in customerController.customers) {
           customersDrop.add(DropdownMenuItem<String>(
@@ -39,6 +44,12 @@ class RegisterRentView extends StatelessWidget {
           ));
         }
 
+        for (var managerRent in managerController.managers) {
+          managersDrop.add(DropdownMenuItem<String>(
+            value: managerRent.name,
+            child: Text(managerRent.name),
+          ));
+        }
         return Scaffold(
           appBar: AppBar(),
           body: SingleChildScrollView(
@@ -85,7 +96,7 @@ class RegisterRentView extends StatelessWidget {
                               return customer;
                             }).toList(),
                             onChanged: (value) {
-                              customerController.customerSelected = value;
+                              rentController.customerSelected = value;
                             },
                           ),
                         ),
@@ -98,7 +109,7 @@ class RegisterRentView extends StatelessWidget {
                               Icons.arrow_drop_down_circle_sharp,
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
-                            value: rentController.customerSelected,
+                            value: rentController.stateSelected,
                             hint: const Text('Selecione o estado'),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
@@ -112,11 +123,15 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
-                            items: customersDrop.map((customer) {
-                              return customer;
+                            items: rentController.brazilianStates
+                                .map<DropdownMenuItem<String>>((state) {
+                              return DropdownMenuItem<String>(
+                                value: state,
+                                child: Text(state),
+                              );
                             }).toList(),
                             onChanged: (value) {
-                              rentController.customerSelected = value;
+                              rentController.stateSelected = value;
                             },
                           ),
                         ),
@@ -129,7 +144,7 @@ class RegisterRentView extends StatelessWidget {
                               Icons.arrow_drop_down_circle_sharp,
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
-                            value: rentController.customerSelected,
+                            value: rentController.managerSelected,
                             hint: const Text('Selecione o gerente'),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
@@ -143,11 +158,11 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
-                            items: customersDrop.map((customer) {
-                              return customer;
+                            items: managersDrop.map((manager) {
+                              return manager;
                             }).toList(),
                             onChanged: (value) {
-                              rentController.customerSelected = value;
+                              rentController.managerSelected = value;
                             },
                           ),
                         ),

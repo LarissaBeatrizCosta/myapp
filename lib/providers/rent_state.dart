@@ -8,6 +8,40 @@ class RentState extends ChangeNotifier {
   ///Cliente selecionado
   String? customerSelected;
 
+  ///Lista de estados do Brasi
+  List<String> brazilianStates = [
+    'AC',
+    'AL',
+    'AP',
+    'AM',
+    'BA',
+    'CE',
+    'DF',
+    'ES',
+    'GO',
+    'MA',
+    'MT',
+    'MS',
+    'MG',
+    'PA',
+    'PB',
+    'PR',
+    'PE',
+    'PI',
+    'RJ',
+    'RN',
+    'RS',
+    'RO',
+    'RR',
+    'SC',
+    'SP',
+    'SE',
+    'TO',
+  ];
+
+  ///Estado selecionado
+  String? stateSelected;
+
   ///Gerente selecionado
   String? managerSelected;
 
@@ -35,7 +69,7 @@ class RentState extends ChangeNotifier {
     notifyListeners();
   }
 
-///Inicia a lista 
+  ///Inicia a lista
   Future<void> init() async {
     await _initState();
   }
