@@ -26,13 +26,18 @@ class RentState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _initState() async {
+  Future<void> _initState() async {
     rents
       ..clear()
       ..addAll(
         await tableRents.getRents(),
       );
     notifyListeners();
+  }
+
+///Inicia a lista 
+  Future<void> init() async {
+    await _initState();
   }
 
   ///Deleta aluguéis

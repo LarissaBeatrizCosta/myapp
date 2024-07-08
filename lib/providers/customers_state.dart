@@ -5,7 +5,6 @@ import '../models/customer_model.dart';
 
 ///Gerencia os clientes
 class CustomersState extends ChangeNotifier {
-  
   ///Inicializa a lista de clientes
   CustomersState() {
     _initState();

@@ -22,6 +22,7 @@ class RegisterVehicleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final state = Provider.of<ThemeState>(context);
     return MultiProvider(
       providers: [
