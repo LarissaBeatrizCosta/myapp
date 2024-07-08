@@ -17,6 +17,9 @@ class CustomersState extends ChangeNotifier {
   ///Lista de Clientes State
   final customers = <CustomerModel>[];
 
+  ///Cliente que fará o aluguel
+  String? customerSelected;
+
   ///Inicializa a lista de  clientes
   void _initState() async {
     customers
@@ -40,4 +43,5 @@ class CustomersState extends ChangeNotifier {
     await tableCustomers.updateCustomer(cnpj);
     notifyListeners();
   }
+  
 }

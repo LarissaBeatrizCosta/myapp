@@ -14,7 +14,8 @@ class RegisterRentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final state = Provider.of<ThemeState>(context);
+//     var customersList = Provider.of<CustomersState>(context).customers;
+// print(customersList);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -31,10 +32,10 @@ class RegisterRentView extends StatelessWidget {
           builder: (context, rentController, customerController, _) {
         var customersDrop = <DropdownMenuItem<String>>[];
 
-        for (var rent in rentController.rents) {
+        for (var customerRent in customerController.customers) {
           customersDrop.add(DropdownMenuItem<String>(
-            value: rent.cnpjCustomer,
-            child: Text(rent.cnpjCustomer),
+            value: customerRent.name,
+            child: Text(customerRent.name),
           ));
         }
 
@@ -84,7 +85,7 @@ class RegisterRentView extends StatelessWidget {
                               return customer;
                             }).toList(),
                             onChanged: (value) {
-                              rentController.customerSelected = value;
+                              customerController.customerSelected = value;
                             },
                           ),
                         ),
@@ -204,7 +205,7 @@ class RegisterRentView extends StatelessWidget {
                                               child: AlertDialog(
                                                 title: const Center(
                                                   child: Text(
-                                                    'Gerente Cadastrado!',
+                                                    'Aluguel Cadastrado!',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       color: Colors.black,
