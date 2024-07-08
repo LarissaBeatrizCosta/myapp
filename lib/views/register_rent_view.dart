@@ -5,6 +5,7 @@ import '../controllers/database.dart';
 import '../providers/customers_state.dart';
 import '../providers/managers_state.dart';
 import '../providers/rent_state.dart';
+import '../providers/vehicles_state.dart';
 // import '../providers/theme.dart';
 
 /// Classe para o cadastro dos aluguéis
@@ -15,8 +16,6 @@ class RegisterRentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//     var customersList = Provider.of<CustomersState>(context).customers;
-// print(customersList);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -29,13 +28,18 @@ class RegisterRentView extends StatelessWidget {
           create: (context) => ManagersState(),
         ),
         ChangeNotifierProvider(
+          create: (context) => VehiclesState(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => TableRents(),
         ),
       ],
-      child: Consumer3<RentState, CustomersState, ManagersState>(builder:
-          (context, rentController, customerController, managerController, _) {
+      child: Consumer4<RentState, CustomersState, ManagersState, VehiclesState>(
+          builder: (context, rentController, customerController,
+              managerController, vehicleController, _) {
         var customersDrop = <DropdownMenuItem<String>>[];
         var managersDrop = <DropdownMenuItem<String>>[];
+        var vehiclesDrop = <DropdownMenuItem<String>>[];
 
         for (var customerRent in customerController.customers) {
           customersDrop.add(DropdownMenuItem<String>(
@@ -48,6 +52,13 @@ class RegisterRentView extends StatelessWidget {
           managersDrop.add(DropdownMenuItem<String>(
             value: managerRent.name,
             child: Text(managerRent.name),
+          ));
+        }
+
+        for (var vehicleRent in vehicleController.vehicles) {
+          vehiclesDrop.add(DropdownMenuItem<String>(
+            value: '${vehicleRent.model} - ${vehicleRent.plate}',
+            child: Text('${vehicleRent.model} - ${vehicleRent.plate}'),
           ));
         }
         return Scaffold(
@@ -175,7 +186,7 @@ class RegisterRentView extends StatelessWidget {
                               Icons.arrow_drop_down_circle_sharp,
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
-                            value: rentController.customerSelected,
+                            value: rentController.vehicleSelected,
                             hint: const Text('Selecione o veículo'),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
@@ -189,11 +200,11 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
-                            items: customersDrop.map((customer) {
-                              return customer;
+                            items: vehiclesDrop.map((vehicle) {
+                              return vehicle;
                             }).toList(),
                             onChanged: (value) {
-                              rentController.customerSelected = value;
+                              rentController.vehicleSelected = value;
                             },
                           ),
                         ),
