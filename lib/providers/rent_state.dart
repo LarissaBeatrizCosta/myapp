@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/database.dart';
+import '../models/manager_model.dart';
 import '../models/rent_model.dart';
 
 ///Gerencia aluguéis
@@ -48,6 +49,9 @@ class RentState extends ChangeNotifier {
   ///Veículo selecionado
   String? vehicleSelected;
 
+  ///Lista de gerentes do estado selecionado
+  List<ManagerModel> managersState = [];
+
   ///Lista de aluguéis
   final rents = <RentVehicleModel>[];
 
@@ -84,6 +88,25 @@ class RentState extends ChangeNotifier {
   ///Atualiza os aluguéis
   void updateRents(RentVehicleModel id) async {
     await tableRents.updateRents(id);
+    notifyListeners();
+  }
+
+  ///Seleciona os gerentes de acordo com o estado
+  Future<void> managerByState(String? state) async {
+    managerSelected = null;
+    managersState = [];
+
+    if (state != null) {
+      final dataBase = await getDatabase();
+      final List<Map<String, dynamic>> managerMap = await dataBase.query(
+        TableManagers.tableName,
+        where: '${TableManagers.state} = ?',
+        whereArgs: [state],
+      );
+      managersState = managerMap.map(ManagerModel.fromMapManager).toList();
+    } else {
+      managersState.clear();
+    }
     notifyListeners();
   }
 }

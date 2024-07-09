@@ -38,20 +38,12 @@ class RegisterRentView extends StatelessWidget {
           builder: (context, rentController, customerController,
               managerController, vehicleController, _) {
         var customersDrop = <DropdownMenuItem<String>>[];
-        var managersDrop = <DropdownMenuItem<String>>[];
         var vehiclesDrop = <DropdownMenuItem<String>>[];
 
         for (var customerRent in customerController.customers) {
           customersDrop.add(DropdownMenuItem<String>(
             value: customerRent.name,
             child: Text(customerRent.name),
-          ));
-        }
-
-        for (var managerRent in managerController.managers) {
-          managersDrop.add(DropdownMenuItem<String>(
-            value: managerRent.name,
-            child: Text(managerRent.name),
           ));
         }
 
@@ -143,6 +135,7 @@ class RegisterRentView extends StatelessWidget {
                             }).toList(),
                             onChanged: (value) {
                               rentController.stateSelected = value;
+                              rentController.managerByState(value);
                             },
                           ),
                         ),
@@ -169,8 +162,11 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
-                            items: managersDrop.map((manager) {
-                              return manager;
+                            items: rentController.managersState.map((manager) {
+                              return DropdownMenuItem<String>(
+                                value: manager.name,
+                                child: Text(manager.name),
+                              );
                             }).toList(),
                             onChanged: (value) {
                               rentController.managerSelected = value;
