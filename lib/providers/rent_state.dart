@@ -58,6 +58,15 @@ class RentState extends ChangeNotifier {
   ///Tabela de aluguéis
   final tableRents = TableRents();
 
+  ///Data de início do aluguel
+  DateTime? startDate;
+
+  ///Data final do aluguel
+  DateTime? endDate;
+
+  ///Dias totais do aluguel
+  int? totalDays;
+
   ///Inicializa a lista dos aluguéis
   RentState() {
     _initState();
@@ -108,5 +117,42 @@ class RentState extends ChangeNotifier {
       managersState.clear();
     }
     notifyListeners();
+  }
+
+  ///Adicionar data de inicio do aluguel
+  Future<void> getStartDate(BuildContext context) async {
+    var selectedStartDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2024),
+      lastDate: DateTime(2050),
+    );
+    if (selectedStartDate != null) {
+      startDate = selectedStartDate;
+      notifyListeners();
+    }
+  }
+
+  ///Adicionar data final do aluguel
+  Future<void> getEndDate(BuildContext context) async {
+    final selectedEndDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2024),
+      lastDate: DateTime(2050),
+    );
+    if (selectedEndDate != null && selectedEndDate != endDate) {
+      endDate = selectedEndDate;
+      _calculateTotalDays();
+      notifyListeners();
+    }
+  }
+
+  void _calculateTotalDays() {
+    if (startDate != null && endDate != null) {
+      totalDays = endDate!.difference(startDate!).inDays;
+    } else {
+      totalDays = null;
+    }
   }
 }

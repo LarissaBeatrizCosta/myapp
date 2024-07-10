@@ -204,6 +204,23 @@ class RegisterRentView extends StatelessWidget {
                             },
                           ),
                         ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              hintText: 'Data de início do aluguel'),
+                          onTap: () {
+                            rentController.getStartDate(context);
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              hintText: 'Data de final do aluguel'),
+                          onTap: () {
+                            rentController.getEndDate(context);
+                          },
+                        ),
+                        const SizedBox(height: 40),
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15),
@@ -217,7 +234,29 @@ class RegisterRentView extends StatelessWidget {
                                           const Color.fromRGBO(255, 195, 0, 1),
                                     ),
                                     onPressed: () async {
-                                      if (_formKey.currentState!.validate()) {
+                                      if (rentController.customerSelected !=
+                                              null &&
+                                          rentController.managerSelected !=
+                                              null &&
+                                          rentController.vehicleSelected !=
+                                              null &&
+                                          rentController.stateSelected !=
+                                              null) {
+                                        // await tableRents.insertRents(
+                                        //   RentVehicleModel(
+                                        //     cnpjCustomer: rentController
+                                        //         .customerSelected!,
+                                        //     cpfManager:
+                                        //      rentController.managerSelected!,
+                                        //     startDate:
+                                        //         rentController.startDate!,
+                                        //   finalDate: rentController.endDate!,
+                                        //     plateVehicle:
+                                        //      rentController.vehicleSelected!,
+                                        //     totalDays:
+                                        //         rentController.totalDays!,
+                                        //   ),
+                                        // );
                                         showDialog(
                                           context: context,
                                           builder: (context) {
