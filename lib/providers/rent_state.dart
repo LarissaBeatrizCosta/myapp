@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../controllers/database.dart';
 import '../models/manager_model.dart';
 import '../models/rent_model.dart';
-import '../models/vehicles_model.dart';
 
 ///Gerencia aluguéis
 class RentState extends ChangeNotifier {
@@ -50,9 +49,6 @@ class RentState extends ChangeNotifier {
   ///Estado selecionado
   String? stateSelected;
 
-  /// Lista de veículos
-  List<VehiclesModel> vehicles = [];
-
   ///Gerente selecionado
   String? managerSelected;
 
@@ -76,9 +72,6 @@ class RentState extends ChangeNotifier {
 
   ///Dias totais do aluguel
   int? totalDays;
-
-  ///Preço do aluguel
-  double? rentPrice;
 
   ///Inicializa a lista dos aluguéis
   RentState() {
@@ -143,7 +136,6 @@ class RentState extends ChangeNotifier {
     if (selectedStartDate != null) {
       startDate = selectedStartDate;
       startDateController.text = '$selectedStartDate'.split(' ')[0];
-      _calculateTotalDays(startDate, endDate);
       notifyListeners();
     }
   }
@@ -159,27 +151,16 @@ class RentState extends ChangeNotifier {
     if (selectedEndDate != null && selectedEndDate != endDate) {
       endDate = selectedEndDate;
       endDateController.text = '$selectedEndDate'.split(' ')[0];
-      _calculateTotalDays(startDate, endDate);
+      _calculateTotalDays();
       notifyListeners();
     }
   }
 
-  void _calculateTotalDays(DateTime? startDate, DateTime? endDate) {
+  void _calculateTotalDays() {
     if (startDate != null && endDate != null) {
-      totalDays = endDate.difference(startDate).inDays;
-      if (vehicleSelected != null) {
-        final vehicle =
-            vehicles.firstWhere((vehicle) => vehicle.plate == vehicleSelected);
-        calculateRentPrice(vehicle.priceDaily, totalDays!);
-      }
+      totalDays = endDate!.difference(startDate!).inDays;
     } else {
       totalDays = null;
     }
-  }
-
-  ///Calcula o preço do aluguel
-  void calculateRentPrice(double priceVehicle, int totalDays) {
-    rentPrice = priceVehicle * totalDays;
-    notifyListeners();
   }
 }
