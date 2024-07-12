@@ -248,16 +248,18 @@ class RegisterRentView extends StatelessWidget {
                                         //     cnpjCustomer: rentController
                                         //         .customerSelected!,
                                         //     cpfManager:
-                                        //      rentController.managerSelected!,
-                                        //     startDate:
-                                        //         rentController.startDate!,
-                                        //   finalDate: rentController.endDate!,
+                                        //    rentController.managerSelected!,
+                                        //     startDate:DateFormat('yyyy-MM-dd').format(rentController.startDate!),
+                                        //finalDate: DateFormat('yyyy-MM-dd').format(rentController.endDate!),
                                         //     plateVehicle:
-                                        //      rentController.vehicleSelected!,
+                                        //         rentController.vehicleSelected!,
                                         //     totalDays:
                                         //         rentController.totalDays!,
+                                        //     rentPrice: '0',
+                                        //     commissionManager: 0,
                                         //   ),
                                         // );
+
                                         showDialog(
                                           context: context,
                                           builder: (context) {
