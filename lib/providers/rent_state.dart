@@ -40,6 +40,12 @@ class RentState extends ChangeNotifier {
     'TO',
   ];
 
+  ///Controladores para os data de inicio
+  final startDateController = TextEditingController();
+
+  ///Controladores para os data final
+  final endDateController = TextEditingController();
+
   ///Estado selecionado
   String? stateSelected;
 
@@ -129,6 +135,7 @@ class RentState extends ChangeNotifier {
     );
     if (selectedStartDate != null) {
       startDate = selectedStartDate;
+      startDateController.text = '$selectedStartDate'.split(' ')[0];
       notifyListeners();
     }
   }
@@ -143,6 +150,7 @@ class RentState extends ChangeNotifier {
     );
     if (selectedEndDate != null && selectedEndDate != endDate) {
       endDate = selectedEndDate;
+      endDateController.text = '$selectedEndDate'.split(' ')[0];
       _calculateTotalDays();
       notifyListeners();
     }

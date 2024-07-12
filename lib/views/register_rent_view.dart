@@ -6,7 +6,6 @@ import '../providers/customers_state.dart';
 import '../providers/managers_state.dart';
 import '../providers/rent_state.dart';
 import '../providers/vehicles_state.dart';
-// import '../providers/theme.dart';
 
 /// Classe para o cadastro dos aluguéis
 class RegisterRentView extends StatelessWidget {
@@ -206,6 +205,7 @@ class RegisterRentView extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
+                          controller: rentController.startDateController,
                           decoration: const InputDecoration(
                               hintText: 'Data de início do aluguel'),
                           onTap: () {
@@ -214,6 +214,7 @@ class RegisterRentView extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
+                          controller: rentController.endDateController,
                           decoration: const InputDecoration(
                               hintText: 'Data de final do aluguel'),
                           onTap: () {
