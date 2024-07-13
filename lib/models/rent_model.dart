@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 
 ///Classe de aluguéis dos veículos
 class RentVehicleModel {
@@ -46,8 +47,8 @@ class RentVehicleModel {
     return {
       'id': id,
       'cnpjCustomer': cnpjCustomer,
-      'startDate': startDate,
-      'finalDate': finalDate,
+      'startDate': DateFormat('yyyy-MM-dd').format(startDate),
+      'finalDate': DateFormat('yyyy-MM-dd').format(finalDate),
       'totalDays': totalDays,
       'rentPrice': rentPrice,
       'plateVehicle': plateVehicle,
@@ -61,8 +62,8 @@ class RentVehicleModel {
     return RentVehicleModel(
       id: map['id'],
       cnpjCustomer: map['cnpjCustomer'],
-      startDate: map['startDate'],
-      finalDate: map['finalDate'],
+      startDate: DateTime.tryParse(map['startDate']) ?? DateTime(0),
+      finalDate: DateTime.tryParse(map['finalDate']) ?? DateTime(0),
       totalDays: map['totalDays'],
       rentPrice: map['rentPrice'],
       plateVehicle: map['plateVehicle'],

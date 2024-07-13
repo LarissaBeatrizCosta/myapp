@@ -260,22 +260,24 @@ class RegisterRentView extends StatelessWidget {
                                           RentVehicleModel(
                                             cnpjCustomer: rentController
                                                     .customerSelected?.cnpj ??
-                                                ''.toString(),
+                                                '',
                                             cpfManager: rentController
                                                     .managerSelected?.cpf ??
-                                                ''.toString(),
+                                                '',
                                             startDate:
                                                 rentController.startDate!,
                                             finalDate: rentController.endDate!,
                                             plateVehicle: rentController
                                                     .vehicleSelected?.plate ??
-                                                ''.toString(),
+                                                '',
                                             totalDays:
                                                 rentController.totalDays!,
-                                            rentPrice: rentController.rentPrice
+                                            rentPrice: rentController
+                                                .getRentPrice()
                                                 .toString(),
                                             commissionManager: rentController
-                                                .managerCommission!,
+                                                    .managerCommission ??
+                                                0.0,
                                           ),
                                         );
 
