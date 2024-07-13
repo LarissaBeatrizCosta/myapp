@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../controllers/database.dart';
 import '../models/customer_model.dart';
 import '../models/manager_model.dart';
+import '../models/rent_model.dart';
 import '../models/vehicles_model.dart';
 import '../providers/customers_state.dart';
 import '../providers/managers_state.dart';
@@ -258,19 +259,37 @@ class RegisterRentView extends StatelessWidget {
                                         // await tableRents.insertRents(
                                         //   RentVehicleModel(
                                         //     cnpjCustomer: rentController
-                                        //         .customerSelected!,
-                                        //     cpfManager:
-                                        //    rentController.managerSelected!,
-                                        // startDate:DateFormat('yyyy-MM-dd').format(rentController.startDate!),
-                                        //   //finalDate: DateFormat('yyyy-MM-dd').format(rentController.endDate!),
-                                        //     plateVehicle:
-                                        //      rentController.vehicleSelected!,
+                                        //         .customerSelected
+                                        //         .toString(),
+                                        //     cpfManager: rentController
+                                        //         .managerSelected
+                                        //         .toString(),
+                                        //     startDate:
+                                        //         rentController.startDate!,
+                                        //     finalDate: rentController.endDate!,
+                                        //     plateVehicle: rentController
+                                        //         .vehicleSelected
+                                        //         .toString(),
                                         //     totalDays:
                                         //         rentController.totalDays!,
-                                        //     rentPrice: '0',
-                                        //     commissionManager: 0,
+                                        //     rentPrice: rentController
+                                        //         .getRentPrice()
+                                        //         .toString(),
+                                        //     commissionManager: rentController
+                                        //         .getManagerCommission(),
                                         //   ),
                                         // );
+                                        print(rentController
+                                            .customerSelected?.cnpj);
+                                        print(rentController
+                                            .managerSelected?.cpf);
+                                        print(rentController.startDate);
+                                        print(rentController.endDate);
+                                        print(rentController
+                                            .vehicleSelected?.plate);
+                                        print(rentController.totalDays);
+                                        print(rentController.rentPrice);
+                                        print(rentController.managerCommission);
 
                                         showDialog(
                                           context: context,

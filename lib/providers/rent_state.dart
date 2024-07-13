@@ -78,6 +78,9 @@ class RentState extends ChangeNotifier {
   ///Valor do aluguel
   double? rentPrice;
 
+  ///Valor da comissão do gerente
+  double? managerCommission;
+
   ///Inicializa a lista dos aluguéis
   RentState() {
     _initState();
@@ -181,16 +184,9 @@ class RentState extends ChangeNotifier {
 
   ///Calcula o valor do aluguel
   double getManagerCommission() {
-    print(rentPrice ?? 0);
-    print(managerSelected?.salesCommission ?? 0);
-
-    final managerCommission =
+    managerCommission =
         (rentPrice ?? 0) * (managerSelected?.salesCommission ?? 0) / 100;
 
-    print(rentPrice ?? 0);
-
-    print('GUILHERME FERNANDES');
-
-    return managerCommission;
+    return managerCommission ?? 0;
   }
 }
