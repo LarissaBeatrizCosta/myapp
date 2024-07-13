@@ -136,7 +136,7 @@ class RegisterManagerView extends StatelessWidget {
                                     backgroundColor:
                                         const Color.fromRGBO(255, 195, 0, 1),
                                   ),
-                                  onPressed: () async {   
+                                  onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
                                       tableManagers.insertManager(
                                         ManagerModel(
@@ -144,8 +144,9 @@ class RegisterManagerView extends StatelessWidget {
                                           name: _nameController.text,
                                           state: _stateController.text,
                                           phone: _numberPhoneController.text,
-                                          salesCommission:
-                                              _percentageController.text,
+                                          salesCommission: double.parse(
+                                            _percentageController.text,
+                                          ), //AQUI
                                         ),
                                       );
                                       showDialog(
@@ -170,8 +171,8 @@ class RegisterManagerView extends StatelessWidget {
                                                 TextButton(
                                                   onPressed: () {
                                                     Navigator
-                                                    // Não consegui
-                                                    //quebrar a linha
+                                                        // Não consegui
+                                                        //quebrar a linha
                                                         // ignore: lines_longer_than_80_chars
                                                         .pushNamedAndRemoveUntil(
                                                       context,

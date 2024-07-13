@@ -239,6 +239,7 @@ class RegisterVehicleView extends StatelessWidget {
                                               onTap: () async {
                                                 await imagePickerController
                                                     .getImageFromCamera();
+                                                    
                                                 Navigator.pop(context);
                                               },
                                             ),

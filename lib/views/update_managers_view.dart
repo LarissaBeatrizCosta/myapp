@@ -22,7 +22,7 @@ class UpdateManagers extends StatelessWidget {
     _nameController.text = manager.name;
     _phoneController.text = manager.phone;
     _stateController.text = manager.state;
-    _percentageController.text = manager.salesCommission;
+    _percentageController.text = manager.salesCommission.toString();
 
     final managerController = ManagersState();
 
@@ -118,7 +118,8 @@ class UpdateManagers extends StatelessWidget {
                           name: _nameController.text,
                           phone: _phoneController.text,
                           state: _stateController.text,
-                          salesCommission: _percentageController.text,
+                          salesCommission:
+                              double.parse(_percentageController.text), // AQUI
                         );
 
                         managerController.updateManagers(updatedManager);

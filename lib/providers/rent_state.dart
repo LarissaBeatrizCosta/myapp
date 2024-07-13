@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/database.dart';
+import '../models/customer_model.dart';
 import '../models/manager_model.dart';
 import '../models/rent_model.dart';
+import '../models/vehicles_model.dart';
 
 ///Gerencia aluguéis
 class RentState extends ChangeNotifier {
   ///Cliente selecionado
-  String? customerSelected;
+  CustomerModel? customerSelected;
 
   ///Lista de estados do Brasi
   List<String> brazilianStates = [
@@ -50,10 +52,10 @@ class RentState extends ChangeNotifier {
   String? stateSelected;
 
   ///Gerente selecionado
-  String? managerSelected;
+  ManagerModel? managerSelected;
 
   ///Veículo selecionado
-  String? vehicleSelected;
+  VehiclesModel? vehicleSelected;
 
   ///Lista de gerentes do estado selecionado
   List<ManagerModel> managersState = [];
@@ -72,6 +74,9 @@ class RentState extends ChangeNotifier {
 
   ///Dias totais do aluguel
   int? totalDays;
+
+  ///Valor do aluguel
+  double? rentPrice;
 
   ///Inicializa a lista dos aluguéis
   RentState() {
@@ -109,19 +114,23 @@ class RentState extends ChangeNotifier {
   ///Seleciona os gerentes de acordo com o estado
   Future<void> managerByState(String? state) async {
     managerSelected = null;
-    managersState = [];
+    managersState.clear();
 
     if (state != null) {
       final dataBase = await getDatabase();
-      final List<Map<String, dynamic>> managerMap = await dataBase.query(
+
+      final result = await dataBase.query(
         TableManagers.tableName,
         where: '${TableManagers.state} = ?',
         whereArgs: [state],
       );
-      managersState = managerMap.map(ManagerModel.fromMapManager).toList();
-    } else {
-      managersState.clear();
+
+      for (final item in result ?? []) {
+        final manager = ManagerModel.fromMapManager(item);
+        managersState.add(manager);
+      }
     }
+
     notifyListeners();
   }
 
@@ -162,5 +171,19 @@ class RentState extends ChangeNotifier {
     } else {
       totalDays = null;
     }
+  }
+
+  ///Calcula o valor do aluguel
+  double getRentPrice() {
+    final rentPrice = (vehicleSelected?.priceDaily ?? 0) * (totalDays ?? 0);
+    return rentPrice;
+  }
+
+  ///Calcula o valor do aluguel
+  double getManagerCommission() {
+    final managerCommission =
+        (rentPrice ?? 0) * (managerSelected?.salesCommission ?? 0) / 100;
+
+    return managerCommission;
   }
 }

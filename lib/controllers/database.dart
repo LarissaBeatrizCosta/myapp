@@ -20,6 +20,43 @@ Future<Database> getDatabase() async {
       db.execute(TableManagers.createTable);
       db.execute(TableVehicles.createTable);
       db.execute(TableRents.createTable);
+
+      final customer = CustomerModel(
+          cnpj: '7527808500173',
+          name: 'LINCE',
+          phone: '999999999',
+          state: 'SC',
+          city: 'Gaspar');
+      db.insert(TableCustomers.tableName, customer.toMapCustomer());
+
+      final manager = ManagerModel(
+          cpf: '10911918914',
+          name: 'Larissa',
+          phone: '999999999',
+          state: 'SC',
+          salesCommission: 10.0);
+      db.insert(TableManagers.tableName, manager.toMapManager());
+
+      final manager2 = ManagerModel(
+          cpf: '10911918914',
+          name: 'Eduarda',
+          phone: '999999999',
+          state: 'SC',
+          salesCommission: 5.0);
+      db.insert(TableManagers.tableName, manager2.toMapManager());
+
+      final vehicle = VehiclesModel(
+        type: 'Carro',
+        brand: 'BMW',
+        model: 'modelo da bm',
+        plate: 'ABC1234',
+        manufacturingYear: '2022',
+        priceDaily: 100.50,
+      );
+      db.insert(TableVehicles.tableName, vehicle.toMapVehicles());
+
+      // final rent = RentVehicleModel();
+      // db.insert(TableRents.tableName, rent.toMapRents());
     },
     version: 1,
   );

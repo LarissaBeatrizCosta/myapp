@@ -13,7 +13,7 @@ class ManagerModel {
   String phone;
 
   ///Comissão do gerente
-  String salesCommission;
+  double salesCommission; // AQUI
 
   ///Construtor da classe de gerentes
   ManagerModel({
@@ -42,7 +42,7 @@ class ManagerModel {
       name: map['name'],
       state: map['state'],
       phone: map['phone'],
-      salesCommission: map['salesCommission'],
+      salesCommission: double.parse(map['salesCommission']),
     );
   }
 }

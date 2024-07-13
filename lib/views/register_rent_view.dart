@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/database.dart';
+import '../models/customer_model.dart';
+import '../models/manager_model.dart';
+import '../models/vehicles_model.dart';
 import '../providers/customers_state.dart';
 import '../providers/managers_state.dart';
 import '../providers/rent_state.dart';
@@ -36,21 +39,26 @@ class RegisterRentView extends StatelessWidget {
       child: Consumer4<RentState, CustomersState, ManagersState, VehiclesState>(
           builder: (context, rentController, customerController,
               managerController, vehicleController, _) {
-        var customersDrop = <DropdownMenuItem<String>>[];
-        var vehiclesDrop = <DropdownMenuItem<String>>[];
+        var customersDrop = <DropdownMenuItem<CustomerModel>>[];
 
         for (var customerRent in customerController.customers) {
-          customersDrop.add(DropdownMenuItem<String>(
-            value: customerRent.name,
-            child: Text(customerRent.name),
-          ));
+          customersDrop.add(
+            DropdownMenuItem<CustomerModel>(
+              value: customerRent,
+              child: Text(customerRent.name),
+            ),
+          );
         }
 
+        var vehiclesDrop = <DropdownMenuItem<VehiclesModel>>[];
+
         for (var vehicleRent in vehicleController.vehicles) {
-          vehiclesDrop.add(DropdownMenuItem<String>(
-            value: '${vehicleRent.model} - ${vehicleRent.plate}',
-            child: Text('${vehicleRent.model} - ${vehicleRent.plate}'),
-          ));
+          vehiclesDrop.add(
+            DropdownMenuItem<VehiclesModel>(
+              value: vehicleRent,
+              child: Text('${vehicleRent.model} - ${vehicleRent.plate}'),
+            ),
+          );
         }
         return Scaffold(
           appBar: AppBar(),
@@ -74,7 +82,7 @@ class RegisterRentView extends StatelessWidget {
                         const SizedBox(height: 40),
                         SizedBox(
                           width: 300,
-                          child: DropdownButtonFormField<String>(
+                          child: DropdownButtonFormField<CustomerModel>(
                             isExpanded: true,
                             icon: const Icon(
                               Icons.arrow_drop_down_circle_sharp,
@@ -94,9 +102,7 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
-                            items: customersDrop.map((customer) {
-                              return customer;
-                            }).toList(),
+                            items: customersDrop,
                             onChanged: (value) {
                               rentController.customerSelected = value;
                             },
@@ -141,7 +147,7 @@ class RegisterRentView extends StatelessWidget {
                         const SizedBox(height: 40),
                         SizedBox(
                           width: 300,
-                          child: DropdownButtonFormField<String>(
+                          child: DropdownButtonFormField<ManagerModel>(
                             isExpanded: true,
                             icon: const Icon(
                               Icons.arrow_drop_down_circle_sharp,
@@ -162,8 +168,8 @@ class RegisterRentView extends StatelessWidget {
                               ),
                             ),
                             items: rentController.managersState.map((manager) {
-                              return DropdownMenuItem<String>(
-                                value: manager.name,
+                              return DropdownMenuItem<ManagerModel>(
+                                value: manager,
                                 child: Text(manager.name),
                               );
                             }).toList(),
@@ -175,7 +181,7 @@ class RegisterRentView extends StatelessWidget {
                         const SizedBox(height: 40),
                         SizedBox(
                           width: 300,
-                          child: DropdownButtonFormField<String>(
+                          child: DropdownButtonFormField<VehiclesModel>(
                             isExpanded: true,
                             icon: const Icon(
                               Icons.arrow_drop_down_circle_sharp,
@@ -195,9 +201,7 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
-                            items: vehiclesDrop.map((vehicle) {
-                              return vehicle;
-                            }).toList(),
+                            items: vehiclesDrop,
                             onChanged: (value) {
                               rentController.vehicleSelected = value;
                             },
@@ -205,6 +209,8 @@ class RegisterRentView extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
+                          canRequestFocus: false,
+                          autofocus: false,
                           controller: rentController.startDateController,
                           decoration: const InputDecoration(
                               hintText: 'Data de início do aluguel'),
@@ -214,6 +220,8 @@ class RegisterRentView extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
+                          canRequestFocus: false,
+                          autofocus: false,
                           controller: rentController.endDateController,
                           decoration: const InputDecoration(
                               hintText: 'Data de final do aluguel'),
@@ -229,6 +237,10 @@ class RegisterRentView extends StatelessWidget {
                                 builder: (context, tableRents, child) {
                               return Column(
                                 children: [
+                                  Text(
+                                      'Preço ${rentController.getRentPrice()}'),
+                                  Text(
+                                      'Comissão: ${rentController.getManagerCommission()}'),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -249,8 +261,8 @@ class RegisterRentView extends StatelessWidget {
                                         //         .customerSelected!,
                                         //     cpfManager:
                                         //    rentController.managerSelected!,
-      // startDate:DateFormat('yyyy-MM-dd').format(rentController.startDate!),
-      //   //finalDate: DateFormat('yyyy-MM-dd').format(rentController.endDate!),
+                                        // startDate:DateFormat('yyyy-MM-dd').format(rentController.startDate!),
+                                        //   //finalDate: DateFormat('yyyy-MM-dd').format(rentController.endDate!),
                                         //     plateVehicle:
                                         //      rentController.vehicleSelected!,
                                         //     totalDays:
