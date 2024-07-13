@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../controllers/database.dart';
 import '../models/customer_model.dart';
 import '../models/manager_model.dart';
-import '../models/rent_model.dart';
 import '../models/vehicles_model.dart';
 import '../providers/customers_state.dart';
 import '../providers/managers_state.dart';
