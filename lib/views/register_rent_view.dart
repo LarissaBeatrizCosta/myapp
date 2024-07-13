@@ -256,40 +256,28 @@ class RegisterRentView extends StatelessWidget {
                                               null &&
                                           rentController.stateSelected !=
                                               null) {
-                                        // await tableRents.insertRents(
-                                        //   RentVehicleModel(
-                                        //     cnpjCustomer: rentController
-                                        //         .customerSelected
-                                        //         .toString(),
-                                        //     cpfManager: rentController
-                                        //         .managerSelected
-                                        //         .toString(),
-                                        //     startDate:
-                                        //         rentController.startDate!,
-                                        //     finalDate: rentController.endDate!,
-                                        //     plateVehicle: rentController
-                                        //         .vehicleSelected
-                                        //         .toString(),
-                                        //     totalDays:
-                                        //         rentController.totalDays!,
-                                        //     rentPrice: rentController
-                                        //         .getRentPrice()
-                                        //         .toString(),
-                                        //     commissionManager: rentController
-                                        //         .getManagerCommission(),
-                                        //   ),
-                                        // );
-                                        print(rentController
-                                            .customerSelected?.cnpj);
-                                        print(rentController
-                                            .managerSelected?.cpf);
-                                        print(rentController.startDate);
-                                        print(rentController.endDate);
-                                        print(rentController
-                                            .vehicleSelected?.plate);
-                                        print(rentController.totalDays);
-                                        print(rentController.rentPrice);
-                                        print(rentController.managerCommission);
+                                        await tableRents.insertRents(
+                                          RentVehicleModel(
+                                            cnpjCustomer: rentController
+                                                    .customerSelected?.cnpj ??
+                                                ''.toString(),
+                                            cpfManager: rentController
+                                                    .managerSelected?.cpf ??
+                                                ''.toString(),
+                                            startDate:
+                                                rentController.startDate!,
+                                            finalDate: rentController.endDate!,
+                                            plateVehicle: rentController
+                                                    .vehicleSelected?.plate ??
+                                                ''.toString(),
+                                            totalDays:
+                                                rentController.totalDays!,
+                                            rentPrice: rentController.rentPrice
+                                                .toString(),
+                                            commissionManager: rentController
+                                                .managerCommission!,
+                                          ),
+                                        );
 
                                         showDialog(
                                           context: context,
