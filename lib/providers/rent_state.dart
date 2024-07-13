@@ -114,6 +114,19 @@ class RentState extends ChangeNotifier {
     notifyListeners();
   }
 
+  RentVehicleModel getRent() {
+    return RentVehicleModel(
+      cnpjCustomer: customerSelected?.cnpj ?? '',
+      cpfManager: managerSelected?.cpf ?? '',
+      startDate: startDate!,
+      finalDate: endDate!,
+      plateVehicle: vehicleSelected?.plate ?? '',
+      totalDays: totalDays!,
+      rentPrice: getRentPrice().toString(),
+      commissionManager: managerCommission ?? 0.0,
+    );
+  }
+
   ///Seleciona os gerentes de acordo com o estado
   Future<void> managerByState(String? state) async {
     managerSelected = null;

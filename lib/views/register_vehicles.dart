@@ -22,7 +22,6 @@ class RegisterVehicleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final state = Provider.of<ThemeState>(context);
     return MultiProvider(
       providers: [
@@ -84,6 +83,12 @@ class RegisterVehicleView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Selecione um veículo';
+                              }
+                              return null;
+                            },
                             items: fipeController.typesVehicles
                                 .map<DropdownMenuItem<String>>((typeVehicle) {
                               return DropdownMenuItem<String>(
@@ -120,6 +125,12 @@ class RegisterVehicleView extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Selecione uma marca';
+                              }
+                              return null;
+                            },
                             items: fipeController.brandVehicles
                                 .map<DropdownMenuItem<BrandVehiclesModel>>(
                                     (brand) {
@@ -157,6 +168,12 @@ class RegisterVehicleView extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Selecione um modelo';
+                              }
+                              return null;
+                            },
                             items: fipeController.modelVehicles
                                 .map<DropdownMenuItem<ModelVehiclesModel>>(
                                     (model) {
@@ -239,7 +256,7 @@ class RegisterVehicleView extends StatelessWidget {
                                               onTap: () async {
                                                 await imagePickerController
                                                     .getImageFromCamera();
-                                                    
+
                                                 Navigator.pop(context);
                                               },
                                             ),

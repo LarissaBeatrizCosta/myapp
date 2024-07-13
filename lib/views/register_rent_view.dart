@@ -103,6 +103,12 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Selecione o cliente';
+                              }
+                              return null;
+                            },
                             items: customersDrop,
                             onChanged: (value) {
                               rentController.customerSelected = value;
@@ -132,6 +138,12 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Selecione o estado';
+                              }
+                              return null;
+                            },
                             items: rentController.brazilianStates
                                 .map<DropdownMenuItem<String>>((state) {
                               return DropdownMenuItem<String>(
@@ -168,6 +180,12 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Selecione o gerente';
+                              }
+                              return null;
+                            },
                             items: rentController.managersState.map((manager) {
                               return DropdownMenuItem<ManagerModel>(
                                 value: manager,
@@ -202,6 +220,12 @@ class RegisterRentView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Selecione o veículo';
+                              }
+                              return null;
+                            },
                             items: vehiclesDrop,
                             onChanged: (value) {
                               rentController.vehicleSelected = value;
@@ -215,6 +239,12 @@ class RegisterRentView extends StatelessWidget {
                           controller: rentController.startDateController,
                           decoration: const InputDecoration(
                               hintText: 'Data de início do aluguel'),
+                          validator: (value) {
+                            if (rentController.startDate == null) {
+                              return 'Selecione uma data';
+                            }
+                            return null;
+                          },
                           onTap: () {
                             rentController.getStartDate(context);
                           },
@@ -226,6 +256,12 @@ class RegisterRentView extends StatelessWidget {
                           controller: rentController.endDateController,
                           decoration: const InputDecoration(
                               hintText: 'Data de final do aluguel'),
+                          validator: (value) {
+                            if (rentController.endDate == null) {
+                              return 'Selecione uma data';
+                            }
+                            return null;
+                          },
                           onTap: () {
                             rentController.getEndDate(context);
                           },
@@ -248,40 +284,12 @@ class RegisterRentView extends StatelessWidget {
                                           const Color.fromRGBO(255, 195, 0, 1),
                                     ),
                                     onPressed: () async {
-                                      if (rentController.customerSelected !=
-                                              null &&
-                                          rentController.managerSelected !=
-                                              null &&
-                                          rentController.vehicleSelected !=
-                                              null &&
-                                          rentController.stateSelected !=
-                                              null) {
+                                      if (_formKey.currentState!.validate()) {
+                                        final rent = rentController.getRent();
                                         await tableRents.insertRents(
-                                          RentVehicleModel(
-                                            cnpjCustomer: rentController
-                                                    .customerSelected?.cnpj ??
-                                                '',
-                                            cpfManager: rentController
-                                                    .managerSelected?.cpf ??
-                                                '',
-                                            startDate:
-                                                rentController.startDate!,
-                                            finalDate: rentController.endDate!,
-                                            plateVehicle: rentController
-                                                    .vehicleSelected?.plate ??
-                                                '',
-                                            totalDays:
-                                                rentController.totalDays!,
-                                            rentPrice: rentController
-                                                .getRentPrice()
-                                                .toString(),
-                                            commissionManager: rentController
-                                                    .managerCommission ??
-                                                0.0,
-                                          ),
+                                          rent
                                         );
-
-                                        showDialog(
+                                        await showDialog(
                                           context: context,
                                           builder: (context) {
                                             return SizedBox(
