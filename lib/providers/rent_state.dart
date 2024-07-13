@@ -175,14 +175,21 @@ class RentState extends ChangeNotifier {
 
   ///Calcula o valor do aluguel
   double getRentPrice() {
-    final rentPrice = (vehicleSelected?.priceDaily ?? 0) * (totalDays ?? 0);
-    return rentPrice;
+    rentPrice = (vehicleSelected?.priceDaily ?? 0) * (totalDays ?? 0);
+    return rentPrice ?? 0;
   }
 
   ///Calcula o valor do aluguel
   double getManagerCommission() {
+    print(rentPrice ?? 0);
+    print(managerSelected?.salesCommission ?? 0);
+
     final managerCommission =
         (rentPrice ?? 0) * (managerSelected?.salesCommission ?? 0) / 100;
+
+    print(rentPrice ?? 0);
+
+    print('GUILHERME FERNANDES');
 
     return managerCommission;
   }
