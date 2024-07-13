@@ -26,6 +26,7 @@ class ManagerModel {
 
   ///Converte ManagerModel para mapa
   Map<String, dynamic> toMapManager() {
+    print('oi');
     return {
       'cpf': cpf,
       'name': name,
