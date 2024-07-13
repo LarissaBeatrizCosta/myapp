@@ -149,30 +149,6 @@ class TableCustomers extends ChangeNotifier {
     }
     return customersList;
   }
-
-  ///Pega os clientes da tabela de clientes
-  Future<CustomerModel?> getCustomerByCnpj(String cnpj) async {
-    final dataBase = await getDatabase();
-
-    const query = '''
-    SELECT * 
-    FROM ${TableCustomers.tableName}
-    WHERE ${TableCustomers.cnpj} = ?;
-    ''';
-    final result = await dataBase.rawQuery(query, [cnpj]);
-
-    if (result.isEmpty) {
-      return null;
-    }
-
-    return CustomerModel(
-      city: result.first['city'].toString(),
-      cnpj: cnpj,
-      name: result.first['name'].toString(),
-      phone: result.first['phone'].toString(),
-      state: result.first['state'].toString(),
-    );
-  }
 }
 
 ///Manipula os dados na tabela de gerentes
@@ -450,8 +426,6 @@ CREATE TABLE $tableName(
   ///Pega os aluguéis da tabela de aluguéis
   Future<List<RentVehicleModel>> getRents() async {
     final dataBase = await getDatabase();
-    final customersDB = TableCustomers();
-
     var rentsList = <RentVehicleModel>[];
 
     List<Map> rentsMap = await dataBase.query(
@@ -471,13 +445,8 @@ CREATE TABLE $tableName(
     notifyListeners();
 
     for (var rent in rentsMap) {
-      final customer = await customersDB.getCustomerByCnpj(
-        rent['cnpjCustomer'] ?? '',
-      );
-
-      rentsList.add(
-        RentVehicleModel.fromMapRents(rent as Map<String, dynamic>, customer),
-      );
+      rentsList
+          .add(RentVehicleModel.fromMapRents(rent as Map<String, dynamic>));
     }
     return rentsList;
   }

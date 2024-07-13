@@ -117,12 +117,12 @@ class RentState extends ChangeNotifier {
   ///Pega todos os dados do cliente
   RentVehicleModel getRent() {
     return RentVehicleModel(
-      cnpjCustomer: customerSelected?.cnpj ?? '',
-      cpfManager: managerSelected?.cpf ?? '',
+      cnpjCustomer: customerSelected?.name ?? '',
+      cpfManager: managerSelected?.name ?? '',
       startDate: startDate ?? DateTime.now(),
-      finalDate: endDate!,
-      plateVehicle: vehicleSelected?.plate ?? '',
-      totalDays: totalDays!,
+      finalDate: endDate ?? DateTime.now(),
+      plateVehicle: vehicleSelected?.model ?? '',
+      totalDays: totalDays ?? 0,
       rentPrice: getRentPrice().toString(),
       commissionManager: managerCommission ?? 0.0,
     );
@@ -142,7 +142,7 @@ class RentState extends ChangeNotifier {
         whereArgs: [state],
       );
 
-      for (final item in result ?? []) {
+      for (final item in result) {
         final manager = ManagerModel.fromMapManager(item);
         managersState.add(manager);
       }

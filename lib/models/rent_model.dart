@@ -1,7 +1,5 @@
 import 'package:intl/intl.dart';
 
-import 'customer_model.dart';
-
 ///Classe de aluguéis dos veículos
 class RentVehicleModel {
   ///Indentificação do aluguel
@@ -31,9 +29,6 @@ class RentVehicleModel {
   ///Comissão do gerente
   double commissionManager;
 
-  ///Comissão do gerente
-  CustomerModel? customer;
-
   ///Contrutor da classe de aluguéis dos veículos
   RentVehicleModel({
     this.id,
@@ -45,7 +40,6 @@ class RentVehicleModel {
     required this.plateVehicle,
     required this.cpfManager,
     required this.commissionManager,
-    this.customer,
   });
 
   ///Converte RentVehicleModel para mapa
@@ -64,10 +58,7 @@ class RentVehicleModel {
   }
 
   ///Converte RentVehiclesModel do mapa
-  factory RentVehicleModel.fromMapRents(
-    Map<String, dynamic> map,
-    CustomerModel? customer,
-  ) {
+  factory RentVehicleModel.fromMapRents(Map<String, dynamic> map) {
     return RentVehicleModel(
       id: map['id'],
       cnpjCustomer: map['cnpjCustomer'],
@@ -78,7 +69,6 @@ class RentVehicleModel {
       plateVehicle: map['plateVehicle'],
       cpfManager: map['cpfManager'],
       commissionManager: map['commissionManager'],
-      customer: customer,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/rent_state.dart';
@@ -66,7 +67,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 10.0),
                                     child: Text(
-                                      state.getRent().customer!.name,
+                                      rent.cnpjCustomer,
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -87,7 +88,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'CNPJ: ${rent.cnpjCustomer}',
+                                      'CNPJ: ${rent.commissionManager}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -102,7 +103,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      state.getRent().customer!.state,
+                                      rent.plateVehicle,
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -132,7 +133,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Valor da Comissão: ${rent.commissionManager}%',
+                                      'Comissão: ${rent.commissionManager}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -147,7 +148,9 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Data inicial: ${rent.startDate}',
+                                      'Data inicial: ${DateFormat('yyyy-MM-dd').format(
+                                        rent.startDate,
+                                      )}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -162,7 +165,9 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Data final: ${rent.finalDate}',
+                                      'Data final: ${DateFormat('yyyy-MM-dd').format(
+                                        rent.finalDate,
+                                      )}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -273,20 +278,20 @@ class RentsView extends StatelessWidget {
                                   );
                                 },
                               ),
-                              IconButton(
-                                icon: const Icon(Icons.edit),
-                                color: const Color.fromARGB(255, 60, 255, 0),
-                                onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => UpdateRents(
-                                  //       rent: rent,
-                                  //     ),
-                                  //   ),
-                                  // );
-                                },
-                              ),
+                              // IconButton(
+                              //   icon: const Icon(Icons.edit),
+                              //   color: const Color.fromARGB(255, 60, 255, 0),
+                              //   onPressed: () {
+                              //     // Navigator.push(
+                              //     //   context,
+                              //     //   MaterialPageRoute(
+                              //     //     builder: (context) => UpdateRents(
+                              //     //       rent: rent,
+                              //     //     ),
+                              //     //   ),
+                              //     // );
+                              // },
+                              //),
                             ],
                           ),
                         ],
