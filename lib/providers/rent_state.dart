@@ -114,11 +114,12 @@ class RentState extends ChangeNotifier {
     notifyListeners();
   }
 
+  ///Pega todos os dados do cliente
   RentVehicleModel getRent() {
     return RentVehicleModel(
       cnpjCustomer: customerSelected?.cnpj ?? '',
       cpfManager: managerSelected?.cpf ?? '',
-      startDate: startDate!,
+      startDate: startDate ?? DateTime.now(),
       finalDate: endDate!,
       plateVehicle: vehicleSelected?.plate ?? '',
       totalDays: totalDays!,

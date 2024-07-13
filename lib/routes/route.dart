@@ -8,6 +8,7 @@ import '../views/register_customer_view.dart';
 import '../views/register_manager_view.dart';
 import '../views/register_rent_view.dart';
 import '../views/register_vehicles.dart';
+import '../views/rents_view.dart';
 import '../views/settings_view.dart';
 import '../views/vehicles_view.dart';
 
@@ -42,6 +43,9 @@ class Routes {
 
       case '/register_rents':
         return MaterialPageRoute(builder: (_) => RegisterRentView());
+
+      case '/rents':
+        return MaterialPageRoute(builder: (_) => const RentsView());
 
       default:
         return MaterialPageRoute(

@@ -1,6 +1,5 @@
 import 'package:intl/intl.dart';
 
-import '../controllers/database.dart';
 import 'customer_model.dart';
 
 ///Classe de aluguéis dos veículos
