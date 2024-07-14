@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/customers_state.dart';
@@ -14,14 +15,13 @@ class CustomersView extends StatelessWidget {
   Widget build(BuildContext context) {
     final stateTheme = Provider.of<ThemeState>(context);
 
-
     return ChangeNotifierProvider(
       create: (context) => CustomersState(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Clientes Cadastrados',
-            style: TextStyle(
+          title: Text(
+            AppLocalizations.of(context)!.customersTitle,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -152,20 +152,22 @@ class CustomersView extends StatelessWidget {
                                       height: 220,
                                       width: 300,
                                       child: AlertDialog(
-                                        title: const Center(
+                                        title: Center(
                                           child: Text(
-                                            'Excluir Cliente',
+                                            AppLocalizations.of(context)!
+                                                .deleteCustomerTitle,
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 25.0,
                                             ),
                                           ),
                                         ),
-                                        content: const Text(
-                                          'Deseja excluir este cliente?',
-                                          style: TextStyle(
+                                        content: Text(
+                                          AppLocalizations.of(context)!
+                                              .deleteCustomerMessage,
+                                          style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 20.0,
                                           ),
@@ -175,9 +177,10 @@ class CustomersView extends StatelessWidget {
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
-                                            child: const Text(
-                                              'Cancelar',
-                                              style: TextStyle(
+                                            child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .cancel,
+                                              style: const TextStyle(
                                                 color: Colors.red,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20.0,
@@ -189,9 +192,10 @@ class CustomersView extends StatelessWidget {
                                               state.deleteCustomers(customer);
                                               Navigator.of(context).pop();
                                             },
-                                            child: const Text(
-                                              'Confirmar',
-                                              style: TextStyle(
+                                            child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .confirm,
+                                              style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.0,
                                               ),

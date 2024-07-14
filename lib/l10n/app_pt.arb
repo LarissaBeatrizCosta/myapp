@@ -2,6 +2,11 @@
   "chooseTheme": "Escolha o tema da sua preferência",
   "chooseLanguage": "Escolha o idioma da sua preferência",
   "portuguese": "Português",
-  "english": "Inglês"
+  "english": "Inglês",
+  "customersTitle": "Clientes Cadastrados",
+  "deleteCustomerTitle": "Excluir Cliente",
+  "deleteCustomerMessage": "Deseja excluir este cliente?",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar"
 }
 

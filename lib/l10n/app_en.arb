@@ -2,6 +2,12 @@
   "chooseTheme": "Choose your preferred theme",
   "chooseLanguage": "Choose your preferred language",
   "portuguese": "Portuguese",
-  "english": "English"
+  "english": "English",
+  "customersTitle": "Registered Customers",
+  "deleteCustomerTitle": "Delete Customer",
+  "deleteCustomerMessage": "Do you want to delete this customer?",
+  "cancel": "Cancel",
+  "confirm": "Confirm"
+  
 }
 
