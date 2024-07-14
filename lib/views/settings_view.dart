@@ -51,9 +51,9 @@ class SettingsView extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 60),
-            const Text(
-              'Escolha o idioma da sua preferência',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.chooseLanguage,
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
