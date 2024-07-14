@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
 import '../models/customer_model.dart';
 import '../models/manager_model.dart';
 import '../models/rent_model.dart';
@@ -72,7 +71,6 @@ class TableCustomers extends ChangeNotifier {
   $phone TEXT NOT NULL,
   $state TEXT NOT NULL,
   $city TEXT NOT NULL
-
   );
   ''';
 
@@ -104,7 +102,6 @@ class TableCustomers extends ChangeNotifier {
   ///Deleta o cliente da tabela de clientes
   Future<void> deleteCustomer(CustomerModel customer) async {
     final dataBase = await getDatabase();
-
     await dataBase.delete(
       TableCustomers.tableName,
       where: '${TableCustomers.cnpj} = ? ',
@@ -116,7 +113,6 @@ class TableCustomers extends ChangeNotifier {
   ///Atualiza o cliente da tabela de clientes
   Future<void> updateCustomer(CustomerModel customer) async {
     final dataBase = await getDatabase();
-
     await dataBase.update(
       TableCustomers.tableName,
       customer.toMapCustomer(),
@@ -130,7 +126,6 @@ class TableCustomers extends ChangeNotifier {
   Future<List<CustomerModel>> getCustomer() async {
     final dataBase = await getDatabase();
     var customersList = <CustomerModel>[];
-
     List<Map> customersMap = await dataBase.query(
       tableName,
       columns: [
@@ -142,7 +137,6 @@ class TableCustomers extends ChangeNotifier {
       ],
     );
     notifyListeners();
-
     for (var customer in customersMap) {
       customersList
           .add(CustomerModel.fromMapCustomer(customer as Map<String, dynamic>));
@@ -192,7 +186,6 @@ class TableManagers extends ChangeNotifier {
   ///Deleta o gerente da tabela de gerentes
   Future<void> deleteManager(ManagerModel manager) async {
     final dataBase = await getDatabase();
-
     await dataBase.delete(
       TableManagers.tableName,
       where: '${TableManagers.cpf} = ? ',
@@ -204,7 +197,6 @@ class TableManagers extends ChangeNotifier {
   ///Atualiza o gerente na tabela de gerentes
   Future<void> updateManager(ManagerModel manager) async {
     final dataBase = await getDatabase();
-
     await dataBase.update(
       TableManagers.tableName,
       manager.toMapManager(),
@@ -218,7 +210,6 @@ class TableManagers extends ChangeNotifier {
   Future<List<ManagerModel>> getManager() async {
     final dataBase = await getDatabase();
     var managersList = <ManagerModel>[];
-
     List<Map> managersMap = await dataBase.query(
       tableName,
       columns: [
@@ -230,7 +221,6 @@ class TableManagers extends ChangeNotifier {
       ],
     );
     notifyListeners();
-
     for (var manager in managersMap) {
       managersList
           .add(ManagerModel.fromMapManager(manager as Map<String, dynamic>));
@@ -291,7 +281,6 @@ class TableVehicles extends ChangeNotifier {
   ///Deleta o veículo da tabela de veículos
   Future<void> deleteVehicle(VehiclesModel vehicle) async {
     final dataBase = await getDatabase();
-
     await dataBase.delete(
       TableVehicles.tableName,
       where: '${TableVehicles.plate} = ? ',
@@ -303,7 +292,6 @@ class TableVehicles extends ChangeNotifier {
   ///Atualiza o veículo na tabela de veículos
   Future<void> updateVehicle(VehiclesModel vehicle) async {
     final dataBase = await getDatabase();
-
     await dataBase.update(
       TableVehicles.tableName,
       vehicle.toMapVehicles(),
@@ -317,7 +305,6 @@ class TableVehicles extends ChangeNotifier {
   Future<List<VehiclesModel>> getVehicle() async {
     final dataBase = await getDatabase();
     var vehiclesList = <VehiclesModel>[];
-
     List<Map> vehiclesMap = await dataBase.query(
       tableName,
       columns: [
@@ -330,9 +317,7 @@ class TableVehicles extends ChangeNotifier {
         'priceDaily',
       ],
     );
-
     notifyListeners();
-
     for (var vehicle in vehiclesMap) {
       vehiclesList.add(
         VehiclesModel.fromMapVehicles(vehicle as Map<String, dynamic>),
@@ -402,7 +387,6 @@ CREATE TABLE $tableName(
   ///Deleta o aluguel da tabela de aluguéis
   Future<void> deleteRents(RentVehicleModel rent) async {
     final dataBase = await getDatabase();
-
     await dataBase.delete(
       TableRents.tableName,
       where: '${TableRents.id} = ? ',
@@ -413,7 +397,6 @@ CREATE TABLE $tableName(
   ///Atualiza o aluguel da tabela de aluguéis
   Future<void> updateRents(RentVehicleModel rent) async {
     final dataBase = await getDatabase();
-
     await dataBase.update(
       TableRents.tableName,
       rent.toMapRents(),
@@ -427,7 +410,6 @@ CREATE TABLE $tableName(
   Future<List<RentVehicleModel>> getRents() async {
     final dataBase = await getDatabase();
     var rentsList = <RentVehicleModel>[];
-
     List<Map> rentsMap = await dataBase.query(
       tableName,
       columns: [
@@ -443,7 +425,6 @@ CREATE TABLE $tableName(
       ],
     );
     notifyListeners();
-
     for (var rent in rentsMap) {
       rentsList
           .add(RentVehicleModel.fromMapRents(rent as Map<String, dynamic>));
