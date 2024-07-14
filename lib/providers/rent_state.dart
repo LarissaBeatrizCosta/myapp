@@ -11,6 +11,7 @@ import '../models/customer_model.dart';
 import '../models/manager_model.dart';
 import '../models/rent_model.dart';
 import '../models/vehicles_model.dart';
+import 'image_picker_state.dart';
 
 ///Gerencia aluguéis
 class RentState extends ChangeNotifier {
@@ -216,8 +217,14 @@ class RentState extends ChangeNotifier {
     ManagerModel managerPdf,
     VehiclesModel vehiclePdf,
     RentVehicleModel rentPdf,
+    ImagePickerState imagePickerState,
   ) async {
     final pdfRent = pdfLib.Document();
+    final vehicleImagePath =
+        await imagePickerState.getImageVehicle(vehiclePdf.plate);
+    final vehicleImage = pdfLib.MemoryImage(
+      File(vehicleImagePath).readAsBytesSync(),
+    );
 
     pdfRent.addPage(
       pdfLib.Page(
@@ -243,6 +250,15 @@ class RentState extends ChangeNotifier {
                   ),
                 ),
               ],
+            ),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.Text(
+              'Data de Geração: ${DateFormat('dd/MM/yyyy HH:mm').format(
+                DateTime.now(),
+              )}',
+              style: pdfLib.TextStyle(
+                fontWeight: pdfLib.FontWeight.bold,
+              ),
             ),
             pdfLib.SizedBox(height: 20),
             pdfLib.Column(
@@ -303,6 +319,11 @@ class RentState extends ChangeNotifier {
                 _pdfStyle(
                   'Diária:',
                   'R\$ ${vehiclePdf.priceDaily.toStringAsFixed(2)}',
+                ),
+                pdfLib.Container(
+                  height: 100,
+                  width: 100,
+                  child: pdfLib.Image(vehicleImage),
                 ),
               ],
             ),

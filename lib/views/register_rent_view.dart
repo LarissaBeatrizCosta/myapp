@@ -10,6 +10,7 @@ import '../models/customer_model.dart';
 import '../models/manager_model.dart';
 import '../models/vehicles_model.dart';
 import '../providers/customers_state.dart';
+import '../providers/image_picker_state.dart';
 import '../providers/managers_state.dart';
 import '../providers/rent_state.dart';
 import '../providers/vehicles_state.dart';
@@ -39,10 +40,20 @@ class RegisterRentView extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => TableRents(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ImagePickerState(),
+        ),
       ],
-      child: Consumer4<RentState, CustomersState, ManagersState, VehiclesState>(
-          builder: (context, rentController, customerController,
-              managerController, vehicleController, _) {
+      child: Consumer5<RentState, CustomersState, ManagersState, VehiclesState,
+          ImagePickerState>(builder: (
+        context,
+        rentController,
+        customerController,
+        managerController,
+        vehicleController,
+        imagePickerController,
+        _,
+      ) {
         var customersDrop = <DropdownMenuItem<CustomerModel>>[];
 
         for (var customerRent in customerController.customers) {
@@ -296,6 +307,7 @@ class RegisterRentView extends StatelessWidget {
                                           rentController.managerSelected!,
                                           rentController.vehicleSelected!,
                                           rent,
+                                          imagePickerController,
                                         );
 
                                         final directory =
