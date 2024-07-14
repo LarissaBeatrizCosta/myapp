@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-
+import '../providers/language_state.dart';
 import '../providers/theme.dart';
 
 /// Tela de configurações
@@ -20,9 +21,9 @@ class SettingsView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Escolha o tema da sua preferência',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.chooseTheme,
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -62,18 +63,26 @@ class SettingsView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/'),
+                  onPressed: () => changeLanguage(
+                    context,
+                    const Locale('pt', ''),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                   ),
                   child: const Text(
                     'Português',
-                    style: TextStyle(color: Color.fromRGBO(255, 195, 0, 1)),
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 195, 0, 1),
+                    ),
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/'),
+                  onPressed: () => changeLanguage(
+                    context,
+                    const Locale('en', ''),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
@@ -94,6 +103,10 @@ class SettingsView extends StatelessWidget {
       ),
     );
   }
-}
 
-//teste commit
+////Troca o idioma
+  void changeLanguage(BuildContext context, Locale locale) {
+    Provider.of<LanguageProvider>(context, listen: false)
+        .changeLanguage(locale);
+  }
+}
