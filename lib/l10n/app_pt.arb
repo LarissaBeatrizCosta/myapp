@@ -62,7 +62,29 @@
   "closeButton": "Fechar",
   "rentalRegisteredMessage": "Aluguel Registrado!",
   "startDateValidationMessage": "Selecione uma data de início",
-  "endDateValidationMessage": "Selecione uma data de final"
+  "endDateValidationMessage": "Selecione uma data de final",
+
+  "registerVehicleTitle": "Cadastro de Veículos",
+  "selectVehicleType": "Selecione o tipo de veículo",
+  "vehicleType": "Tipo de veículo",
+  "selectVehicleTypeValidation": "Selecione um veículo",
+  "selectBrand": "Selecione a marca",
+  "brand": "Marca",
+  "selectBrandValidation": "Selecione uma marca",
+  "selectModel": "Selecione o modelo",
+  "model": "Modelo",
+  "selectModelValidation": "Selecione um modelo",
+  "manufacturingYear": "Ano de fabricação",
+  "manufacturingYearValidation": "Insira um ano de fabricação",
+  "plate": "Placa",
+  "plateValidation": "Insira uma placa",
+  "dailyPrice": "Preço Diária",
+  "dailyPriceValidation": "Insira um preço diário",
+  "camera": "Câmera",
+  "gallery": "Galeria",
+  "attachPhotos": "Anexar Fotos",
+  "vehicleRegisteredMessage": "Veículo Registrado!"
+
 
 
 }

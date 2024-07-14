@@ -60,7 +60,30 @@
   "closeButton": "Close",
   "rentalRegisteredMessage": "Rental Registered!",
   "startDateValidationMessage": "Select a start date",
-  "endDateValidationMessage": "Select an end date"
+  "endDateValidationMessage": "Select an end date",
+
+  "registerVehicleTitle": "Register Vehicle",
+  "selectVehicleType": "Select vehicle type",
+  "vehicleType": "Vehicle type",
+  "selectVehicleTypeValidation": "Select a vehicle",
+  "selectBrand": "Select brand",
+  "brand": "Brand",
+  "selectBrandValidation": "Select a brand",
+  "selectModel": "Select model",
+  "model": "Model",
+  "selectModelValidation": "Select a model",
+  "manufacturingYear": "Manufacturing Year",
+  "manufacturingYearValidation": "Enter a manufacturing year",
+  "plate": "Plate",
+  "plateValidation": "Enter a plate",
+  "dailyPrice": "Daily Price",
+  "dailyPriceValidation": "Enter a daily price",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "attachPhotos": "Attach Photos",
+  "vehicleRegisteredMessage": "Vehicle Registered!"
+
+  
 
   
 }

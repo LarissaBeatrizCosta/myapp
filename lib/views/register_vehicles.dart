@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../controllers/database.dart';
 import '../controllers/fipe_controller.dart';
@@ -53,9 +54,9 @@ class RegisterVehicleView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Cadastro De Veículos',
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.registerVehicleTitle,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -70,7 +71,8 @@ class RegisterVehicleView extends StatelessWidget {
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
                             value: fipeController.typeSelected,
-                            hint: const Text('Selecione o tipo de veículo'),
+                            hint: Text(AppLocalizations.of(context)!
+                                .selectVehicleType),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
@@ -78,14 +80,16 @@ class RegisterVehicleView extends StatelessWidget {
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                 ),
                               ),
-                              label: const Text('Tipo de veículo'),
+                              label: Text(
+                                  AppLocalizations.of(context)!.vehicleType),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
                             validator: (value) {
                               if (value == null) {
-                                return 'Selecione um veículo';
+                                return AppLocalizations.of(context)!
+                                    .selectVehicleTypeValidation;
                               }
                               return null;
                             },
@@ -112,9 +116,10 @@ class RegisterVehicleView extends StatelessWidget {
                               color: Color.fromRGBO(255, 196, 0, 1),
                             ),
                             value: fipeController.brandSelected,
-                            hint: const Text('Selecione a marca'),
+                            hint:
+                                Text(AppLocalizations.of(context)!.selectBrand),
                             decoration: InputDecoration(
-                              label: const Text('Marca'),
+                              label: Text(AppLocalizations.of(context)!.brand),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
@@ -127,7 +132,8 @@ class RegisterVehicleView extends StatelessWidget {
                             ),
                             validator: (value) {
                               if (value == null) {
-                                return 'Selecione uma marca';
+                                return AppLocalizations.of(context)!
+                                    .selectBrandValidation;
                               }
                               return null;
                             },
@@ -155,9 +161,10 @@ class RegisterVehicleView extends StatelessWidget {
                             ),
                             isExpanded: true,
                             value: fipeController.modelSelected,
-                            hint: const Text('Selecione o modelo'),
+                            hint:
+                                Text(AppLocalizations.of(context)!.selectModel),
                             decoration: InputDecoration(
-                              label: const Text('Modelo'),
+                              label: Text(AppLocalizations.of(context)!.model),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
@@ -170,7 +177,8 @@ class RegisterVehicleView extends StatelessWidget {
                             ),
                             validator: (value) {
                               if (value == null) {
-                                return 'Selecione um modelo';
+                                return AppLocalizations.of(context)!
+                                    .selectModelValidation;
                               }
                               return null;
                             },
@@ -191,12 +199,14 @@ class RegisterVehicleView extends StatelessWidget {
                         const SizedBox(height: 30),
                         TextFormField(
                           controller: _manufacturingYearController,
-                          decoration: const InputDecoration(
-                            labelText: 'Ano de fabricação: ',
+                          decoration: InputDecoration(
+                            labelText:
+                                AppLocalizations.of(context)!.manufacturingYear,
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Insira um ano de fabricação';
+                              return AppLocalizations.of(context)!
+                                  .manufacturingYearValidation;
                             }
                             return null;
                           },
@@ -204,12 +214,13 @@ class RegisterVehicleView extends StatelessWidget {
                         const SizedBox(height: 20),
                         TextFormField(
                           controller: _plateController,
-                          decoration: const InputDecoration(
-                            labelText: 'Placa: ',
+                          decoration: InputDecoration(
+                            labelText: AppLocalizations.of(context)!.plate,
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Insira uma placa';
+                              return AppLocalizations.of(context)!
+                                  .plateValidation;
                             }
                             return null;
                           },
@@ -217,12 +228,13 @@ class RegisterVehicleView extends StatelessWidget {
                         const SizedBox(height: 20),
                         TextFormField(
                           controller: _priceDailyController,
-                          decoration: const InputDecoration(
-                            labelText: 'Preço Diária: ',
+                          decoration: InputDecoration(
+                            labelText: AppLocalizations.of(context)!.dailyPrice,
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Insira um preço diário';
+                              return AppLocalizations.of(context)!
+                                  .dailyPriceValidation;
                             }
                             return null;
                           },
@@ -252,7 +264,9 @@ class RegisterVehicleView extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              title: const Text('Câmera'),
+                                              title: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .camera),
                                               onTap: () async {
                                                 await imagePickerController
                                                     .getImageFromCamera();
@@ -271,7 +285,9 @@ class RegisterVehicleView extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              title: const Text('Galeria'),
+                                              title: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .gallery),
                                               onTap: () async {
                                                 await imagePickerController
                                                     .getImageFromGallery();
@@ -296,7 +312,7 @@ class RegisterVehicleView extends StatelessWidget {
                             shadowColor: Colors.transparent,
                           ),
                           label: Text(
-                            'Anexar Fotos',
+                            AppLocalizations.of(context)!.attachPhotos,
                             style: TextStyle(
                               color: state.themeLight
                                   ? const Color.fromARGB(255, 46, 46, 46)
@@ -377,12 +393,14 @@ class RegisterVehicleView extends StatelessWidget {
                                                   height: 220,
                                                   width: 300,
                                                   child: AlertDialog(
-                                                    title: const Center(
+                                                    title: Center(
                                                       child: Text(
-                                                        'Veículo Cadastrado!',
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .vehicleRegisteredMessage,
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -426,15 +444,11 @@ class RegisterVehicleView extends StatelessWidget {
                                               );
                                             },
                                           );
-                                        } else {
-                                          fipeController.validationMessage =
-                                              'Selecione todos os campos';
-                                          fipeController.notifyListeners();
                                         }
                                       },
-                                      child: const Text(
-                                        'Salvar',
-                                        style: TextStyle(
+                                      child: Text(
+                                        AppLocalizations.of(context)!.save,
+                                        style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,

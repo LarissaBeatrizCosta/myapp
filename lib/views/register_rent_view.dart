@@ -310,128 +310,134 @@ class RegisterRentView extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15),
                             child: Consumer<TableRents>(
-                                builder: (context, tableRents, child) {
-                              return Column(
-                                children: [
-                                  Text(
-                                    '${AppLocalizations.of(context)!.priceLabel} ${rentController.getRentPrice()}',
-                                  ),
-                                  Text(
-                                    '${AppLocalizations.of(context)!.commission} ${rentController.getManagerCommission()}',
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          const Color.fromRGBO(255, 195, 0, 1),
+                              builder: (context, tableRents, child) {
+                                return Column(
+                                  children: [
+                                    Text(
+                                      '${AppLocalizations.of(context)!.priceLabel} ${rentController.getRentPrice()}',
                                     ),
-                                    onPressed: () async {
-                                      if (_formKey.currentState!.validate()) {
-                                        final rent = rentController.getRent();
-                                        await tableRents.insertRents(rent);
+                                    Text(
+                                      '${AppLocalizations.of(context)!.commission} ${rentController.getManagerCommission()}',
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromRGBO(
+                                            255, 195, 0, 1),
+                                      ),
+                                      onPressed: () async {
+                                        if (_formKey.currentState!.validate()) {
+                                          final rent = rentController.getRent();
+                                          await tableRents.insertRents(rent);
 
-                                        await rentController.generatePdf(
-                                          rentController.customerSelected!,
-                                          rentController.managerSelected!,
-                                          rentController.vehicleSelected!,
-                                          rent,
-                                          imagePickerController,
-                                        );
+                                          await rentController.generatePdf(
+                                            rentController.customerSelected!,
+                                            rentController.managerSelected!,
+                                            rentController.vehicleSelected!,
+                                            rent,
+                                            imagePickerController,
+                                          );
 
-                                        final directory =
-                                            await getApplicationDocumentsDirectory();
-                                        final file = File(
-                                            '${directory.path}/comprovante_${rent.id}.pdf');
+                                          final directory =
+                                              await getApplicationDocumentsDirectory();
+                                          final file = File(
+                                              '${directory.path}/comprovante_${rent.id}.pdf');
 
-                                        if (await file.exists()) {
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Center(
-                                                  child: Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .rentalReceiptTitle,
-                                                    textAlign: TextAlign.center,
-                                                    style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 20.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                                content: SizedBox(
-                                                  width: double.maxFinite,
-                                                  height: 400,
-                                                  child: SfPdfViewer.file(file),
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pushNamed(
-                                                          context, '/');
-                                                    },
+                                          if (await file.exists()) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: Center(
                                                     child: Text(
                                                       AppLocalizations.of(
                                                               context)!
-                                                          .closeButton,
+                                                          .rentalReceiptTitle,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: const TextStyle(
-                                                          color: Colors.black),
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20.0,
+                                                      ),
                                                     ),
-                                                  )
-                                                ],
-                                                elevation: 25,
-                                                backgroundColor: Colors.white,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          70.0),
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        } else {
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .receiptNotFoundTitle,
-                                                  style: const TextStyle(
-                                                      color: Colors.red),
-                                                ),
-                                                content: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .receiptNotFoundMessage,
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: const Text('OK'),
                                                   ),
-                                                ],
-                                              );
-                                            },
-                                          );
+                                                  content: SizedBox(
+                                                    width: double.maxFinite,
+                                                    height: 400,
+                                                    child:
+                                                        SfPdfViewer.file(file),
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pushNamed(
+                                                            context, '/');
+                                                      },
+                                                      child: Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .closeButton,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    )
+                                                  ],
+                                                  elevation: 25,
+                                                  backgroundColor: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            70.0),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          } else {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .receiptNotFoundTitle,
+                                                    style: const TextStyle(
+                                                        color: Colors.red),
+                                                  ),
+                                                  content: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .receiptNotFoundMessage,
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: const Text('OK'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
                                         }
-                                      }
-                                    },
-                                    child: Text(
-                                      AppLocalizations.of(context)!.save,
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
+                                      },
+                                      child: Text(
+                                        AppLocalizations.of(context)!.save,
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              );
-                            }),
+                                  ],
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ],
