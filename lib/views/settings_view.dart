@@ -71,9 +71,9 @@ class SettingsView extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                   ),
-                  child: const Text(
-                    'Português',
-                    style: TextStyle(
+                  child: Text(
+                    AppLocalizations.of(context)!.portuguese,
+                    style: const TextStyle(
                       color: Color.fromRGBO(255, 195, 0, 1),
                     ),
                   ),
@@ -88,7 +88,7 @@ class SettingsView extends StatelessWidget {
                     shadowColor: Colors.transparent,
                   ),
                   child: Text(
-                    'Inglês',
+                    AppLocalizations.of(context)!.english,
                     style: TextStyle(
                       color: state.themeLight
                           ? const Color.fromRGBO(0, 53, 102, 1)
