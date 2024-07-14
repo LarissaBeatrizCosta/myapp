@@ -18,7 +18,21 @@
   "registeredManagers": "Registered Managers",
   "deleteManagerTitle": "Delete Manager",
   "deleteManagerMessage": "Do you want to delete this manager?",
-  "commission": "Commission"
+  "commission": "Commission",
+  "registerCustomerTitle": "Customer Registration",
+  "nameLabel": "Name:",
+  "phoneLabel": "Phone:",
+  "stateLabel": "State:",
+  "cityLabel": "City:",
+  "save": "Save",
+  "customerRegistered": "Customer Registered!",
+  "insertName": "Please enter a name",
+  "insertPhone": "Please enter a phone number",
+  "phoneDigits": "Phone number must have 10 digits",
+  "insertCNPJ": "Please enter a CNPJ",
+  "insertState": "Please enter a state",
+  "stateUF": "Please enter the UF of your state",
+  "insertCity": "Please enter a city"
 
   
 }

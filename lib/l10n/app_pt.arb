@@ -18,7 +18,22 @@
   "registeredManagers": "Gerentes Cadastrados",
   "deleteManagerTitle": "Excluir Gerente",
   "deleteManagerMessage": "Deseja excluir este gerente?",
-  "commission": "Comissão"
+  "commission": "Comissão",
+  "registerCustomerTitle": "Cadastro de Clientes",
+  "nameLabel": "Nome:",
+  "phoneLabel": "Telefone:",
+  "stateLabel": "Estado:",
+  "cityLabel": "Cidade:",
+  "save": "Salvar",
+  "customerRegistered": "Cliente Cadastrado!",
+  "insertName": "Insira um nome",
+  "insertPhone": "Insira um telefone",
+  "phoneDigits": "O telefone precisa ter 10 dígitos",
+  "insertCNPJ": "Insira um CNPJ",
+  "insertState": "Insira um estado",
+  "stateUF": "Digite o UF de seu estado",
+  "insertCity": "Insira uma cidade"
+
 
 }
 
