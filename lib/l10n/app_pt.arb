@@ -14,6 +14,11 @@
   "managers": "Gerentes",
   "vehicles": "Veículos",
   "rents": "Aluguéis",
-  "reportsAndChanges": "Relatórios e Alterações"
+  "reportsAndChanges": "Relatórios e Alterações",
+  "registeredManagers": "Gerentes Cadastrados",
+  "deleteManagerTitle": "Excluir Gerente",
+  "deleteManagerMessage": "Deseja excluir este gerente?",
+  "commission": "Comissão"
+
 }
 

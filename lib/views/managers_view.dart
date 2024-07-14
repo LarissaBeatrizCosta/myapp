@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 
 import '../providers/managers_state.dart';
@@ -18,9 +20,9 @@ class ManagersView extends StatelessWidget {
       create: (context) => ManagersState(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Gerentes Cadastrados',
-            style: TextStyle(
+          title: Text(
+            AppLocalizations.of(context)!.registeredManagers,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -130,7 +132,7 @@ class ManagersView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Comissão: ${manager.salesCommission}%',
+                                      '${AppLocalizations.of(context)!.commission}: ${manager.salesCommission}%',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -153,20 +155,22 @@ class ManagersView extends StatelessWidget {
                                         width: 300,
                                         height: 220,
                                         child: AlertDialog(
-                                          title: const Center(
+                                          title: Center(
                                             child: Text(
-                                              'Excluir Gerente',
+                                              AppLocalizations.of(context)!
+                                                  .deleteManagerTitle,
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 25.0,
                                               ),
                                             ),
                                           ),
-                                          content: const Text(
-                                            'Deseja excluir este gerente?',
-                                            style: TextStyle(
+                                          content: Text(
+                                            AppLocalizations.of(context)!
+                                                .deleteManagerMessage,
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 20.0,
                                             ),
@@ -176,9 +180,10 @@ class ManagersView extends StatelessWidget {
                                               onPressed: () {
                                                 Navigator.pop(context);
                                               },
-                                              child: const Text(
-                                                'Cancelar',
-                                                style: TextStyle(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .cancel,
+                                                style: const TextStyle(
                                                   color: Colors.red,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20.0,
@@ -190,9 +195,10 @@ class ManagersView extends StatelessWidget {
                                                 state.deleteManagers(manager);
                                                 Navigator.of(context).pop();
                                               },
-                                              child: const Text(
-                                                'Confirmar',
-                                                style: TextStyle(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .confirm,
+                                                style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.0,
                                                 ),
