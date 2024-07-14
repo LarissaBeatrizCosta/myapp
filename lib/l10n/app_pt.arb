@@ -32,7 +32,13 @@
   "insertCNPJ": "Insira um CNPJ",
   "insertState": "Insira um estado",
   "stateUF": "Digite o UF de seu estado",
-  "insertCity": "Insira uma cidade"
+  "insertCity": "Insira uma cidade",
+  "registerManagerTitle": "Cadastro De Gerentes",
+  "insertCPF": "Insira um CPF",
+  "commissionPercentageLabel": "Porcentagem de comissão:",
+  "insertPercentage": "Insira uma porcentagem",
+  "percentageOnlyNumbers": "Digite apenas números",
+  "managerRegistered": "Gerente Cadastrado!"
 
 
 }

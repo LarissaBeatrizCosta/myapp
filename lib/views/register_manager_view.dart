@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import '../controllers/database.dart';
@@ -37,9 +38,9 @@ class RegisterManagerView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Cadastro De Gerentes',
-                        style: TextStyle(
+                      Text(
+                        AppLocalizations.of(context)!.registerManagerTitle,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -47,12 +48,12 @@ class RegisterManagerView extends StatelessWidget {
                       const SizedBox(height: 20),
                       TextFormField(
                         controller: _nameController,
-                        decoration: const InputDecoration(
-                          labelText: 'Nome: ',
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.nameLabel,
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Insira um nome';
+                            return AppLocalizations.of(context)!.insertName;
                           }
                           return null;
                         },
@@ -60,8 +61,8 @@ class RegisterManagerView extends StatelessWidget {
                       const SizedBox(height: 20),
                       TextFormField(
                         controller: _numberPhoneController,
-                        decoration: const InputDecoration(
-                          labelText: 'Telefone: ',
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.phoneLabel,
                           hintText: '(xx) xxxxx-xxxx',
                         ),
                         inputFormatters: [
@@ -69,9 +70,9 @@ class RegisterManagerView extends StatelessWidget {
                         ],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Insira um telefone';
+                            return AppLocalizations.of(context)!.insertPhone;
                           } else if (value.length < 10) {
-                            return 'O telefone precisa ter 10 digitos';
+                            return AppLocalizations.of(context)!.phoneDigits;
                           }
                           return null;
                         },
@@ -87,7 +88,7 @@ class RegisterManagerView extends StatelessWidget {
                         ],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Insira um CPF';
+                            return AppLocalizations.of(context)!.insertCPF;
                           }
                           return null;
                         },
@@ -95,15 +96,15 @@ class RegisterManagerView extends StatelessWidget {
                       const SizedBox(height: 20),
                       TextFormField(
                         controller: _stateController,
-                        decoration: const InputDecoration(
-                          labelText: 'Estado: ',
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.stateLabel,
                           hintText: 'UF',
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Insira um estado';
+                            return AppLocalizations.of(context)!.insertState;
                           } else if (value.length > 2) {
-                            return 'Digite o UF de seu estado';
+                            return AppLocalizations.of(context)!.stateUF;
                           }
                           return null;
                         },
@@ -111,15 +112,18 @@ class RegisterManagerView extends StatelessWidget {
                       const SizedBox(height: 20),
                       TextFormField(
                         controller: _percentageController,
-                        decoration: const InputDecoration(
-                          labelText: 'Porcentagem de comissão:',
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!
+                              .commissionPercentageLabel,
                           hintText: 'ex.10',
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Insira uma porcentagem';
+                            return AppLocalizations.of(context)!
+                                .insertPercentage;
                           } else if (value.contains('%')) {
-                            return 'Digite apenas números';
+                            return AppLocalizations.of(context)!
+                                .percentageOnlyNumbers;
                           }
                           return null;
                         },
@@ -146,7 +150,7 @@ class RegisterManagerView extends StatelessWidget {
                                           phone: _numberPhoneController.text,
                                           salesCommission: double.parse(
                                             _percentageController.text,
-                                          ), //AQUI
+                                          ),
                                         ),
                                       );
                                       showDialog(
@@ -156,11 +160,12 @@ class RegisterManagerView extends StatelessWidget {
                                             height: 220,
                                             width: 300,
                                             child: AlertDialog(
-                                              title: const Center(
+                                              title: Center(
                                                 child: Text(
-                                                  'Gerente Cadastrado!',
+                                                  AppLocalizations.of(context)!
+                                                      .managerRegistered,
                                                   textAlign: TextAlign.center,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 20.0,
@@ -199,9 +204,9 @@ class RegisterManagerView extends StatelessWidget {
                                       );
                                     }
                                   },
-                                  child: const Text(
-                                    'Salvar',
-                                    style: TextStyle(
+                                  child: Text(
+                                    AppLocalizations.of(context)!.save,
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,

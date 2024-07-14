@@ -32,7 +32,13 @@
   "insertCNPJ": "Please enter a CNPJ",
   "insertState": "Please enter a state",
   "stateUF": "Please enter the UF of your state",
-  "insertCity": "Please enter a city"
+  "insertCity": "Please enter a city",
+  "insertCPF": "Please enter a CPF",
+  "commissionPercentageLabel": "Commission Percentage: ",
+  "insertPercentage": "Please enter a percentage",
+  "percentageOnlyNumbers": "Enter numbers only",
+  "managerRegistered": "Manager Registered!",
+  "registerManagerTitle": "Managar Registration"
 
   
 }
