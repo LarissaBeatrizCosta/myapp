@@ -7,6 +7,13 @@
   "deleteCustomerTitle": "Excluir Cliente",
   "deleteCustomerMessage": "Deseja excluir este cliente?",
   "cancel": "Cancelar",
-  "confirm": "Confirmar"
+  "confirm": "Confirmar",
+  "welcomeBack": "Que bom ter você novamente aqui!",
+  "newRegistrations": "Novos Cadastros",
+  "clients": "Clientes",
+  "managers": "Gerentes",
+  "vehicles": "Veículos",
+  "rents": "Aluguéis",
+  "reportsAndChanges": "Relatórios e Alterações"
 }
 

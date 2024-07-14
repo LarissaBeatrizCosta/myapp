@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 
 import '../providers/theme.dart';
@@ -30,9 +32,9 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Que bom ter você novamente aqui!',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.welcomeBack,
+                style: const TextStyle(
                   fontSize: 14,
                 ),
               ),
@@ -49,9 +51,9 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Novos Cadastros',
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.newRegistrations,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -80,7 +82,7 @@ class HomeView extends StatelessWidget {
                                 size: 40,
                               ),
                               Text(
-                                'Clientes',
+                                AppLocalizations.of(context)!.clients,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: state.themeLight
@@ -111,7 +113,7 @@ class HomeView extends StatelessWidget {
                                 size: 40,
                               ),
                               Text(
-                                'Gerentes',
+                                AppLocalizations.of(context)!.managers,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: state.themeLight
@@ -149,7 +151,7 @@ class HomeView extends StatelessWidget {
                                   size: 40,
                                 ),
                                 Text(
-                                  'Veiculos',
+                                  AppLocalizations.of(context)!.vehicles,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: state.themeLight
@@ -180,7 +182,7 @@ class HomeView extends StatelessWidget {
                                   size: 40,
                                 ),
                                 Text(
-                                  'Aluguéis',
+                                  AppLocalizations.of(context)!.rents,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: state.themeLight
@@ -202,9 +204,9 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Relatórios e Alterações',
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.reportsAndChanges,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -233,7 +235,7 @@ class HomeView extends StatelessWidget {
                                 size: 40,
                               ),
                               Text(
-                                'Clientes',
+                                AppLocalizations.of(context)!.clients,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: state.themeLight
@@ -264,7 +266,7 @@ class HomeView extends StatelessWidget {
                                 size: 40,
                               ),
                               Text(
-                                'Gerentes',
+                                AppLocalizations.of(context)!.managers,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: state.themeLight
@@ -302,7 +304,7 @@ class HomeView extends StatelessWidget {
                                   size: 40,
                                 ),
                                 Text(
-                                  'Veiculos',
+                                  AppLocalizations.of(context)!.vehicles,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: state.themeLight
@@ -333,7 +335,7 @@ class HomeView extends StatelessWidget {
                                   size: 40,
                                 ),
                                 Text(
-                                  'Aluguéis',
+                                  AppLocalizations.of(context)!.rents,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: state.themeLight
