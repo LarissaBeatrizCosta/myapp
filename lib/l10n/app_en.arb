@@ -38,7 +38,29 @@
   "insertPercentage": "Please enter a percentage",
   "percentageOnlyNumbers": "Enter numbers only",
   "managerRegistered": "Manager Registered!",
-  "registerManagerTitle": "Managar Registration"
+  "registerManagerTitle": "Managar Registration",
+  "titleRentsRegister": "Register Rentals",
+  "selectCustomer": "Select customer",
+  "customerLabel": "Customer",
+  "managerLabel": "Manager",
+  "vehicleLabel": "Vehicle",
+  "selectState": "Select state",
+  "selectManager": "Select manager",
+  "selectVehicle": "Select vehicle",
+  "customerValidationError": "Select a customer",
+  "stateValidationError": "Select a state",
+  "managerValidationError": "Select a manager",
+  "vehicleValidationError": "Select a vehicle",
+  "rentalStartDateHint": "Rental start date",
+  "rentalEndDateHint": "Rental end date",
+  "priceLabel": "Price: ",
+  "rentalReceiptTitle": "Rental Receipt",
+  "receiptNotFoundTitle": "Error",
+  "receiptNotFoundMessage": "PDF not found",
+  "closeButton": "Close",
+  "rentalRegisteredMessage": "Rental Registered!",
+  "startDateValidationMessage": "Select a start date",
+  "endDateValidationMessage": "Select an end date"
 
   
 }

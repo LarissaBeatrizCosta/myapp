@@ -38,7 +38,31 @@
   "commissionPercentageLabel": "Porcentagem de comissão:",
   "insertPercentage": "Insira uma porcentagem",
   "percentageOnlyNumbers": "Digite apenas números",
-  "managerRegistered": "Gerente Cadastrado!"
+  "managerRegistered": "Gerente Cadastrado!",
+  "titleRentsRegister": "Cadastro de Aluguéis",
+  "selectCustomer": "Selecione o cliente",
+  "selectState": "Selecione o estado",
+  "selectManager": "Selecione o gerente",
+  "selectVehicle": "Selecione o veículo",
+  "customerValidationError": "Selecione o cliente",
+  "stateValidationError": "Selecione o estado",
+  "managerValidationError": "Selecione o gerente",
+  "vehicleValidationError": "Selecione o veículo",
+  "rentalStartDateHint": "Data de início do aluguel",
+  "rentalEndDateHint": "Data de final do aluguel",
+  "priceLabel": "Preço:",
+  "commissionLabel": "Comissão:",
+  "managerLabel": "Manager",
+  "vehicleLabel": "Veículo",
+  "customerLabel": "Customer",
+  "saveButton": "Salvar",
+  "rentalReceiptTitle": "Comprovante de Aluguel",
+  "receiptNotFoundTitle": "Erro",
+  "receiptNotFoundMessage": "PDF não encontrado",
+  "closeButton": "Fechar",
+  "rentalRegisteredMessage": "Aluguel Registrado!",
+  "startDateValidationMessage": "Selecione uma data de início",
+  "endDateValidationMessage": "Selecione uma data de final"
 
 
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -87,9 +88,9 @@ class RegisterRentView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Cadastro De Aluguéis',
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.titleRentsRegister,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -104,7 +105,9 @@ class RegisterRentView extends StatelessWidget {
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
                             value: rentController.customerSelected,
-                            hint: const Text('Selecione o cliente'),
+                            hint: Text(
+                              AppLocalizations.of(context)!.selectCustomer,
+                            ),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
@@ -112,14 +115,17 @@ class RegisterRentView extends StatelessWidget {
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                 ),
                               ),
-                              label: const Text('Cliente'),
+                              label: Text(
+                                AppLocalizations.of(context)!.customerLabel,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
                             validator: (value) {
                               if (value == null) {
-                                return 'Selecione o cliente';
+                                return AppLocalizations.of(context)!
+                                    .customerValidationError;
                               }
                               return null;
                             },
@@ -139,7 +145,9 @@ class RegisterRentView extends StatelessWidget {
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
                             value: rentController.stateSelected,
-                            hint: const Text('Selecione o estado'),
+                            hint: Text(
+                              AppLocalizations.of(context)!.selectState,
+                            ),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
@@ -147,14 +155,17 @@ class RegisterRentView extends StatelessWidget {
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                 ),
                               ),
-                              label: const Text('Estado'),
+                              label: Text(
+                                AppLocalizations.of(context)!.stateLabel,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
                             validator: (value) {
                               if (value == null) {
-                                return 'Selecione o estado';
+                                return AppLocalizations.of(context)!
+                                    .stateValidationError;
                               }
                               return null;
                             },
@@ -181,7 +192,9 @@ class RegisterRentView extends StatelessWidget {
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
                             value: rentController.managerSelected,
-                            hint: const Text('Selecione o gerente'),
+                            hint: Text(
+                              AppLocalizations.of(context)!.selectManager,
+                            ),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
@@ -189,14 +202,17 @@ class RegisterRentView extends StatelessWidget {
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                 ),
                               ),
-                              label: const Text('Gerente'),
+                              label: Text(
+                                AppLocalizations.of(context)!.managerLabel,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
                             validator: (value) {
                               if (value == null) {
-                                return 'Selecione o gerente';
+                                return AppLocalizations.of(context)!
+                                    .managerValidationError;
                               }
                               return null;
                             },
@@ -221,7 +237,9 @@ class RegisterRentView extends StatelessWidget {
                               color: Color.fromRGBO(255, 195, 0, 1),
                             ),
                             value: rentController.vehicleSelected,
-                            hint: const Text('Selecione o veículo'),
+                            hint: Text(
+                              AppLocalizations.of(context)!.selectVehicle,
+                            ),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
@@ -229,14 +247,17 @@ class RegisterRentView extends StatelessWidget {
                                   color: Color.fromRGBO(255, 195, 0, 1),
                                 ),
                               ),
-                              label: const Text('Veículo'),
+                              label: Text(
+                                AppLocalizations.of(context)!.vehicleLabel,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
                             validator: (value) {
                               if (value == null) {
-                                return 'Selecione o veículo';
+                                return AppLocalizations.of(context)!
+                                    .vehicleValidationError;
                               }
                               return null;
                             },
@@ -251,11 +272,13 @@ class RegisterRentView extends StatelessWidget {
                           canRequestFocus: false,
                           autofocus: false,
                           controller: rentController.startDateController,
-                          decoration: const InputDecoration(
-                              hintText: 'Data de início do aluguel'),
+                          decoration: InputDecoration(
+                              hintText: AppLocalizations.of(context)!
+                                  .rentalStartDateHint),
                           validator: (value) {
                             if (rentController.startDate == null) {
-                              return 'Selecione uma data';
+                              return AppLocalizations.of(context)!
+                                  .startDateValidationMessage;
                             }
                             return null;
                           },
@@ -268,11 +291,13 @@ class RegisterRentView extends StatelessWidget {
                           canRequestFocus: false,
                           autofocus: false,
                           controller: rentController.endDateController,
-                          decoration: const InputDecoration(
-                              hintText: 'Data de final do aluguel'),
+                          decoration: InputDecoration(
+                              hintText: AppLocalizations.of(context)!
+                                  .rentalEndDateHint),
                           validator: (value) {
                             if (rentController.endDate == null) {
-                              return 'Selecione uma data';
+                              return AppLocalizations.of(context)!
+                                  .endDateValidationMessage;
                             }
                             return null;
                           },
@@ -289,9 +314,11 @@ class RegisterRentView extends StatelessWidget {
                               return Column(
                                 children: [
                                   Text(
-                                      'Preço ${rentController.getRentPrice()}'),
+                                    '${AppLocalizations.of(context)!.priceLabel} ${rentController.getRentPrice()}',
+                                  ),
                                   Text(
-                                      'Comissão: ${rentController.getManagerCommission()}'),
+                                    '${AppLocalizations.of(context)!.commission} ${rentController.getManagerCommission()}',
+                                  ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -320,11 +347,13 @@ class RegisterRentView extends StatelessWidget {
                                             context: context,
                                             builder: (context) {
                                               return AlertDialog(
-                                                title: const Center(
+                                                title: Center(
                                                   child: Text(
-                                                    'Comprovante de Aluguel',
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .rentalReceiptTitle,
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -343,9 +372,11 @@ class RegisterRentView extends StatelessWidget {
                                                       Navigator.pushNamed(
                                                           context, '/');
                                                     },
-                                                    child: const Text(
-                                                      'Fechar',
-                                                      style: TextStyle(
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .closeButton,
+                                                      style: const TextStyle(
                                                           color: Colors.black),
                                                     ),
                                                   )
@@ -365,13 +396,16 @@ class RegisterRentView extends StatelessWidget {
                                             context: context,
                                             builder: (context) {
                                               return AlertDialog(
-                                                title: const Text(
-                                                  'Erro',
-                                                  style: TextStyle(
+                                                title: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .receiptNotFoundTitle,
+                                                  style: const TextStyle(
                                                       color: Colors.red),
                                                 ),
-                                                content: const Text(
-                                                    'PDF não encontrado'),
+                                                content: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .receiptNotFoundMessage,
+                                                ),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () {
@@ -384,62 +418,11 @@ class RegisterRentView extends StatelessWidget {
                                             },
                                           );
                                         }
-
-                                        // await showDialog(
-                                        //   context: context,
-                                        //   builder: (context) {
-                                        //     return SizedBox(
-                                        //       height: 220,
-                                        //       width: 300,
-                                        //       child: AlertDialog(
-                                        //         title: const Center(
-                                        //           child: Text(
-                                        //             'Aluguel Cadastrado!',
-                                        //             textAlign: TextAlign.center,
-                                        //             style: TextStyle(
-                                        //               color: Colors.black,
-                                        //               fontWeight:
-                                        //                   FontWeight.bold,
-                                        //               fontSize: 20.0,
-                                        //             ),
-                                        //           ),
-                                        //         ),
-                                        //         actions: [
-                                        //           TextButton(
-                                        //             onPressed: () {
-                                        //               Navigator
-                                        //                   // Não consegui
-                                        //                   //quebrar a linha
-                                        //                   // ignore: lines_longer_than_80_chars
-                                        //                   .pushNamedAndRemoveUntil(
-                                        //                 context,
-                                        //                 '/',
-                                        //                 (route) => false,
-                                        //               );
-                                        //             },
-                                        //             child: const Text(
-                                        //               'OK',
-                                        //               style: TextStyle(
-                                        //                   color: Colors.black),
-                                        //             ),
-                                        //           )
-                                        //         ],
-                                        //         elevation: 25,
-                                        //         backgroundColor: Colors.white,
-                                        //         shape: RoundedRectangleBorder(
-                                        //           borderRadius:
-                                        //               BorderRadius.circular(
-                                        //                   70.0),
-                                        //         ),
-                                        //       ),
-                                        //     );
-                                        //   },
-                                        // );
                                       }
                                     },
-                                    child: const Text(
-                                      'Salvar',
-                                      style: TextStyle(
+                                    child: Text(
+                                      AppLocalizations.of(context)!.save,
+                                      style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
