@@ -168,7 +168,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Comissão: ${rent.commissionManager.toStringAsFixed(2)}',
+                                      'Comissão: R\$  ${rent.commissionManager.toStringAsFixed(2)}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -265,20 +265,20 @@ class RentsView extends StatelessWidget {
                                   );
                                 },
                               ),
-                              // IconButton(
-                              //   icon: const Icon(Icons.edit),
-                              //   color: const Color.fromARGB(255, 60, 255, 0),
-                              //   onPressed: () {
-                              //     // Navigator.push(
-                              //     //   context,
-                              //     //   MaterialPageRoute(
-                              //     //     builder: (context) => UpdateRents(
-                              //     //       rent: rent,
-                              //     //     ),
-                              //     //   ),
-                              //     // );
-                              // },
-                              //),
+                              IconButton(
+                                icon: const Icon(Icons.receipt_long),
+                                color: const Color.fromARGB(255, 60, 255, 0),
+                                onPressed: () {
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => UpdateRents(
+                                  //       rent: rent,
+                                  //     ),
+                                  //   ),
+                                  // );
+                                },
+                              ),
                             ],
                           ),
                         ],

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../controllers/database.dart';
 import '../models/customer_model.dart';
@@ -285,19 +289,28 @@ class RegisterRentView extends StatelessWidget {
                                     onPressed: () async {
                                       if (_formKey.currentState!.validate()) {
                                         final rent = rentController.getRent();
-                                        await tableRents.insertRents(
-                                          rent
+                                        await tableRents.insertRents(rent);
+
+                                        await rentController.generatePdf(
+                                          rentController.customerSelected!,
+                                          rentController.managerSelected!,
+                                          rentController.vehicleSelected!,
+                                          rent,
                                         );
-                                        await showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return SizedBox(
-                                              height: 220,
-                                              width: 300,
-                                              child: AlertDialog(
+
+                                        final directory =
+                                            await getApplicationDocumentsDirectory();
+                                        final file = File(
+                                            '${directory.path}/comprovante_${rent.id}.pdf');
+
+                                        if (await file.exists()) {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
                                                 title: const Center(
                                                   child: Text(
-                                                    'Aluguel Cadastrado!',
+                                                    'Comprovante de Aluguel',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       color: Colors.black,
@@ -307,21 +320,19 @@ class RegisterRentView extends StatelessWidget {
                                                     ),
                                                   ),
                                                 ),
+                                                content: SizedBox(
+                                                  width: double.maxFinite,
+                                                  height: 400,
+                                                  child: SfPdfViewer.file(file),
+                                                ),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () {
-                                                      Navigator
-                                                          // Não consegui
-                                                          //quebrar a linha
-                                                          // ignore: lines_longer_than_80_chars
-                                                          .pushNamedAndRemoveUntil(
-                                                        context,
-                                                        '/',
-                                                        (route) => false,
-                                                      );
+                                                      Navigator.pushNamed(
+                                                          context, '/');
                                                     },
                                                     child: const Text(
-                                                      'OK',
+                                                      'Fechar',
                                                       style: TextStyle(
                                                           color: Colors.black),
                                                     ),
@@ -334,10 +345,84 @@ class RegisterRentView extends StatelessWidget {
                                                       BorderRadius.circular(
                                                           70.0),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        );
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: const Text(
+                                                  'Erro',
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                ),
+                                                content: const Text(
+                                                    'PDF não encontrado'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: const Text('OK'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+
+                                        // await showDialog(
+                                        //   context: context,
+                                        //   builder: (context) {
+                                        //     return SizedBox(
+                                        //       height: 220,
+                                        //       width: 300,
+                                        //       child: AlertDialog(
+                                        //         title: const Center(
+                                        //           child: Text(
+                                        //             'Aluguel Cadastrado!',
+                                        //             textAlign: TextAlign.center,
+                                        //             style: TextStyle(
+                                        //               color: Colors.black,
+                                        //               fontWeight:
+                                        //                   FontWeight.bold,
+                                        //               fontSize: 20.0,
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         actions: [
+                                        //           TextButton(
+                                        //             onPressed: () {
+                                        //               Navigator
+                                        //                   // Não consegui
+                                        //                   //quebrar a linha
+                                        //                   // ignore: lines_longer_than_80_chars
+                                        //                   .pushNamedAndRemoveUntil(
+                                        //                 context,
+                                        //                 '/',
+                                        //                 (route) => false,
+                                        //               );
+                                        //             },
+                                        //             child: const Text(
+                                        //               'OK',
+                                        //               style: TextStyle(
+                                        //                   color: Colors.black),
+                                        //             ),
+                                        //           )
+                                        //         ],
+                                        //         elevation: 25,
+                                        //         backgroundColor: Colors.white,
+                                        //         shape: RoundedRectangleBorder(
+                                        //           borderRadius:
+                                        //               BorderRadius.circular(
+                                        //                   70.0),
+                                        //         ),
+                                        //       ),
+                                        //     );
+                                        //   },
+                                        // );
                                       }
                                     },
                                     child: const Text(

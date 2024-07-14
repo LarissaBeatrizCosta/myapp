@@ -1,4 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/widgets.dart' as pdfLib;
+import 'package:share/share.dart';
 
 import '../controllers/database.dart';
 import '../models/customer_model.dart';
@@ -202,5 +208,104 @@ class RentState extends ChangeNotifier {
         (rentPrice ?? 0) * (managerSelected?.salesCommission ?? 0) / 100;
 
     return managerCommission ?? 0;
+  }
+
+  ///Gerar o PDF do comprovante de aluguel
+  Future<void> generatePdf(
+    CustomerModel customerPdf,
+    ManagerModel managerPdf,
+    VehiclesModel vehiclePdf,
+    RentVehicleModel rentPdf,
+  ) async {
+    final pdf = pdfLib.Document();
+
+    pdf.addPage(
+      pdfLib.Page(
+        build: (context) => pdfLib.Column(
+          crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
+          children: [
+            pdfLib.Center(
+              child: pdfLib.Text(
+                'SS Automóveis',
+                style: pdfLib.TextStyle(
+                  fontSize: 24,
+                  fontWeight: pdfLib.FontWeight.bold,
+                ),
+              ),
+            ),
+            pdfLib.Center(
+              child: pdfLib.Text(
+                'Comprovante de Aluguel',
+                style: pdfLib.TextStyle(
+                  fontSize: 20,
+                  fontWeight: pdfLib.FontWeight.normal,
+                ),
+              ),
+            ),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.Text(
+              'Data da geração: ${DateFormat('dd/MM/yyyy').format(
+                DateTime.now(),
+              )}',
+              style: const pdfLib.TextStyle(fontSize: 12),
+            ),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.Text(
+              'Dados do Cliente:',
+              style: pdfLib.TextStyle(fontWeight: pdfLib.FontWeight.bold),
+            ),
+            pdfLib.Text('Nome: ${customerPdf.name}'),
+            pdfLib.Text('CNPJ: ${customerPdf.cnpj}'),
+            pdfLib.Text('Telefone: ${customerPdf.phone}'),
+            pdfLib.Text('Endereço: ${customerPdf.city} - ${customerPdf.state}'),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.Text(
+              'Dados do Veículo:',
+              style: pdfLib.TextStyle(fontWeight: pdfLib.FontWeight.bold),
+            ),
+            pdfLib.Text('Placa: ${vehiclePdf.plate}'),
+            pdfLib.Text('Marca: ${vehiclePdf.brand}'),
+            pdfLib.Text('Modelo: ${vehiclePdf.model}'),
+            pdfLib.Text('Ano: ${vehiclePdf.manufacturingYear}'),
+            pdfLib.Text('Diária: ${vehiclePdf.priceDaily}'),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.Text(
+              'Dados do Gerente:',
+              style: pdfLib.TextStyle(fontWeight: pdfLib.FontWeight.bold),
+            ),
+            pdfLib.Text('Nome: ${managerPdf.name}'),
+            pdfLib.Text('CPF: ${managerPdf.cpf}'),
+            pdfLib.Text('Comissão: ${managerPdf.salesCommission}'),
+            pdfLib.Text('Telefone: ${managerPdf.phone}'),
+            pdfLib.Text('Estado: ${managerPdf.state}'),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.Text(
+              'Período do Aluguel:',
+              style: pdfLib.TextStyle(fontWeight: pdfLib.FontWeight.bold),
+            ),
+            pdfLib.Text(
+              'Início: ${DateFormat('dd/MM/yyyy').format(rentPdf.startDate)}',
+            ),
+            pdfLib.Text(
+              'Término: ${DateFormat('dd/MM/yyyy').format(rentPdf.finalDate)}',
+            ),
+            pdfLib.SizedBox(height: 20),
+            pdfLib.Text('Diárias: ${rentPdf.totalDays}'),
+            pdfLib.Text('Valor da Diária: R\$ ${vehiclePdf.priceDaily}'),
+            pdfLib.Text('Valor Total do Aluguel: R\$ ${rentPdf.rentPrice}'),
+            pdfLib.Text(
+                'Comissão do Gerente: R\$ ${managerPdf.salesCommission}'),
+          ],
+        ),
+      ),
+    );
+
+    final dir = (await getApplicationDocumentsDirectory()).path;
+    final path = '$dir/comprovante_${rentPdf.id}.pdf';
+    final file = File(path);
+    await file.writeAsBytes(await pdf.save());
+
+    Share.shareFiles([path], text: 'Comprovante de Aluguel');
   }
 }

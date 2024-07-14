@@ -47,6 +47,8 @@ dependencies:
   mask_text_input_formatter: ^2.9.0
   path_provider: ^2.1.3
   carousel_slider: ^4.2.1
+  share: ^2.0.4
+  syncfusion_flutter_pdfviewer: ^26.1.41
 
 
 dev_dependencies:
