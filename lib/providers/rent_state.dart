@@ -210,22 +210,20 @@ class RentState extends ChangeNotifier {
     return managerCommission ?? 0;
   }
 
-  ///Gerar o PDF do comprovante de aluguel
+  ///Gera o PDF do comprovante de aluguel
   Future<void> generatePdf(
-    CustomerModel customer,
-    ManagerModel manager,
-    VehiclesModel vehicle,
-    RentVehicleModel rent,
+    CustomerModel customerPdf,
+    ManagerModel managerPdf,
+    VehiclesModel vehiclePdf,
+    RentVehicleModel rentPdf,
   ) async {
-    final pdf = pdfLib.Document();
+    final pdfRent = pdfLib.Document();
 
-    // Add page to PDF
-    pdf.addPage(
+    pdfRent.addPage(
       pdfLib.Page(
         build: (context) => pdfLib.Column(
           crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
           children: [
-            // Header
             pdfLib.Column(
               crossAxisAlignment: pdfLib.CrossAxisAlignment.center,
               children: [
@@ -247,8 +245,6 @@ class RentState extends ChangeNotifier {
               ],
             ),
             pdfLib.SizedBox(height: 20),
-
-            // Dados do Cliente
             pdfLib.Column(
               crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
               children: [
@@ -259,16 +255,25 @@ class RentState extends ChangeNotifier {
                   ),
                 ),
                 pdfLib.SizedBox(height: 10),
-                _buildInfoRow('Nome:', customer.name),
-                _buildInfoRow('CNPJ:', customer.cnpj),
-                _buildInfoRow('Telefone:', customer.phone),
-                _buildInfoRow(
-                    'Endereço:', '${customer.city} - ${customer.state}'),
+                _pdfStyle(
+                  'Nome:',
+                  customerPdf.name,
+                ),
+                _pdfStyle(
+                  'CNPJ:',
+                  customerPdf.cnpj,
+                ),
+                _pdfStyle(
+                  'Telefone:',
+                  customerPdf.phone,
+                ),
+                _pdfStyle(
+                  'Endereço:',
+                  '${customerPdf.city} - ${customerPdf.state}',
+                ),
               ],
             ),
             pdfLib.SizedBox(height: 20),
-
-            // Dados do Veículo
             pdfLib.Column(
               crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
               children: [
@@ -279,17 +284,29 @@ class RentState extends ChangeNotifier {
                   ),
                 ),
                 pdfLib.SizedBox(height: 10),
-                _buildInfoRow('Placa:', vehicle.plate),
-                _buildInfoRow('Marca:', vehicle.brand),
-                _buildInfoRow('Modelo:', vehicle.model),
-                _buildInfoRow('Ano:', vehicle.manufacturingYear.toString()),
-                _buildInfoRow(
-                    'Diária:', 'R\$ ${vehicle.priceDaily.toStringAsFixed(2)}'),
+                _pdfStyle(
+                  'Placa:',
+                  vehiclePdf.plate,
+                ),
+                _pdfStyle(
+                  'Marca:',
+                  vehiclePdf.brand,
+                ),
+                _pdfStyle(
+                  'Modelo:',
+                  vehiclePdf.model,
+                ),
+                _pdfStyle(
+                  'Ano:',
+                  vehiclePdf.manufacturingYear.toString(),
+                ),
+                _pdfStyle(
+                  'Diária:',
+                  'R\$ ${vehiclePdf.priceDaily.toStringAsFixed(2)}',
+                ),
               ],
             ),
             pdfLib.SizedBox(height: 20),
-
-            // Dados do Gerente
             pdfLib.Column(
               crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
               children: [
@@ -300,16 +317,29 @@ class RentState extends ChangeNotifier {
                   ),
                 ),
                 pdfLib.SizedBox(height: 10),
-                _buildInfoRow('Nome:', manager.name),
-                _buildInfoRow('CPF:', manager.cpf),
-                _buildInfoRow('Comissão:', '${manager.salesCommission}%'),
-                _buildInfoRow('Telefone:', manager.phone),
-                _buildInfoRow('Estado:', manager.state),
+                _pdfStyle(
+                  'Nome:',
+                  managerPdf.name,
+                ),
+                _pdfStyle(
+                  'CPF:',
+                  managerPdf.cpf,
+                ),
+                _pdfStyle(
+                  'Comissão:',
+                  '${managerPdf.salesCommission}%',
+                ),
+                _pdfStyle(
+                  'Telefone:',
+                  managerPdf.phone,
+                ),
+                _pdfStyle(
+                  'Estado:',
+                  managerPdf.state,
+                ),
               ],
             ),
             pdfLib.SizedBox(height: 20),
-
-            // Período do Aluguel
             pdfLib.Column(
               crossAxisAlignment: pdfLib.CrossAxisAlignment.start,
               children: [
@@ -320,15 +350,26 @@ class RentState extends ChangeNotifier {
                   ),
                 ),
                 pdfLib.SizedBox(height: 10),
-                _buildInfoRow(
-                    'Início:', DateFormat('dd/MM/yyyy').format(rent.startDate)),
-                _buildInfoRow('Término:',
-                    DateFormat('dd/MM/yyyy').format(rent.finalDate)),
-                _buildInfoRow('Diárias:', rent.totalDays.toString()),
-                _buildInfoRow(
-                    'Valor Total do Aluguel:', 'R\$ ${rent.rentPrice}'),
-                _buildInfoRow(
-                    'Comissão do Gerente:', 'R\$ ${rent.commissionManager}'),
+                _pdfStyle(
+                  'Início:',
+                  DateFormat('dd/MM/yyyy').format(rentPdf.startDate),
+                ),
+                _pdfStyle(
+                  'Término:',
+                  DateFormat('dd/MM/yyyy').format(rentPdf.finalDate),
+                ),
+                _pdfStyle(
+                  'Diárias:',
+                  rentPdf.totalDays.toString(),
+                ),
+                _pdfStyle(
+                  'Valor Total do Aluguel:',
+                  'R\$ ${rentPdf.rentPrice}',
+                ),
+                _pdfStyle(
+                  'Comissão do Gerente:',
+                  'R\$ ${rentPdf.commissionManager}',
+                ),
               ],
             ),
           ],
@@ -336,17 +377,15 @@ class RentState extends ChangeNotifier {
       ),
     );
 
-    // Save PDF to device
-    final dir = await getApplicationDocumentsDirectory();
-    final path = '${dir.path}/comprovante_${rent.id}.pdf';
+    final directory = await getApplicationDocumentsDirectory();
+    final path = '${directory.path}/comprovante_${rentPdf.id}.pdf';
     final file = File(path);
-    await file.writeAsBytes(await pdf.save());
+    await file.writeAsBytes(await pdfRent.save());
 
-    // Share PDF
     Share.shareFiles([path], text: 'Comprovante de Aluguel');
   }
 
-  pdfLib.Widget _buildInfoRow(String label, String value) {
+  pdfLib.Widget _pdfStyle(String label, String value) {
     return pdfLib.Container(
       margin: const pdfLib.EdgeInsets.symmetric(vertical: 2),
       child: pdfLib.Row(

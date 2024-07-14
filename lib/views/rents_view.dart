@@ -265,20 +265,6 @@ class RentsView extends StatelessWidget {
                                   );
                                 },
                               ),
-                              IconButton(
-                                icon: const Icon(Icons.receipt_long),
-                                color: const Color.fromARGB(255, 60, 255, 0),
-                                onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => UpdateRents(
-                                  //       rent: rent,
-                                  //     ),
-                                  //   ),
-                                  // );
-                                },
-                              ),
                             ],
                           ),
                         ],
