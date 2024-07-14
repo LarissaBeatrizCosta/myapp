@@ -222,9 +222,16 @@ class RentState extends ChangeNotifier {
     final pdfRent = pdfLib.Document();
     final vehicleImagePath =
         await imagePickerState.getImageVehicle(vehiclePdf.plate);
-    final vehicleImage = pdfLib.MemoryImage(
-      File(vehicleImagePath).readAsBytesSync(),
-    );
+    pdfLib.MemoryImage? vehicleImage;
+
+    if (vehicleImagePath.isNotEmpty) {
+      final vehicleImageFile = File(vehicleImagePath);
+      if (vehicleImageFile.existsSync()) {
+        vehicleImage = pdfLib.MemoryImage(
+          vehicleImageFile.readAsBytesSync(),
+        );
+      }
+    }
 
     pdfRent.addPage(
       pdfLib.Page(
@@ -300,6 +307,14 @@ class RentState extends ChangeNotifier {
                   ),
                 ),
                 pdfLib.SizedBox(height: 10),
+                pdfLib.Container(
+                  height: 100,
+                  width: 100,
+                  child: vehicleImage != null
+                      ? pdfLib.Image(vehicleImage)
+                      : pdfLib.Text('Sem imagem disponível'),
+                ),
+                pdfLib.SizedBox(height: 10),
                 _pdfStyle(
                   'Placa:',
                   vehiclePdf.plate,
@@ -319,11 +334,6 @@ class RentState extends ChangeNotifier {
                 _pdfStyle(
                   'Diária:',
                   'R\$ ${vehiclePdf.priceDaily.toStringAsFixed(2)}',
-                ),
-                pdfLib.Container(
-                  height: 100,
-                  width: 100,
-                  child: pdfLib.Image(vehicleImage),
                 ),
               ],
             ),
