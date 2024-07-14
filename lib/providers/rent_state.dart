@@ -117,11 +117,11 @@ class RentState extends ChangeNotifier {
   ///Pega todos os dados do cliente
   RentVehicleModel getRent() {
     return RentVehicleModel(
-      cnpjCustomer: customerSelected?.name ?? '',
-      cpfManager: managerSelected?.name ?? '',
+      nameCustomer: customerSelected?.name ?? '',
+      nameManager: managerSelected?.name ?? '',
       startDate: startDate ?? DateTime.now(),
       finalDate: endDate ?? DateTime.now(),
-      plateVehicle: vehicleSelected?.model ?? '',
+      plateVehicle: vehicleSelected?.plate ?? '',
       totalDays: totalDays ?? 0,
       rentPrice: getRentPrice().toString(),
       commissionManager: managerCommission ?? 0.0,

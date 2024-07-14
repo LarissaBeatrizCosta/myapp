@@ -67,7 +67,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 10.0),
                                     child: Text(
-                                      rent.cnpjCustomer,
+                                      rent.nameCustomer,
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -76,66 +76,6 @@ class RentsView extends StatelessWidget {
                                                 255, 195, 0, 1)
                                             : const Color.fromARGB(
                                                 255, 255, 225, 127),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 1.0),
-                                    child: Text(
-                                      'CNPJ: ${rent.commissionManager}',
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 1.0),
-                                    child: Text(
-                                      rent.plateVehicle,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 1.0),
-                                    child: Text(
-                                      rent.cpfManager,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 1.0),
-                                    child: Text(
-                                      'Comissão: ${rent.commissionManager}',
-                                      style: const TextStyle(
-                                        fontSize: 14,
                                       ),
                                     ),
                                   ),
@@ -182,7 +122,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      rent.rentPrice,
+                                      'Diárias: ${rent.totalDays.toString()}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -197,9 +137,56 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      rent.plateVehicle,
+                                      'Placa: ${rent.plateVehicle}',
                                       style: const TextStyle(
                                         fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 1.0),
+                                    child: Text(
+                                      'Gerente: ${rent.nameManager}',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 1.0),
+                                    child: Text(
+                                      'Comissão: ${rent.commissionManager.toStringAsFixed(2)}',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 1.0),
+                                    child: Text(
+                                      'Valor Total: R\$ ${rent.rentPrice}',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),

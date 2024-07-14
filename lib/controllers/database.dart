@@ -26,7 +26,10 @@ Future<Database> getDatabase() async {
           phone: '999999999',
           state: 'SC',
           city: 'Gaspar');
-      db.insert(TableCustomers.tableName, customer.toMapCustomer());
+      db.insert(
+        TableCustomers.tableName,
+        customer.toMapCustomer(),
+      );
 
       final manager = ManagerModel(
           cpf: '10911918914',
@@ -34,10 +37,13 @@ Future<Database> getDatabase() async {
           phone: '999999999',
           state: 'SC',
           salesCommission: 10.0);
-      db.insert(TableManagers.tableName, manager.toMapManager());
+      db.insert(
+        TableManagers.tableName,
+        manager.toMapManager(),
+      );
 
       final manager2 = ManagerModel(
-          cpf: '10911918914',
+          cpf: '10818819818',
           name: 'Eduarda',
           phone: '999999999',
           state: 'SC',
@@ -47,15 +53,12 @@ Future<Database> getDatabase() async {
       final vehicle = VehiclesModel(
         type: 'Carro',
         brand: 'BMW',
-        model: 'modelo da bm',
+        model: 'BMW 118i',
         plate: 'ABC1234',
         manufacturingYear: '2022',
         priceDaily: 100.50,
       );
       db.insert(TableVehicles.tableName, vehicle.toMapVehicles());
-
-      // final rent = RentVehicleModel();
-      // db.insert(TableRents.tableName, rent.toMapRents());
     },
     version: 1,
   );
@@ -333,17 +336,15 @@ class TableRents extends ChangeNotifier {
   static const String createTable = '''
 CREATE TABLE $tableName(
   $id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  $cnpjCustomer TEXT NOT NULL,
+  $nameCustomer TEXT NOT NULL,
   $startDate TEXT NOT NULL,
   $finalDate TEXT NOT NULL,
   $totalDays INTEGER NOT NULL,
   $rentPrice TEXT NOT NULL,
   $plateVehicle TEXT NOT NULL,
-  $cpfManager TEXT NOT NULL,
-  $commissionManager REAL NOT NULL,
-  FOREIGN KEY($cnpjCustomer) REFERENCES ${TableCustomers.tableName}(${TableCustomers.cnpj}),
-  FOREIGN KEY($plateVehicle) REFERENCES ${TableVehicles.tableName}(${TableVehicles.plate}),
-  FOREIGN KEY($cpfManager) REFERENCES ${TableManagers.tableName}(${TableManagers.cpf})
+  $nameManager TEXT NOT NULL,
+  $commissionManager REAL NOT NULL
+
 );
 ''';
 
@@ -354,7 +355,7 @@ CREATE TABLE $tableName(
   static const String id = 'id';
 
   ///Cliente que vai alugar
-  static const String cnpjCustomer = 'cnpjCustomer';
+  static const String nameCustomer = 'nameCustomer';
 
   ///Data de início do aluguel
   static const String startDate = ' startDate';
@@ -372,7 +373,7 @@ CREATE TABLE $tableName(
   static const String plateVehicle = 'plateVehicle';
 
   ///Gerente responsável pelo aluguel
-  static const String cpfManager = 'cpfManager';
+  static const String nameManager = 'nameManager';
 
   ///Comissão do gerente
   static const String commissionManager = 'commissionManager';
@@ -414,13 +415,13 @@ CREATE TABLE $tableName(
       tableName,
       columns: [
         'id',
-        'cnpjCustomer',
+        'nameCustomer',
         'startDate',
         'finalDate',
         'totalDays',
         'rentPrice',
         'plateVehicle',
-        'cpfManager',
+        'nameManager',
         'commissionManager',
       ],
     );
