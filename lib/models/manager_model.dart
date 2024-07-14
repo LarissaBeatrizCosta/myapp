@@ -13,7 +13,7 @@ class ManagerModel {
   String phone;
 
   ///Comissão do gerente
-  double salesCommission; // AQUI
+  double salesCommission;
 
   ///Construtor da classe de gerentes
   ManagerModel({

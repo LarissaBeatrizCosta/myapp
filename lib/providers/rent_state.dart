@@ -295,7 +295,8 @@ class RentState extends ChangeNotifier {
             pdfLib.Text('Valor da Diária: R\$ ${vehiclePdf.priceDaily}'),
             pdfLib.Text('Valor Total do Aluguel: R\$ ${rentPdf.rentPrice}'),
             pdfLib.Text(
-                'Comissão do Gerente: R\$ ${managerPdf.salesCommission}'),
+                'Comissão do Gerente: R\$ ${rentPdf.commissionManager}'),
+            pdfLib.Text('Valor Total: R\$ ${rentPdf.rentPrice}'),
           ],
         ),
       ),
