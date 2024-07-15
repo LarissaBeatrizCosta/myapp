@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../models/customer_model.dart';
@@ -36,9 +37,9 @@ class UpdateCustomers extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Editar Clientes',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.updateCustomersTitle,
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,10 +47,12 @@ class UpdateCustomers extends StatelessWidget {
               const SizedBox(height: 20),
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.nameLabel,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, informe o nome';
+                    return AppLocalizations.of(context)!.insertName;
                   }
                   return null;
                 },
@@ -57,8 +60,8 @@ class UpdateCustomers extends StatelessWidget {
               const SizedBox(height: 20),
               TextFormField(
                 controller: _phoneController,
-                decoration: const InputDecoration(
-                  labelText: 'Telefone',
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.phoneLabel,
                   hintText: '(xx) xxxxx-xxxx',
                 ),
                 inputFormatters: [
@@ -66,9 +69,9 @@ class UpdateCustomers extends StatelessWidget {
                 ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Insira um telefone';
+                    return AppLocalizations.of(context)!.insertPhone;
                   } else if (value.length < 10) {
-                    return 'O telefone precisa ter 10 digitos';
+                    return AppLocalizations.of(context)!.phoneDigits;
                   }
                   return null;
                 },
@@ -76,15 +79,15 @@ class UpdateCustomers extends StatelessWidget {
               const SizedBox(height: 20),
               TextFormField(
                 controller: _stateController,
-                decoration: const InputDecoration(
-                  labelText: 'Estado',
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.stateLabel,
                   hintText: 'UF',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Insira um estado';
+                    return AppLocalizations.of(context)!.insertState;
                   } else if (value.length > 2) {
-                    return 'Digite o UF de seu estado';
+                    return AppLocalizations.of(context)!.stateUF;
                   }
                   return null;
                 },
@@ -92,10 +95,12 @@ class UpdateCustomers extends StatelessWidget {
               const SizedBox(height: 20),
               TextFormField(
                 controller: _cityController,
-                decoration: const InputDecoration(labelText: 'Cidade'),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.cityLabel,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, informe a cidade';
+                    return AppLocalizations.of(context)!.insertCity;
                   }
                   return null;
                 },
@@ -125,11 +130,12 @@ class UpdateCustomers extends StatelessWidget {
                               width: 300,
                               height: 220,
                               child: AlertDialog(
-                                title: const Center(
+                                title: Center(
                                   child: Text(
-                                    'Cliente Editado Com Sucesso!',
+                                    AppLocalizations.of(context)!
+                                        .successDialogTitle,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,
@@ -161,9 +167,9 @@ class UpdateCustomers extends StatelessWidget {
                         );
                       }
                     },
-                    child: const Text(
-                      'Salvar',
-                      style: TextStyle(
+                    child: Text(
+                      AppLocalizations.of(context)!.save,
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,

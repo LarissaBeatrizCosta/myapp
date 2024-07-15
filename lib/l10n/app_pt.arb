@@ -96,7 +96,11 @@
   "deleteRent": "Excluir Aluguel",
   "confirmDeleteRent": "Deseja excluir este aluguel?",
   "cancel": "Cancelar",
-  "confirm": "Confirmar"
+  "confirm": "Confirmar",
+  "updateCustomersTitle": "Editar Clientes",
+    "successDialogTitle": "Cliente Editado Com Sucesso!"
+
+
 
 
 
