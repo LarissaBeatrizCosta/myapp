@@ -84,6 +84,9 @@
   "gallery": "Galeria",
   "attachPhotos": "Anexar Fotos",
   "vehicleRegisteredMessage": "Veículo Registrado!",
+  "registeredVehicles": "Veículos Cadastrados",
+  "deleteVehicle": "Deletar Veículo",
+  "confirmDeleteVehicle": "Deseja excluir este veículo?",
 
   "registeredRents": "Aluguéis Cadastrados",
   "startDate": "Data inicial",

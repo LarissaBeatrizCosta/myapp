@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 
 import '../providers/image_picker_state.dart';
@@ -28,9 +30,9 @@ class VehiclesView extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Veículos Cadastrados',
-            style: TextStyle(
+          title: Text(
+            AppLocalizations.of(context)!.registeredVehicles,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -101,19 +103,19 @@ class VehiclesView extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      vehicle.brand,
+                                      ('${AppLocalizations.of(context)!.brand}: ${vehicle.brand}'),
                                       style: const TextStyle(fontSize: 14),
                                     ),
                                     Text(
-                                      vehicle.manufacturingYear,
+                                      ('${AppLocalizations.of(context)!.manufacturingYear}: ${vehicle.manufacturingYear}'),
                                       style: const TextStyle(fontSize: 14),
                                     ),
                                     Text(
-                                      vehicle.plate,
+                                      ('${AppLocalizations.of(context)!.plate}: ${vehicle.plate}'),
                                       style: const TextStyle(fontSize: 14),
                                     ),
                                     Text(
-                                      vehicle.priceDaily.toString(),
+                                      ('${AppLocalizations.of(context)!.dailyPrice}: R\$ ${vehicle.priceDaily.toString()}'),
                                       style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w700),
@@ -134,20 +136,22 @@ class VehiclesView extends StatelessWidget {
                                             width: 200,
                                             height: 220,
                                             child: AlertDialog(
-                                              title: const Center(
+                                              title: Center(
                                                 child: Text(
-                                                  'Excluir Veículo',
+                                                  AppLocalizations.of(context)!
+                                                      .deleteVehicle,
                                                   textAlign: TextAlign.center,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 25.0,
                                                   ),
                                                 ),
                                               ),
-                                              content: const Text(
-                                                'Deseja excluir este veículo?',
-                                                style: TextStyle(
+                                              content: Text(
+                                                AppLocalizations.of(context)!
+                                                    .confirmDeleteVehicle,
+                                                style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.0,
                                                 ),
@@ -157,9 +161,11 @@ class VehiclesView extends StatelessWidget {
                                                   onPressed: () {
                                                     Navigator.pop(context);
                                                   },
-                                                  child: const Text(
-                                                    'Cancelar',
-                                                    style: TextStyle(
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .cancel,
+                                                    style: const TextStyle(
                                                       color: Colors.red,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -173,9 +179,11 @@ class VehiclesView extends StatelessWidget {
                                                         vehicle);
                                                     Navigator.of(context).pop();
                                                   },
-                                                  child: const Text(
-                                                    'Confirmar',
-                                                    style: TextStyle(
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .confirm,
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 20.0,
                                                     ),

@@ -97,6 +97,10 @@
   "cancel": "Cancel",
   "confirm": "Confirm",
   "updateCustomersTitle": "Update Customer",
+  "registeredVehicles": "Registered Vehicles",
+  "deleteVehicle": "Delete Vehicle",
+  "confirmDeleteVehicle": "Do you want to delete this vehicle?",
+
   "successDialogTitle": "Customer Edited Successfully!",
   "updateManagerTitle": "Update Manager",
   "successDialogTitleManager": "Manager Edited Successfully!",
