@@ -305,7 +305,7 @@ class RegisterRentView extends StatelessWidget {
                             rentController.getEndDate(context);
                           },
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 20),
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15),
@@ -313,12 +313,28 @@ class RegisterRentView extends StatelessWidget {
                               builder: (context, tableRents, child) {
                                 return Column(
                                   children: [
-                                    Text(
-                                      '${AppLocalizations.of(context)!.priceLabel} ${rentController.getRentPrice()}',
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          '${AppLocalizations.of(context)!.priceLabel} ${rentController.getRentPrice()}',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        Text(
+                                          '${AppLocalizations.of(context)!.commission} ${rentController.getManagerCommission()}',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      '${AppLocalizations.of(context)!.commission} ${rentController.getManagerCommission()}',
-                                    ),
+                                    const SizedBox(height: 40),
                                     ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: const Color.fromRGBO(
