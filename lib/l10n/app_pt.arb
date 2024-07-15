@@ -98,7 +98,11 @@
   "cancel": "Cancelar",
   "confirm": "Confirmar",
   "updateCustomersTitle": "Editar Clientes",
-    "successDialogTitle": "Cliente Editado Com Sucesso!"
+  "successDialogTitle": "Cliente Editado Com Sucesso!",
+  "updateManagerTitle": "Editar Gerentes",
+  "successDialogTitleManager": "Gerente Editado Com Sucesso!",
+  "updateVehicleTitle": "Editar Veículo",
+  "successDialogTitleVehicle": "Veículo Editado Com Sucesso!"
 
 
 
