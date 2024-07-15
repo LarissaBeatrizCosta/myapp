@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -21,9 +22,9 @@ class RentsView extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Aluguéis Cadastrados',
-            style: TextStyle(
+          title: Text(
+            AppLocalizations.of(context)!.registeredRents,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -88,9 +89,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Data inicial: ${DateFormat('yyyy-MM-dd').format(
-                                        rent.startDate,
-                                      )}',
+                                      '${AppLocalizations.of(context)!.startDate}: ${DateFormat('yyyy-MM-dd').format(rent.startDate)}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -105,9 +104,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Data final: ${DateFormat('yyyy-MM-dd').format(
-                                        rent.finalDate,
-                                      )}',
+                                      '${AppLocalizations.of(context)!.finalDate}: ${DateFormat('yyyy-MM-dd').format(rent.finalDate)}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -122,7 +119,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Diárias: ${rent.totalDays.toString()}',
+                                      '${AppLocalizations.of(context)!.totalDays}: ${rent.totalDays.toString()}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -137,7 +134,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Placa: ${rent.plateVehicle}',
+                                      '${AppLocalizations.of(context)!.plate}: ${rent.plateVehicle}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -152,7 +149,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Gerente: ${rent.nameManager}',
+                                      '${AppLocalizations.of(context)!.manager}: ${rent.nameManager}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -168,7 +165,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Comissão: R\$  ${rent.commissionManager.toStringAsFixed(2)}',
+                                      '${AppLocalizations.of(context)!.commission}: R\$ ${rent.commissionManager.toStringAsFixed(2)}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                       ),
@@ -183,7 +180,7 @@ class RentsView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 1.0),
                                     child: Text(
-                                      'Valor Total: R\$ ${rent.rentPrice}',
+                                      '${AppLocalizations.of(context)!.totalPrice}: R\$ ${rent.rentPrice}',
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -207,20 +204,22 @@ class RentsView extends StatelessWidget {
                                         width: 300,
                                         height: 220,
                                         child: AlertDialog(
-                                          title: const Center(
+                                          title: Center(
                                             child: Text(
-                                              'Excluir Aluguel',
+                                              AppLocalizations.of(context)!
+                                                  .deleteRent,
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 25.0,
                                               ),
                                             ),
                                           ),
-                                          content: const Text(
-                                            'Deseja excluir este aluguel?',
-                                            style: TextStyle(
+                                          content: Text(
+                                            AppLocalizations.of(context)!
+                                                .confirmDeleteRent,
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 20.0,
                                             ),
@@ -230,9 +229,10 @@ class RentsView extends StatelessWidget {
                                               onPressed: () {
                                                 Navigator.pop(context);
                                               },
-                                              child: const Text(
-                                                'Cancelar',
-                                                style: TextStyle(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .cancel,
+                                                style: const TextStyle(
                                                   color: Colors.red,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20.0,
@@ -244,9 +244,10 @@ class RentsView extends StatelessWidget {
                                                 state.deleteRents(rent);
                                                 Navigator.of(context).pop();
                                               },
-                                              child: const Text(
-                                                'Confirmar',
-                                                style: TextStyle(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .confirm,
+                                                style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.0,
                                                 ),

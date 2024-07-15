@@ -83,7 +83,20 @@
   "camera": "Câmera",
   "gallery": "Galeria",
   "attachPhotos": "Anexar Fotos",
-  "vehicleRegisteredMessage": "Veículo Registrado!"
+  "vehicleRegisteredMessage": "Veículo Registrado!",
+
+  "registeredRents": "Aluguéis Cadastrados",
+  "startDate": "Data inicial",
+  "finalDate": "Data final",
+  "totalDays": "Diárias",
+  "plate": "Placa",
+  "manager": "Gerente",
+  "commission": "Comissão",
+  "totalPrice": "Valor Total",
+  "deleteRent": "Excluir Aluguel",
+  "confirmDeleteRent": "Deseja excluir este aluguel?",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar"
 
 
 
